@@ -30,7 +30,78 @@
             Console.ReadLine();
             Console.Clear();
         }
-        static void Town()
+
+        static void TutorialControl()
+        {
+            Console.WriteLine("You step into the realm, ready to prove your mettle.");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("A training dummy stands before you, your first test. You must master the art of combat by pressing 'A' to strike.");
+            Console.Clear();
+
+            //enemy and player's hp
+            int enemy1HP = 20;
+            int playerHP = 50;
+            Random rand = new Random();
+
+            do
+            {
+                Console.WriteLine("Press 'A' to strike");
+                char attack = Convert.ToChar(Console.ReadLine());
+                attack = char.ToLower(attack);
+                Console.WriteLine();
+
+                // Player Attack
+                if (attack == 'a')
+                {
+                    Console.Beep(1000, 300);
+                    int hitmiss = rand.Next(1, 5);
+                    switch (hitmiss)
+                    {
+                        case 1:
+                            Console.WriteLine($"Enemy HP: {enemy1HP}");
+                            Console.WriteLine($"Your HP: {playerHP}");
+                            Console.WriteLine("Your swing goes wide, missing the enemy entirely!");
+                            Console.WriteLine("0 damage\n");
+                            Console.WriteLine("The enemy retaliates!\n");
+                            Thread.Sleep(1000);
+                            enemy1HP = 20;
+                            break;
+                        case 2:
+                            Console.WriteLine($"Enemy HP: {enemy1HP}");
+                            Console.WriteLine($"Your HP: {playerHP}");
+                            Console.WriteLine("You strike true!");
+                            Console.WriteLine("5 damage dealt!\n");
+                            Console.WriteLine("The enemy retaliates!\n");
+                            Thread.Sleep(1000);
+                            enemy1HP -= 5;
+                            break;
+                        case 3:
+                            Console.WriteLine($"Enemy HP: {enemy1HP}");
+                            Console.WriteLine($"Your HP: {playerHP}");
+                            Console.WriteLine("A fierce blow!");
+                            Console.WriteLine("10 damage dealt!\n");
+                            Console.WriteLine("The enemy retaliates!\n");
+                            Thread.Sleep(1000);
+                            enemy1HP -= 10;
+                            break;
+                        default:
+                            Console.WriteLine($"Enemy HP: {enemy1HP}");
+                            Console.WriteLine($"Your HP: {playerHP}");
+                            Console.WriteLine("You landed a glancing blow.");
+                            Console.WriteLine("2 damage dealt!\n");
+                            Console.WriteLine("The enemy retaliates!\n");
+                            Thread.Sleep(1000);
+                            enemy1HP -= 2;
+                            break;
+                    }
+                }
+                else //if user did not press 'a'
+                {
+                    Console.WriteLine("That action is not valid.");
+                }
+
+                static void Town()
         {
             //declare all variables
 
