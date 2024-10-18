@@ -167,6 +167,11 @@
             }
         }
 
+        static void TutorialInventory()
+        {
+            TutorialControl();     // will do later 
+
+        }
 
         static void Town()
         {
@@ -221,6 +226,12 @@
                 Thread.Sleep(500);
             }
 
+            static void TutorialInventory()
+            {
+                TutorialControl();
+
+            }
+
 
             //game dialogue
             string[] gameDialogue = new string[]
@@ -262,8 +273,8 @@
         }
         static void Main(string[] args)
         {
-            //Introduction();
-            //TutorialControl();
+            Introduction();
+            TutorialControl();
             EnteringTownAnimation();
             Town();
             Console.ReadLine();
