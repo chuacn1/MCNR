@@ -149,7 +149,26 @@
 
             }
 
-                static void Town()
+            //once enemy or player dies, stops loop
+            while (enemy1HP > 0 && playerHP > 0);
+
+            if (enemy1HP <= 0) //enemy dies
+            {
+                Console.Beep(1000, 500);
+                Console.WriteLine("You have triumphed over the foe!");
+                Console.ReadLine();
+            }
+            if (playerHP <= 0) //player dies
+            {
+                Console.Beep(400, 500);
+                Console.WriteLine("You have fallen in battle.");
+                Console.ReadLine();
+                return;  //stop program
+            }
+        }
+
+
+        static void Town()
         {
             //declare all variables
 
