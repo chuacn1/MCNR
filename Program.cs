@@ -101,6 +101,54 @@
                     Console.WriteLine("That action is not valid.");
                 }
 
+                // Enemy Attack
+                Console.Beep(800, 300);
+                int misshit = rand.Next(1, 5);
+                switch (misshit)
+                {
+                    case 1:
+                        Console.WriteLine($"Enemy HP: {enemy1HP}");
+                        Console.WriteLine($"Your HP: {playerHP}");
+                        Console.WriteLine("The enemy missed their strike!");
+                        Console.WriteLine("0 damage");
+                        Console.WriteLine("\nPress Enter for your turn");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    case 2:
+                        playerHP -= 5;
+                        Console.WriteLine($"Enemy HP: {enemy1HP}");
+                        Console.WriteLine($"Your HP: {playerHP}");
+                        Console.WriteLine("The enemy lands a blow!");
+                        Console.WriteLine("5 damage taken");
+                        Console.WriteLine("\nPress Enter for your turn");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    case 3:
+                        playerHP -= 10;
+                        Console.WriteLine($"Enemy HP: {enemy1HP}");
+                        Console.WriteLine($"Your HP: {playerHP}");
+                        Console.WriteLine("The enemy strikes fiercely!");
+                        Console.WriteLine("10 damage taken");
+                        Console.WriteLine("\nPress Enter for your turn");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    default:
+                        playerHP -= 2;
+                        Console.WriteLine($"Enemy HP: {enemy1HP}");
+                        Console.WriteLine($"Your HP: {playerHP}");
+                        Console.WriteLine("The enemy lands a glancing blow.");
+                        Console.WriteLine("2 damage taken");
+                        Console.WriteLine("\nPress Enter for your turn");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                }
+
+            }
+
                 static void Town()
         {
             //declare all variables
