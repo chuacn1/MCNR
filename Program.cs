@@ -2,6 +2,9 @@
 {
     internal class Program
     {
+        //ARRAY FOR INVENTORIES
+        static string[] items = new string[6];
+        static int[] counts = new int[4];
 
         static void Introduction()
         {
@@ -169,10 +172,67 @@
 
         static void TutorialInventory()
         {
-            TutorialControl();     // will do later 
+            Console.WriteLine("With the first enemy vanquished, you find no treasure—only the thrill of victory. But as you catch your breath, another foe approaches, promising loot upon defeat. You have five spaces in your inventory—one already claimed by your trusty sword. Prepare wisely for what lies ahead!");
+
+            TutorialControl();
+
+            Console.WriteLine("With the enemy defeated, you discover a trove of spoils: gleaming coins, a delicate flower, and a sturdy piece of ironp. Gather more flowers to purchase health potions at the Health Centre, and collect iron to upgrade your sword at the Blacksmith. Every choice you make shapes your adventure—make them count!");
+            Console.Clear();
+
+            Console.WriteLine("Gleaming Coins");
+            Console.WriteLine("Delicate Flower");
+            Console.WriteLine("Sturdy Iron");
+            Console.WriteLine();
+            Console.WriteLine("Press 'P' to collect your loot!\n");
+            char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+            Console.Clear();
+
+            if (pick == 'P')
+            {
+                AddToInventory("Gleaming Coins");       // 
+
+                AddToInventory("Delicate Flower");      //
+
+                AddToInventory("Sturdy Iron");          //
+            }
 
         }
 
+        static void AddToInventory(string item) //when enemy drop loot call AddToInventory in method as shown in TutorialInventory!!!!!!
+        {
+            items[0] = "Trusty Sword"; //sword took up a slot
+            counts[0] = 1;
+
+            // check if the item already exists in the inventory
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] == item)
+                {
+                    counts[i]++;
+                    Console.WriteLine($"{item} count increased. Total count: {counts[i]}");
+                    Console.ReadLine();
+                    return;
+
+                }
+            }
+
+            // if item does not exist, find empty slot
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] == null)
+                {
+                    items[i] = item;
+                    counts[i] = 1;
+                    Console.WriteLine($"{item} added to inventory. Total count: {counts[i]}");
+                    Console.ReadLine();
+                    return;
+
+                }
+            }
+
+            Console.WriteLine("Inventory full! Cannot add more items.");
+            Console.ReadLine();
+        }
         static void Town()
         {
             //declare all variables
@@ -226,13 +286,6 @@
                 Thread.Sleep(500);
             }
 
-            static void TutorialInventory()
-            {
-                TutorialControl();
-
-            }
-
-
             //game dialogue
             string[] gameDialogue = new string[]
             {
@@ -271,46 +324,13 @@
 
             Console.Clear();
         }
-
-        static void CaveOrForest() //player will choose where he want to go cave or forest
-        {
-            int choose;
-
-
-
-
-            Console.WriteLine("Press 1 for cave or Press 2 for forest: ");
-            string decision = Console.ReadLine();
-
-            // Validate input to prevent exceptions
-            if (!int.TryParse(decision, out choose) || (choose != 1 && choose != 2))
-            {
-                Console.WriteLine("Invalid input. Please enter 1 or 2.");
-                return; // Exit if invalid
-            }
-
-            // Additional border design for output
-            Console.WriteLine(new string('-', 30));
-
-            if (choose == 1)
-            {
-                Console.WriteLine("Entering the cave...");
-            }
-            else
-            {
-                Console.WriteLine("Entering the forest...");
-            }
-
-            Console.WriteLine(new string('-', 30));
-            Console.ReadLine();
-        }
         static void Main(string[] args)
         {
             Introduction();
             TutorialControl();
+            TutorialInventory();
             EnteringTownAnimation();
             Town();
-            CaveOrForest();
             Console.ReadLine();
         }
     }
