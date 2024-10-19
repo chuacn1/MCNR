@@ -271,12 +271,46 @@
 
             Console.Clear();
         }
+
+        static void CaveOrForest() //player will choose where he want to go cave or forest
+        {
+            int choose;
+
+
+
+
+            Console.WriteLine("Press 1 for cave or Press 2 for forest: ");
+            string decision = Console.ReadLine();
+
+            // Validate input to prevent exceptions
+            if (!int.TryParse(decision, out choose) || (choose != 1 && choose != 2))
+            {
+                Console.WriteLine("Invalid input. Please enter 1 or 2.");
+                return; // Exit if invalid
+            }
+
+            // Additional border design for output
+            Console.WriteLine(new string('-', 30));
+
+            if (choose == 1)
+            {
+                Console.WriteLine("Entering the cave...");
+            }
+            else
+            {
+                Console.WriteLine("Entering the forest...");
+            }
+
+            Console.WriteLine(new string('-', 30));
+            Console.ReadLine();
+        }
         static void Main(string[] args)
         {
             Introduction();
             TutorialControl();
             EnteringTownAnimation();
             Town();
+            CaveOrForest();
             Console.ReadLine();
         }
     }
