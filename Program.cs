@@ -10,7 +10,7 @@
         {
             //Introduction();
             //TutorialControl();
-            //TutorialInventory();
+            TutorialInventory();
             EnteringTownAnimation();
             Town();
             Console.ReadLine();
@@ -35,23 +35,46 @@
                 Console.Write("Please Enter Your Name: ");
                 string playersName = Console.ReadLine();
                 Console.Clear();
-                Console.WriteLine("In the tranquil realm of Eldoria, shadows have begun to creep into the lands, threatening the harmony of its inhabitants.");
-                Console.ReadLine();
-                Console.WriteLine($"As a fledgling hero named {playersName}, you awaken to the call of adventure, armed only with your courage and a weathered sword.");
-                Console.ReadLine();
-                Console.WriteLine("Your journey begins at the outskirts of your village, where whispers of a fearsome foe—the Shadow Lord—fill the air with dread.");
-                Console.ReadLine();
+
+                string[] introDialogue = new string[]
+                {
+                    "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
+                    $"\nNarrator: You are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
+                    "\nNarrator: Your quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
+                };
+
+
+                foreach (string words in introDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
                 Console.Clear();
+
+                string[] tutorialControlDialogue = new string[]
+                {
+                    "Narrator: You enter the realm, prepared to showcase your skills...",
+                    "\nNarrator: Before you stands a training dummy, your initial challenge. To hone your combat skills, press 'A' to strike.",
+
+                };
+
+
+                foreach (string words in tutorialControlDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
             }
 
+            
             static void TutorialControl()
             {
-                Console.WriteLine("You step into the realm, ready to prove your mettle.");
-                Console.ReadLine();
-                Console.Clear();
-                Console.WriteLine("A training dummy stands before you, your first test. You must master the art of combat by pressing 'A' to strike.");
-                Console.Clear();
-
+                
+                
                 //enemy and player's hp
                 int enemy1HP = 20;
                 int playerHP = 50;
@@ -75,40 +98,40 @@
                             switch (hitmiss)
                             {
                                 case 1:
+                                    enemy1HP = 20;
                                     Console.WriteLine($"Enemy HP: {enemy1HP}");
                                     Console.WriteLine($"Your HP: {playerHP}");
                                     Console.WriteLine("Your swing goes wide, missing the enemy entirely!");
                                     Console.WriteLine("0 damage\n");
                                     Console.WriteLine("The enemy retaliates!\n");
                                     Thread.Sleep(1000);
-                                    enemy1HP = 20;
                                     break;
                                 case 2:
+                                    enemy1HP -= 5;
                                     Console.WriteLine($"Enemy HP: {enemy1HP}");
                                     Console.WriteLine($"Your HP: {playerHP}");
                                     Console.WriteLine("You strike true!");
                                     Console.WriteLine("5 damage dealt!\n");
                                     Console.WriteLine("The enemy retaliates!\n");
                                     Thread.Sleep(1000);
-                                    enemy1HP -= 5;
                                     break;
                                 case 3:
+                                    enemy1HP -= 10;
                                     Console.WriteLine($"Enemy HP: {enemy1HP}");
                                     Console.WriteLine($"Your HP: {playerHP}");
                                     Console.WriteLine("A fierce blow!");
                                     Console.WriteLine("10 damage dealt!\n");
                                     Console.WriteLine("The enemy retaliates!\n");
                                     Thread.Sleep(1000);
-                                    enemy1HP -= 10;
                                     break;
                                 default:
+                                    enemy1HP -= 2;
                                     Console.WriteLine($"Enemy HP: {enemy1HP}");
                                     Console.WriteLine($"Your HP: {playerHP}");
                                     Console.WriteLine("You landed a glancing blow.");
                                     Console.WriteLine("2 damage dealt!\n");
                                     Console.WriteLine("The enemy retaliates!\n");
                                     Thread.Sleep(1000);
-                                    enemy1HP -= 2;
                                     break;
                             }
                         }
@@ -186,13 +209,36 @@
 
             static void TutorialInventory()
             {
-                Console.WriteLine("With the first enemy vanquished, you find no treasure—only the thrill of victory. But as you catch your breath, another foe approaches, promising loot upon defeat. You have five spaces in your inventory—one already claimed by your trusty sword. Prepare wisely for what lies ahead!");
+                string[] tutorialInventoryDialogue1 = new string[]
+                {
+                    "Narrator: With the first enemy vanquished, you find no treasure—only the thrill of victory. But as you catch your breath, another foe approaches, promising loot upon defeat...",
+                    "\nNarrator: You have five spaces in your inventory—one already claimed by your trusty sword. Prepare wisely for what lies ahead!",
+
+                };
+
+
+                foreach (string words in tutorialInventoryDialogue1)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
 
                 TutorialControl();
 
-                Console.WriteLine("With the enemy defeated, you discover a trove of spoils: gleaming coins, a delicate flower, and a sturdy piece of ironp. Gather more flowers to purchase health potions at the Health Centre, and collect iron to upgrade your sword at the Blacksmith. Every choice you make shapes your adventure—make them count!");
-                Console.Clear();
+                string[] tutorialInventoryDialogue2 = new string[]
+            {
+                    "Narrator: With the enemy defeated, you discover a trove of spoils: gleaming coins, a delicate flower, and a sturdy piece of iron.",
+                    "\nNarrator: You have five spaces in your inventory—one already claimed by your trusty sword."
 
+            };
+
+
+                foreach (string words in tutorialInventoryDialogue2)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+                Console.WriteLine();
                 Console.WriteLine("Gleaming Coins");
                 Console.WriteLine("Delicate Flower");
                 Console.WriteLine("Sturdy Iron");
@@ -210,6 +256,15 @@
                     AddToInventory("Sturdy Iron");          //
                 }
 
+                else
+
+                {
+                    Console.WriteLine("Invalid. Press 'P' to collect your loot!");
+
+                }
+                Console.WriteLine("\nNarrator: Gather more flowers to purchase health potions at the Health Centre, and collect iron to upgrade your sword at the Blacksmith.");
+                Thread.Sleep(2000);
+                Console.Clear();
             }
 
             static void AddToInventory(string item) //when enemy drop loot call AddToInventory in method as shown in TutorialInventory!!!!!!
@@ -223,7 +278,7 @@
                     if (items[i] == item)
                     {
                         counts[i]++;
-                        Console.WriteLine($"{item} count increased. Total count: {counts[i]}");
+                        Console.WriteLine($"\n{item} count increased. Total count: {counts[i]}");
                         Console.ReadLine();
                         return;
 
@@ -237,7 +292,7 @@
                     {
                         items[i] = item;
                         counts[i] = 1;
-                        Console.WriteLine($"{item} added to inventory. Total count: {counts[i]}");
+                        Console.WriteLine($"\n{item} added to inventory. Total count: {counts[i]}");
                         Console.ReadLine();
                         return;
 
