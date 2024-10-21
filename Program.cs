@@ -39,8 +39,8 @@
                 string[] introDialogue = new string[]
                 {
                     "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
-                    $"\nNarrator: You are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
-                    "\nNarrator: Your quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
+                    $"\n\tYou are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
+                    "\n\tYour quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
                 };
 
 
@@ -55,7 +55,7 @@
                 string[] tutorialControlDialogue = new string[]
                 {
                     "Narrator: You enter the realm, prepared to showcase your skills...",
-                    "\nNarrator: Before you stands a training dummy, your initial challenge. To hone your combat skills, press 'A' to strike.",
+                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills, press 'A' to strike.",
 
                 };
 
