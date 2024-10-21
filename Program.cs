@@ -252,17 +252,17 @@
                 //array with text 
                 string[] animationFrames = new string[]
                 {
-                    "Walking down the path...",
-                    "The town gates appear on the horizon...",
-                    "You approach the gates...",
-                    "The gates slowly creak open...",
-                    "You step into the town, greeted by the sights and sounds of life."
+                    "Narrator: Walking down the path...",
+                    "\nNarrator: The town gates appear on the horizon...",
+                    "\nNarrator: You approach the gates...",
+                    "\nNarrator: The gates slowly creak open...",
+                    "\nNarrator: You step into the town, greeted by the sights and sounds of life."
                 };
 
                 foreach (string frame in animationFrames)
                 {
                     Console.WriteLine(frame);   // Display the current frame
-                    Thread.Sleep(1500);         // Pause for 1.5 seconds before showing the next frame
+                    Thread.Sleep(2000);         // Pause for 1.5 seconds before showing the next frame
                 }
 
                 Console.Clear();
@@ -318,13 +318,13 @@
                 //game dialogue
                 string[] gameDialogue = new string[]
                 {
-                "After your training...",
-                "You make your way to the bustling town centre...",
-                "A townsfolk informs you about the Blacksmith and Potion Maker...",
-                "'The Blacksmith in town crafts the finest weapons in the realm' says the stranger...",
-                "'The Potion Maker will provide with the best elixirs you will ever consume' he also tells you...",
-                "You thank the stranger and head on your way...",
-                "Now, which shall we visit first?..."
+                "Narrator: After your training...",
+                "\nNarrator: You make your way to the bustling town centre...",
+                "\nNarrator: A townsfolk informs you about the Blacksmith and Potion Maker...",
+                "\nStranger: 'The Blacksmith in town crafts the finest weapons in the realm' says the stranger...",
+                "\nStranger: 'The Potion Maker will provide with the best elixirs you will ever consume' he also tells you...",
+                "\nNarrator: You thank the stranger and head on your way...",
+                "\nNarrator: Now, which shall we visit first?..."
                 };
 
                 foreach (string words in gameDialogue)
@@ -334,36 +334,40 @@
                 }
 
                 //ask user if they want to visit blacksmith or potion maker
-                Console.WriteLine("Now that you are in Eldoria. Would you like to visit:");
-                Console.WriteLine("1. The Blacksmith");
-                Console.WriteLine("2. The Potion Maker");
-                Console.Write("Enter 1 or 2: ");
+                Console.WriteLine("Narrator: Now that you are in Eldoria. Would you like to visit:");
+                Console.WriteLine("\n1. The Blacksmith");
+                Console.WriteLine("\n2. The Potion Maker");
+                Console.Write("\nEnter 1 or 2: ");
 
                 //read player input
                 string choice = Console.ReadLine();
+                Console.Clear();
 
                 //process the players choice
                 if (choice == "1")
                 {
                     VisitBlackSmith();
+                    
                 }
 
                 else if (choice == "2")
                 {
                     VisitPotionMaker();
+                    
                 }
+                
             }
 
             static void VisitBlackSmith()
             {
                 string[] blackSmith = new string[]
                {
-                "You visit the Blacksmith...",
-                "The sound of the hammers hitting the anvils fill the air...",
-                "'Hello there stranger'...",
-                "'The name is Thrain Ironhand'...",
-                "'I am the Blacksmith around these parts'...",
-                "'How can I help you?'..."
+                "Narrator: You visit the Blacksmith...",
+                "\nNarrator: The sound of the hammers hitting the anvils fill the air...",
+                "\nStranger: 'Hello there stranger'...",
+                "\nThrain Ironhand: 'The name is Thrain Ironhand'...",
+                "\nThrain Ironhand: 'I am the Blacksmith around these parts'...",
+                "\nThrain Ironhand: 'How can I help you?'..."
                };
 
                 foreach (string intro in blackSmith)
@@ -377,13 +381,13 @@
             {
                 string[] potionMaker = new string[]
              {
-                "You visit the Potion Maker...",
-                "You pan around the room and see colorful bottles and strange herbs...",
-                "You see a hooded figure look up at you with glistening eyes...",
-                "'Hello sir'...",
-                "'My name is Elysia Moonshade'...",
-                "'I can provide you with the most powerful concoctions of any kind...'",
-                "'How may I help you?'..."
+                "Narrator: You visit the Potion Maker...",
+                "\nNarrator: You pan around the room and see colorful bottles and strange herbs...",
+                "\nNarrator: You see a hooded figure look up at you with glistening eyes...",
+                "\nStranger: 'Hello sir'...",
+                "\nElyisa Moonshade: 'My name is Elysia Moonshade'...",
+                "\nElysia Moonshade: 'I can provide you with the most powerful concoctions of any kind...'",
+                "\nElysia Moonshade: 'How may I help you?'..."
              };
 
                 foreach (string intro1 in potionMaker)
