@@ -8,9 +8,9 @@
 
         static void Main(string[] args)
         {
-            Introduction();
-            TutorialControl();
-            TutorialInventory();
+            //Introduction();
+            //TutorialControl();
+            //TutorialInventory();
             EnteringTownAnimation();
             Town();
             Console.ReadLine();
@@ -261,7 +261,6 @@
 
                 foreach (string frame in animationFrames)
                 {
-                    Console.Clear();            // Clear the console to simulate movement
                     Console.WriteLine(frame);   // Display the current frame
                     Thread.Sleep(1500);         // Pause for 1.5 seconds before showing the next frame
                 }
@@ -330,9 +329,8 @@
 
                 foreach (string words in gameDialogue)
                 {
-                    Console.Clear();
                     Console.WriteLine(words);
-                    Thread.Sleep(1500);
+                    Thread.Sleep(2000);
                 }
 
                 //ask user if they want to visit blacksmith or potion maker
@@ -370,9 +368,8 @@
 
                 foreach (string intro in blackSmith)
                 {
-                    Console.Clear();
                     Console.WriteLine(intro);
-                    Thread.Sleep(1500);
+                    Thread.Sleep(2000);
                 }
             }
 
@@ -391,11 +388,12 @@
 
                 foreach (string intro1 in potionMaker)
                 {
-                    Console.Clear();
                     Console.WriteLine(intro1);
-                    Thread.Sleep(1500);
+                    Thread.Sleep(2000);
                 }
             }
+
+         
         }
     }
 }
