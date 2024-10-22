@@ -11,7 +11,45 @@ namespace MCNR
         static int money = 0;
         static int enemyHP = 0;
         static int playerHP = 0;
+        static int ore = 0;
 
+        public class Weapon
+        {
+
+            public string Name { get; set; }                        //able to access and modify its value
+            public int Damage { get; set; }                         //able to access and modify its value
+            public int UpgradeLevel { get; set; }                   //able to access and modify its value
+            public int UpgradeCost { get; set; }                    //able to access and modify its value
+            public int MaxUpgradeLevel { get; set; } = 5;           //able to access and modify its value
+
+            public Weapon(string name, int damage, int upgradeCost)
+            {
+                Name = name;
+
+                Damage = damage;
+
+                UpgradeLevel = 1; //sword starts at level 1
+
+                UpgradeCost = upgradeCost; //cost to upgrade
+
+            }
+
+        }
+
+        static void UpgradeWeapon(Weapon weapon)
+        {
+            if (weapon.UpgradeLevel < weapon.MaxUpgradeLevel)
+            {
+                if (ore > 0 && money >= weapon.UpgradeCost)
+                {
+                    //deduct iron and currency for upgrade
+                    ore--;
+                    money = weapon.UpgradeCost;
+
+                    //increase weapons damage and level
+                }
+            }
+        }
         static void Main(string[] args)
         {
             Introduction();
@@ -255,12 +293,15 @@ namespace MCNR
                 char pick = Convert.ToChar(Console.ReadLine().ToUpper());
                 Console.Clear();
 
-                money = +10;
+                money += 10;
+                ore += 1;
 
                 if (pick == 'P')
                 {
 
                     AddCoins(10);
+
+                    AddIron(1);
 
                     AddToInventory("Gleaming Coins");       // 
 
@@ -269,6 +310,11 @@ namespace MCNR
                     AddToInventory("Sturdy Iron");          //
 
                     Console.WriteLine($"Coins collected: {money}");
+
+                    Console.WriteLine($"Iron collected: {ore}");
+
+
+
                 }
 
                 else
@@ -288,6 +334,13 @@ namespace MCNR
                 // Ensure the coins are in the first index
                 items[0] = "Gleaming Coins"; // Set item name for coins
                 counts[0] += amount; // Increment coin count
+            }
+
+            static void AddIron(int iron)
+            {
+                //iron is added to third index
+                items[2] = "Sturdy Iron"; //set item name for iron
+                counts[2] += iron; //increment iron count
             }
 
 
@@ -521,42 +574,6 @@ namespace MCNR
                 }
             }
         }
-        public class Weapon
-        {
-            //sword variable
-            public string Name { get; set; }
-            public int Damage { get; set; }
-            public int UpgradeLevel { get; set; }
-            public int UpgradeCost { get; set; }
-            public int MaxUpgradeLevel { get; set; } = 5;
-
-            public Weapon(string name, int damage, int upgradeCost)
-            {
-                Name = name;
-
-                Damage = damage;
-
-                UpgradeLevel = 1; //sword starts at level 1
-
-                UpgradeCost = upgradeCost; //cost to upgrade
-
-            }
-
-        }
-
-        static int ironCount = 1;
-
-        static void UpgradeWeapon(Weapon weapon)
-        {
-            if (weapon.UpgradeLevel < weapon.MaxUpgradeLevel)
-            {
-                if (ironCount > 0 && money >= weapon.UpgradeCost)
-                {
-
-                }
-            }
-        }
-
 
         static void CaveOrForest() //player will choose where he want to go cave or forest
         {
@@ -584,7 +601,7 @@ namespace MCNR
 
         }
 
-     
+
     }
 }
 
