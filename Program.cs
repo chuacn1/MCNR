@@ -5,6 +5,9 @@
         //ARRAY FOR INVENTORIES
         static string[] items = new string[6];
         static int[] counts = new int[6];
+        static int money = 0;
+        static int enemyHP = 0;
+        static int playerHP = 0;
 
         static void Main(string[] args)
         {
@@ -76,8 +79,8 @@
                 
                 
                 //enemy and player's hp
-                int enemy1HP = 20;
-                int playerHP = 50;
+                enemyHP = 20;
+                playerHP = 50;
                 Random rand = new Random();
 
                 do
@@ -98,8 +101,8 @@
                             switch (hitmiss)
                             {
                                 case 1:
-                                    enemy1HP = 20;
-                                    Console.WriteLine($"Enemy HP: {enemy1HP}");
+                                    enemyHP = 20;
+                                    Console.WriteLine($"Enemy HP: {enemyHP}");
                                     Console.WriteLine($"Your HP: {playerHP}");
                                     Console.WriteLine("Your swing goes wide, missing the enemy entirely!");
                                     Console.WriteLine("0 damage\n");
@@ -107,8 +110,8 @@
                                     Thread.Sleep(1000);
                                     break;
                                 case 2:
-                                    enemy1HP -= 5;
-                                    Console.WriteLine($"Enemy HP: {enemy1HP}");
+                                    enemyHP -= 5;
+                                    Console.WriteLine($"Enemy HP: {enemyHP}");
                                     Console.WriteLine($"Your HP: {playerHP}");
                                     Console.WriteLine("You strike true!");
                                     Console.WriteLine("5 damage dealt!\n");
@@ -116,8 +119,8 @@
                                     Thread.Sleep(1000);
                                     break;
                                 case 3:
-                                    enemy1HP -= 10;
-                                    Console.WriteLine($"Enemy HP: {enemy1HP}");
+                                    enemyHP -= 10;
+                                    Console.WriteLine($"Enemy HP: {enemyHP}");
                                     Console.WriteLine($"Your HP: {playerHP}");
                                     Console.WriteLine("A fierce blow!");
                                     Console.WriteLine("10 damage dealt!\n");
@@ -125,8 +128,8 @@
                                     Thread.Sleep(1000);
                                     break;
                                 default:
-                                    enemy1HP -= 2;
-                                    Console.WriteLine($"Enemy HP: {enemy1HP}");
+                                    enemyHP -= 2;
+                                    Console.WriteLine($"Enemy HP: {enemyHP}");
                                     Console.WriteLine($"Your HP: {playerHP}");
                                     Console.WriteLine("You landed a glancing blow.");
                                     Console.WriteLine("2 damage dealt!\n");
@@ -147,7 +150,7 @@
                     switch (misshit)
                     {
                         case 1:
-                            Console.WriteLine($"Enemy HP: {enemy1HP}");
+                            Console.WriteLine($"Enemy HP: {enemyHP}");
                             Console.WriteLine($"Your HP: {playerHP}");
                             Console.WriteLine("The enemy missed their strike!");
                             Console.WriteLine("0 damage");
@@ -157,7 +160,7 @@
                             break;
                         case 2:
                             playerHP -= 5;
-                            Console.WriteLine($"Enemy HP: {enemy1HP}");
+                            Console.WriteLine($"Enemy HP: {enemyHP}");
                             Console.WriteLine($"Your HP: {playerHP}");
                             Console.WriteLine("The enemy lands a blow!");
                             Console.WriteLine("5 damage taken");
@@ -167,7 +170,7 @@
                             break;
                         case 3:
                             playerHP -= 10;
-                            Console.WriteLine($"Enemy HP: {enemy1HP}");
+                            Console.WriteLine($"Enemy HP: {enemyHP}");
                             Console.WriteLine($"Your HP: {playerHP}");
                             Console.WriteLine("The enemy strikes fiercely!");
                             Console.WriteLine("10 damage taken");
@@ -177,7 +180,7 @@
                             break;
                         default:
                             playerHP -= 2;
-                            Console.WriteLine($"Enemy HP: {enemy1HP}");
+                            Console.WriteLine($"Enemy HP: {enemyHP}");
                             Console.WriteLine($"Your HP: {playerHP}");
                             Console.WriteLine("The enemy lands a glancing blow.");
                             Console.WriteLine("2 damage taken");
@@ -190,9 +193,9 @@
                 }
 
                 //once enemy or player dies, stops loop
-                while (enemy1HP > 0 && playerHP > 0);
+                while (enemyHP > 0 && playerHP > 0);
 
-                if (enemy1HP <= 0) //enemy dies
+                if (enemyHP <= 0) //enemy dies
                 {
                     Console.Beep(1000, 500);
                     Console.WriteLine("You have triumphed over the foe!");
@@ -247,6 +250,8 @@
                 char pick = Convert.ToChar(Console.ReadLine().ToUpper());
                 Console.Clear();
 
+                money =+ 10;
+
                 if (pick == 'P')
                 {
                     AddToInventory("Gleaming Coins");       // 
@@ -254,6 +259,8 @@
                     AddToInventory("Delicate Flower");      //
 
                     AddToInventory("Sturdy Iron");          //
+
+                    Console.WriteLine($"Coins collected: {money}");
                 }
 
                 else
@@ -457,7 +464,61 @@
                 }
             }
 
-         
+            static void CaveOrForest() //player will choose where he want to go cave or forest
+            {
+                int choose;
+                Console.WriteLine("Press 1 for cave or Press 2 for forest: ");
+                string decision = Console.ReadLine();
+                // Validate input to prevent exceptions
+                if (!int.TryParse(decision, out choose) || (choose != 1 && choose != 2))
+                {
+                    Console.WriteLine("Invalid input. Please enter 1 or 2.");
+                    return; // Exit if invalid
+                }
+                // Additional border design for output
+                Console.WriteLine(new string('-', 30));
+                if (choose == 1)
+                {
+                    Console.WriteLine("Entering the cave...");
+                }
+                else
+                {
+                    Console.WriteLine("Entering the forest...");
+                }
+                Console.WriteLine(new string('-', 30));
+                Console.ReadLine();
+
+            }
+
+            static void CaveEnemyPath1 ()
+            {
+      
+                string[] caveEnemyDialogue = new string[]
+                {
+                    "Narrator: As you delve deeper into the cave, the air grows colder and the shadows seem to shift around you...",
+                    "\n\tSuddenly, a growl echoes through the darkness, and a menacing figure emerges from the shadows!",
+                    "\nNarrator: It's a Cave Troll, towering above you with a fearsome glare!",
+                    "\nCave Troll: 'You dare intrude in my domain?! Prepare to face my wrath!'",
+                    "\nNarrator: With adrenaline pumping through your veins, you ready your sword. The battle is about to begin!",
+                    "\n\tWill you fight bravely or flee into the darkness? Press 'A' to attack!"
+                };
+
+                foreach (string line in caveEnemyDialogue)
+                {
+                    Console.WriteLine(line);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                enemyHP = 30;
+                playerHP = 50;
+
+                TutorialControl();
+
+
+            }
+
         }
     }
 }
