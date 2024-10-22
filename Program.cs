@@ -420,6 +420,51 @@ namespace MCNR
                 playerHP = 50;
 
                 EnemyVsPlayer();
+                if (enemyHP <= 0)
+                {
+                    Console.Beep(1000, 500);
+                    Console.WriteLine("You have defeated the Cave Troll!");
+                    // Here you can add rewards or further actions
+                }
+                else if (playerHP <= 0)
+                {
+                    Console.Beep(400, 500);
+                    Console.WriteLine("You have fallen in battle against the Cave Troll.");
+                    Console.WriteLine("Game Over.");
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    // In case of some unexpected outcome, though unlikely
+                    Console.WriteLine("The battle ended unexpectedly.");
+                }
+
+                Console.WriteLine("Press 'P' to collect your loot!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                Console.Clear();
+
+                money += 10;
+
+                if (pick == 'P')
+                {
+
+                    AddCoins(10);
+
+                    AddToInventory("Gleaming Coins");       // 
+
+                    AddToInventory("Sturdy Iron");          //
+
+                    Console.WriteLine($"Coins collected: {money}");
+                }
+
+                else
+
+                {
+                    Console.WriteLine("Invalid. Press 'P' to collect your loot!");
+
+                }
+
+
 
             }
 
