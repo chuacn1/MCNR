@@ -67,75 +67,20 @@ namespace MCNR
         }
         static void Main(string[] args)
         {
-            Introduction();
-            EnemyVsPlayer();
-            TutorialInventory();
-            EnteringTownAnimation();
-            Town();
+            //Introduction();
+            //Tutorial();
+            //TutorialInventory();
+            //EnteringTownAnimation();
+            //Town();
+
+            //CaveOrForest();
+            //CavePath1Or2();       //Enemy or Special Sword
+            //CaveEnemyPath1();      // if 1 = Enemy
+            SpecialSword();   //if 2 = SpecialSword
+            //
+
+
             Console.ReadLine();
-
-
-            static void Introduction()
-            {
-                string title = "Quest for the Lost Kingdom";
-                int borderWidth = title.Length + 6;
-
-                //border + title
-
-                Console.WriteLine("╔" + new string('═', borderWidth) + "╗");
-                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
-                Console.WriteLine($"║   {title}   ║");
-                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
-                Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
-                Console.WriteLine();
-
-
-                //storyline intro
-                Console.Write("Please Enter Your Name: ");
-                string playersName = Console.ReadLine();
-                Console.Clear();
-
-                string[] introDialogue = new string[]
-                {
-                    "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
-                    $"\nYou are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
-                    "\nYour quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
-                };
-
-
-                foreach (string words in introDialogue)
-                {
-                    Console.WriteLine(words);
-                    Thread.Sleep(2000);
-                }
-
-                Console.Clear();
-
-                string[] tutorialControlDialogue = new string[]
-                {
-                    "Narrator: You enter the realm, prepared to showcase your skills...",
-                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills, press 'A' to strike.",
-
-                };
-
-
-                foreach (string words in tutorialControlDialogue)
-                {
-                    Console.WriteLine(words);
-                    Thread.Sleep(2000);
-                }
-
-                Console.Clear();
-
-            }
-
-
-            static void Tutorial()
-            {
-                enemyHP = 20;
-                playerHP = 50;
-                EnemyVsPlayer();
-            }
 
             static void EnemyVsPlayer()
             {
@@ -253,6 +198,70 @@ namespace MCNR
                 //once enemy or player dies, stops loop
                 while (enemyHP > 0 && playerHP > 0);
 
+            }
+
+            static void Introduction()
+            {
+                string title = "Quest for the Lost Kingdom";
+                int borderWidth = title.Length + 6;
+
+                //border + title
+
+                Console.WriteLine("╔" + new string('═', borderWidth) + "╗");
+                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
+                Console.WriteLine($"║   {title}   ║");
+                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
+                Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
+                Console.WriteLine();
+
+
+                //storyline intro
+                Console.Write("Please Enter Your Name: ");
+                string playersName = Console.ReadLine();
+                Console.Clear();
+
+                string[] introDialogue = new string[]
+                {
+                    "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
+                    $"\nYou are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
+                    "\nYour quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
+                };
+
+
+                foreach (string words in introDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                string[] tutorialControlDialogue = new string[]
+                {
+                    "Narrator: You enter the realm, prepared to showcase your skills...",
+                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills, press 'A' to strike.",
+
+                };
+
+
+                foreach (string words in tutorialControlDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+            }
+
+
+            static void Tutorial()
+            {
+                enemyHP = 20;
+                playerHP = 50;
+
+                EnemyVsPlayer();
+
                 if (enemyHP <= 0) //enemy dies
                 {
                     Console.Beep(1000, 500);
@@ -264,7 +273,7 @@ namespace MCNR
                     Console.Beep(400, 500);
                     Console.WriteLine("You have fallen in battle.");
                     Console.ReadLine();
-                    return;  //stop program
+                    Environment.Exit(0);  //stop program
                 }
             }
 
@@ -466,6 +475,90 @@ namespace MCNR
 
 
 
+            }
+
+            static void SpecialSword()
+            {
+                //dialogue when the player finds the chest
+                Console.WriteLine("Narrator: As you explore the depths of the cave, you stumble upon an ancient chest, its surface adorned with intricate carvings...");
+                Thread.Sleep(2000);
+                Console.WriteLine("\nNarrator: Curiosity piqued, you kneel before the chest and notice a strange inscription on the lock.");
+                Thread.Sleep(2000);
+                Console.WriteLine("\nNarrator: It reads: 'To reveal the power within, speak the word of light.'");
+                Thread.Sleep(2000);
+
+                //hint for the passcode
+                Console.WriteLine("\nNarrator: You think for a moment. Perhaps the answer lies in the very essence of what you seek. It's a simple word related to illumination...");
+                Console.WriteLine("What could it be? Type your guess:");
+
+                string passcode = "LIGHT"; //correct passcode
+                bool chestOpened = false;
+
+                while (!chestOpened)
+                {
+                    string playerGuess = Console.ReadLine().ToUpper();
+
+                    if (playerGuess == passcode)
+                    {
+                        chestOpened = true;
+                        Console.WriteLine("\nNarrator: The chest creaks open as the passcode is accepted!");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("\nInside, you find a magnificent sword, its blade shimmering with a faint, ethereal glow.");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("\nNarrator: This is the *Blade of Lumina*, said to be forged by the celestial smiths of old...");
+                        ContinueWithSpecialSwordDialogue();
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nNarrator: The lock remains steadfast. Perhaps you should think of something brighter... Try again:");
+                    }
+                }
+            }
+
+            static void ContinueWithSpecialSwordDialogue()
+            {
+                //the rest of the dialogue about the special sword
+                string[] specialSwordDialogue = new string[]
+                {
+                    "Narrator: Unlike your trusty sword, the *Blade of Lumina* pulses with magical energy, and legends speak of its unique ability: 'Light of Valor.'",
+                    "\nNarrator: When wielded, this sword can unleash a radiant burst of light, dealing extra damage to foes and stunning them momentarily.",
+                    "\nNarrator: However, such power comes with a cost—you may only use 'Light of Valor' once, so choose the moment wisely.",
+                    "\nNarrator: You can feel a powerful connection to the blade, as if it senses your bravery and desire to protect the innocent.",
+                    "\nNarrator: Will you claim it as your own?"
+                };
+
+                foreach (string line in specialSwordDialogue)
+                {
+                    Console.WriteLine(line);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                // Prompt to collect the sword
+                Console.WriteLine("Press 'C' to claim the *Blade of Lumina* and add it to your inventory!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+
+                if (pick == 'C')
+                {
+                    AddToInventory("Blade of Lumina");
+                    Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The *Blade of Lumina* is now yours!");
+                    Console.WriteLine("\nNarrator: You can now unleash the 'Light of Valor' in battle, a radiant strike against darkness. Use it wisely!");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice. The sword remains in the chest, waiting for a worthy hero.");
+                }
+            }
+
+            static void UseLightOfValor()  //Can only be use once, if (playerAction == "LIGHT") add this method BossVsPlayer
+
+            {
+                Console.WriteLine("\nYou raise the *Blade of Lumina* high, calling upon its magical power...");
+                Thread.Sleep(1000);
+                Console.WriteLine("A brilliant light envelops you, and with a mighty swing, you unleash a burst of radiant energy!");
+
+                enemyHP -= 50; //discuss
             }
 
             static void EnteringTownAnimation()
