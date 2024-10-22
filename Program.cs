@@ -47,7 +47,22 @@ namespace MCNR
                     money = weapon.UpgradeCost;
 
                     //increase weapons damage and level
+                    weapon.UpgradeLevel++;
+                    weapon.Damage += 5;
+                    weapon.UpgradeCost += 10;
+
+                    Console.WriteLine($"Upgrade {weapon.Name} to level {weapon.UpgradeLevel}!");
+                    Console.WriteLine($"\nNew Damage: {weapon.Damage}, New Upgrade Cost: {weapon.UpgradeCost}");
+                    Console.WriteLine($"\nIron left: {ore}, Currency left: {money}");
                 }
+                else
+                {
+                    Console.WriteLine("Not enough iron or currency to upgrade weapon");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Maximum upgrade level reached for this weapon");
             }
         }
         static void Main(string[] args)
