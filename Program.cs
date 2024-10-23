@@ -70,17 +70,33 @@ namespace MCNR
             //Introduction();
             //Tutorial();
             //TutorialInventory();
+
             //EnteringTownAnimation();
             //Town();
+            //VisitBlackSmith();
+            //VisitPotionMaker();
 
-            //CaveOrForest();
-            //CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword    
-            //CaveEnemyPath1();
-            //CaveExitOrPath3(); // After CaveEnemyPath1, E = Exit the cave or 1 = CaveEnemyPath3
+            //NPC();          // Manish    
+            //CaveOrForest(); // Manish    
+
+            //CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword  //Manish  
+            //CaveEnemyPath1(); 
+            //CaveExitOrPath3(); // After CaveEnemyPath1, E = Exit the cave or 1 = CaveEnemyPath3 //Manish 
             //CaveEnemyPath3();
             //SpecialSword();    
             //EscapeCave(); // Right after he got special sword, Player experience lost of O2, have to solve riddle in order to Exit the cave
-            
+
+            //ForestPath1OrPath2(); // Manish 
+            //ForestEnemyPath1();   
+            //ForestExitOrPath3(); // Manish 
+            //ForestEnemyPath3();  
+            //SpecialFlower();      // A FlowerAngel protecting the specialFlower, we have to shower it with love in order to get it 
+            //DeadEnd();            // Exit 
+
+
+     
+
+
 
 
 
