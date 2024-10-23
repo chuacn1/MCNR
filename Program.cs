@@ -92,59 +92,39 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
-            Introduction();
-            EnemyVsPlayer();
-            TutorialInventory();
-            EnteringTownAnimation();
-            Town();
-            Console.ReadLine();
+            //Introduction();
+            //Tutorial();
+            //TutorialInventory();
 
-         //**************************************************//
 
-            //*****INTRODUCTION METHOD*****//
             static void Introduction()
             {
                 string title = "Quest for the Lost Kingdom";
                 int borderWidth = title.Length + 6;
 
-                //border + title
+            //CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword  //Manish  
+            //CaveEnemyPath1(); 
+            //CaveExitOrPath3(); // After CaveEnemyPath1, E = Exit the cave or 1 = CaveEnemyPath3 //Manish 
+            //CaveEnemyPath3();
+            //SpecialSword();    
+            //EscapeCave(); // Right after he got special sword, Player experience lost of O2, have to solve riddle in order to Exit the cave
 
-                Console.WriteLine("╔" + new string('═', borderWidth) + "╗");
-                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
-                Console.WriteLine($"║   {title}   ║");
-                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
-                Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
-                Console.WriteLine();
-
-
-                //storyline intro
-                Console.Write("Please Enter Your Name: ");
-                string playersName = Console.ReadLine();
-                Console.Clear();
-
-                string[] introDialogue = new string[]
-                {
-                    "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
-                    $"\nYou are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
-                    "\nYour quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
-                };
+            //ForestPath1OrPath2(); // Manish 
+            //ForestEnemyPath1();   
+            //ForestExitOrPath3(); // Manish 
+            //ForestEnemyPath3();  
+            //SpecialFlower();      // A FlowerAngel protecting the specialFlower, we have to shower it with love in order to get it 
+            //DeadEnd();            // Exit 
 
 
-                foreach (string words in introDialogue)
-                {
-                    Console.WriteLine(words);
-                    Thread.Sleep(2000);
-                }
+     
 
-                Console.Clear();
 
-                string[] tutorialControlDialogue = new string[]
-                {
-                    "Narrator: You enter the realm, prepared to showcase your skills...",
-                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills, press 'A' to strike.",
 
-                };
 
+
+
+            Console.ReadLine();
 
                 foreach (string words in tutorialControlDialogue)
                 {
@@ -156,9 +136,7 @@ namespace MCNR
 
             }
 
-            //**************************************************//
 
-            //*****TUTORIAL METHOD*****//
             static void Tutorial()
             {
                 enemyHP = 20;
@@ -282,6 +260,70 @@ namespace MCNR
                 //once enemy or player dies, stops loop
                 while (enemyHP > 0 && playerHP > 0);
 
+            }
+
+            static void Introduction()
+            {
+                string title = "Quest for the Lost Kingdom";
+                int borderWidth = title.Length + 6;
+
+                //border + title
+
+                Console.WriteLine("╔" + new string('═', borderWidth) + "╗");
+                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
+                Console.WriteLine($"║   {title}   ║");
+                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
+                Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
+                Console.WriteLine();
+
+
+                //storyline intro
+                Console.Write("Please Enter Your Name: ");
+                string playersName = Console.ReadLine();
+                Console.Clear();
+
+                string[] introDialogue = new string[]
+                {
+                    "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
+                    $"\nYou are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
+                    "\nYour quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
+                };
+
+
+                foreach (string words in introDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                string[] tutorialControlDialogue = new string[]
+                {
+                    "Narrator: You enter the realm, prepared to showcase your skills...",
+                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills, press 'A' to strike.",
+
+                };
+
+
+                foreach (string words in tutorialControlDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+            }
+
+
+            static void Tutorial()
+            {
+                enemyHP = 20;
+                playerHP = 50;
+
+                EnemyVsPlayer();
+
                 if (enemyHP <= 0) //enemy dies
                 {
                     Console.Beep(1000, 500);
@@ -293,7 +335,7 @@ namespace MCNR
                     Console.Beep(400, 500);
                     Console.WriteLine("You have fallen in battle.");
                     Console.ReadLine();
-                    return;  //stop program
+                    Environment.Exit(0);  //stop program
                 }
             }
             //**************************************************//
@@ -474,9 +516,7 @@ namespace MCNR
                 EnemyVsPlayer();
 
             }
-            //**************************************************//
 
-            //******ENTER TOWN METHOD*****//
             static void EnteringTownAnimation()
             {
                 //array with text 
@@ -681,4 +721,3 @@ namespace MCNR
 
     }
 }
-
