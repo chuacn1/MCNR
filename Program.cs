@@ -114,33 +114,33 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
-            //Introduction();
-            //Tutorial();
-            //TutorialInventory();
+            Introduction();
+            Tutorial();
+            TutorialInventory();
 
-            //EnteringTownAnimation();
-            //Town();
-            //VisitBlackSmith();
-            //VisitPotionMaker();
-            //NPC();------------------------------------------------------------------------------------// MANISH  
-            //CaveOrForest();---------------------------------------------------------------------------// MANISH    
+            EnteringTownAnimation();
+            Town();
+            VisitBlackSmith();
+            VisitPotionMaker();
+            NPC(); //------------------------------------------------------------------------------------// MANISH  
+           
 
             //CaveOrForest();
-            //CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword ----------------------------// MANISH  
-            //CaveEnemyPath1(); 
-            //CaveExitOrPath3(); // After CaveEnemyPath1, E = Exit the cave or 1 = CaveEnemyPath3-------// MANISH 
-            //CaveEnemyPath3();
-            //SpecialSword();    
-            //EscapeCave();
+            CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword -------------------------------// MANISH  
+            CaveEnemyPath1();
+            CaveExitOrPath3(); // After CaveEnemyPath1, E = Exit the cave or 1 = CaveEnemyPath3----------// MANISH 
+            CaveEnemyPath3();
+            SpecialSword();
+            EscapeCave();
 
-            //ForestPath1OrPath2();---------------------------------------------------------------------// MANISH 
-            //ForestEnemyPath1();   
-            //ForestExitOrPath3();----------------------------------------------------------------------// MANISH 
-            //ForestEnemyPath3();  
-            //SpecialFlower(); 
-            //Exit();-----------------------------------------------------------------------------------// MANISH
+            ForestPath1OrPath2(); //---------------------------------------------------------------------// MANISH 
+            ForestEnemyPath1();
+            ForestExitOrPath3(); //----------------------------------------------------------------------// MANISH 
+            ForestEnemyPath3();
+            SpecialFlower();
+            Exit(); //-----------------------------------------------------------------------------------// MANISH
 
-            
+
 
             // IF THERE'S TIME, MAKE IT VISUALLY NEATER //
             static void EnemyVsPlayer()
