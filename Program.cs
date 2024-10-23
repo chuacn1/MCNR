@@ -74,11 +74,15 @@ namespace MCNR
             //Town();
 
             //CaveOrForest();
-            //CavePath1Or2();       //Enemy or Special Sword
-            //CaveEnemyPath1();      // if 1 = Enemy
-            SpecialSword();   //if 2 = SpecialSword  
-            //EscapeCave(); //right after he got special sword
-            //
+            //CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword    
+            //CaveEnemyPath1();
+            //CaveExitOrPath3(); // After CaveEnemyPath1, E = Exit the cave or 1 = CaveEnemyPath3
+            //CaveEnemyPath3();
+            //SpecialSword();    
+            //EscapeCave(); // Right after he got special sword, Player experience lost of O2, have to solve riddle in order to Exit the cave
+            
+
+
 
 
             Console.ReadLine();
@@ -478,6 +482,72 @@ namespace MCNR
 
             }
 
+            static void CaveEnemyPath3()
+            {
+                {
+                    string[] caveEnemyDialogue = new string[]
+                    {
+                        "Narrator: As you navigate through the winding passages of the cave, a strange shimmering light catches your eye... ",
+                        "\n\tSuddenly, the ground trembles, and a massive creature emerges from the shadows!",
+                        "\nNarrator: It's a Crystal Golem, its body adorned with glimmering gems that sparkle ominously!",
+                        "\nCrystal Golem: 'You dare disturb my slumber?! Prepare to be crushed!'",
+                        "\nNarrator: Heart racing, you grip your weapon tightly. The confrontation is imminent!",
+                        "\n\tWill you stand your ground or try to escape? Press 'A' to attack!"
+                    };
+
+                    foreach (string line in caveEnemyDialogue)
+                    {
+                        Console.WriteLine(line);
+                        Thread.Sleep(2000);
+                    }
+
+                    Console.Clear();
+
+                    enemyHP = 25; // Adjusted enemy HP for balance
+                    playerHP = 50;
+
+                    EnemyVsPlayer();
+                    if (enemyHP <= 0)
+                    {
+                        Console.Beep(1000, 500);
+                        Console.WriteLine("You have defeated the Crystal Golem!");
+                        
+                    }
+                    else if (playerHP <= 0)
+                    {
+                        Console.Beep(400, 500);
+                        Console.WriteLine("You have fallen in battle against the Crystal Golem.");
+                        Console.WriteLine("Game Over.");
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+                        // In case of some unexpected outcome, though unlikely
+                        Console.WriteLine("The battle ended unexpectedly.");
+                    }
+
+                    Console.WriteLine("Press 'P' to collect your loot!\n");
+                    char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                    Console.Clear();
+
+                    money += 10; // player earns 10 coins
+
+                    if (pick == 'P')
+                    {
+                        AddCoins(10); 
+                        AddToInventory("Shimmering Coins"); 
+                        AddToInventory("Sturdy Iron");
+
+                        Console.WriteLine($"Coins collected: {money}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid. Press 'P' to collect your loot!");
+                    }
+                }
+
+            }
+
             static void SpecialSword()
             {
                 //dialogue when the player finds the chest
@@ -562,7 +632,7 @@ namespace MCNR
                 enemyHP -= 50; //discuss
             }
 
-            static void EscapeCave() //need to check cuz its wrong
+            static void EscapeCave() 
             {
                 string[] caveEscapeDialogue = new string[]
                 {
