@@ -118,12 +118,6 @@ namespace MCNR
             //Tutorial();
             //TutorialInventory();
 
-
-            static void Introduction()
-            {
-                string title = "Quest for the Lost Kingdom";
-                int borderWidth = title.Length + 6;
-
             //CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword  //Manish  
             //CaveEnemyPath1(); 
             //CaveExitOrPath3(); // After CaveEnemyPath1, E = Exit the cave or 1 = CaveEnemyPath3 //Manish 
@@ -139,32 +133,6 @@ namespace MCNR
             //DeadEnd();            // Exit 
 
 
-     
-
-
-
-
-
-
-            Console.ReadLine();
-
-                foreach (string words in tutorialControlDialogue)
-                {
-                    Console.WriteLine(words);
-                    Thread.Sleep(2000);
-                }
-
-                Console.Clear();
-
-            }
-
-
-            static void Tutorial()
-            {
-                enemyHP = 20;
-                playerHP = 50;
-                EnemyVsPlayer();
-            }
 
             static void EnemyVsPlayer()
             {
@@ -324,7 +292,6 @@ namespace MCNR
                 {
                     "Narrator: You enter the realm, prepared to showcase your skills...",
                     "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills, press 'A' to strike.",
-
                 };
 
 
@@ -536,6 +503,239 @@ namespace MCNR
                 playerHP = 50;
 
                 EnemyVsPlayer();
+                if (enemyHP <= 0)
+                {
+                    Console.Beep(1000, 500);
+                    Console.WriteLine("You have defeated the Cave Troll!");
+                    // Here you can add rewards or further actions
+                }
+                else if (playerHP <= 0)
+                {
+                    Console.Beep(400, 500);
+                    Console.WriteLine("You have fallen in battle against the Cave Troll.");
+                    Console.WriteLine("Game Over.");
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    // In case of some unexpected outcome, though unlikely
+                    Console.WriteLine("The battle ended unexpectedly.");
+                }
+
+                Console.WriteLine("Press 'P' to collect your loot!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                Console.Clear();
+
+                money += 10;
+
+                if (pick == 'P')
+                {
+
+                    AddCoins(10);
+
+                    AddToInventory("Gleaming Coins");       // 
+
+                    AddToInventory("Sturdy Iron");          //
+
+                    Console.WriteLine($"Coins collected: {money}");
+                }
+
+                else
+
+                {
+                    Console.WriteLine("Invalid. Press 'P' to collect your loot!");
+
+                }
+
+
+
+            }
+
+            static void CaveEnemyPath3()
+            {
+                {
+                    string[] caveEnemyDialogue = new string[]
+                    {
+                        "Narrator: As you navigate through the winding passages of the cave, a strange shimmering light catches your eye... ",
+                        "\n\tSuddenly, the ground trembles, and a massive creature emerges from the shadows!",
+                        "\nNarrator: It's a Crystal Golem, its body adorned with glimmering gems that sparkle ominously!",
+                        "\nCrystal Golem: 'You dare disturb my slumber?! Prepare to be crushed!'",
+                        "\nNarrator: Heart racing, you grip your weapon tightly. The confrontation is imminent!",
+                        "\n\tWill you stand your ground or try to escape? Press 'A' to attack!"
+                    };
+
+                    foreach (string line in caveEnemyDialogue)
+                    {
+                        Console.WriteLine(line);
+                        Thread.Sleep(2000);
+                    }
+
+                    Console.Clear();
+
+                    enemyHP = 25; // Adjusted enemy HP for balance
+                    playerHP = 50;
+
+                    EnemyVsPlayer();
+                    if (enemyHP <= 0)
+                    {
+                        Console.Beep(1000, 500);
+                        Console.WriteLine("You have defeated the Crystal Golem!");
+
+                    }
+                    else if (playerHP <= 0)
+                    {
+                        Console.Beep(400, 500);
+                        Console.WriteLine("You have fallen in battle against the Crystal Golem.");
+                        Console.WriteLine("Game Over.");
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+                        // In case of some unexpected outcome, though unlikely
+                        Console.WriteLine("The battle ended unexpectedly.");
+                    }
+
+                    Console.WriteLine("Press 'P' to collect your loot!\n");
+                    char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                    Console.Clear();
+
+                    money += 10; // player earns 10 coins
+
+                    if (pick == 'P')
+                    {
+                        AddCoins(10);
+                        AddToInventory("Shimmering Coins");
+                        AddToInventory("Sturdy Iron");
+
+                        Console.WriteLine($"Coins collected: {money}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid. Press 'P' to collect your loot!");
+                    }
+                }
+
+            }
+
+            static void SpecialSword()
+            {
+                //dialogue when the player finds the chest
+                Console.WriteLine("Narrator: As you explore the depths of the cave, you stumble upon an ancient chest, its surface adorned with intricate carvings...");
+                Thread.Sleep(2000);
+                Console.WriteLine("\nNarrator: Curiosity piqued, you kneel before the chest and notice a strange inscription on the lock.");
+                Thread.Sleep(2000);
+                Console.WriteLine("\nNarrator: It reads: 'To reveal the power within, speak the word of light.'");
+                Thread.Sleep(2000);
+
+                //hint for the passcode
+                Console.WriteLine("\nNarrator: You think for a moment. Perhaps the answer lies in the very essence of what you seek. It's a simple word related to illumination...");
+                Console.WriteLine("What could it be? Type your guess:");
+
+                string passcode = "LIGHT"; //correct passcode
+                bool chestOpened = false;
+
+                while (!chestOpened)
+                {
+                    string playerGuess = Console.ReadLine().ToUpper();
+
+                    if (playerGuess == passcode)
+                    {
+                        chestOpened = true;
+                        Console.WriteLine("\nNarrator: The chest creaks open as the passcode is accepted!");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("\nInside, you find a magnificent sword, its blade shimmering with a faint, ethereal glow.");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("\nNarrator: This is the *Blade of Lumina*, said to be forged by the celestial smiths of old...");
+                        ContinueWithSpecialSwordDialogue();
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nNarrator: The lock remains steadfast. Perhaps you should think of something brighter... Try again:");
+                    }
+                }
+            }
+
+            static void ContinueWithSpecialSwordDialogue()
+            {
+                //the rest of the dialogue about the special sword
+                string[] specialSwordDialogue = new string[]
+                {
+                    "Narrator: Unlike your trusty sword, the *Blade of Lumina* pulses with magical energy, and legends speak of its unique ability: 'Light of Valor.'",
+                    "\nNarrator: When wielded, this sword can unleash a radiant burst of light, dealing extra damage to foes and stunning them momentarily.",
+                    "\nNarrator: However, such power comes with a cost—you may only use 'Light of Valor' once, so choose the moment wisely.",
+                    "\nNarrator: You can feel a powerful connection to the blade, as if it senses your bravery and desire to protect the innocent.",
+                    "\nNarrator: Will you claim it as your own?"
+                };
+
+                foreach (string line in specialSwordDialogue)
+                {
+                    Console.WriteLine(line);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                // Prompt to collect the sword
+                Console.WriteLine("Press 'C' to claim the *Blade of Lumina* and add it to your inventory!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+
+                if (pick == 'C')
+                {
+                    AddToInventory("Blade of Lumina");
+                    Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The *Blade of Lumina* is now yours!");
+                    Console.WriteLine("\nNarrator: You can now unleash the 'Light of Valor' in battle, a radiant strike against darkness. Use it wisely!");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice. The sword remains in the chest, waiting for a worthy hero.");
+                }
+            }
+
+            static void UseLightOfValor()  //Can only be use once, if (playerAction == "LIGHT") add this method BossVsPlayer
+
+            {
+                Console.WriteLine("\nYou raise the *Blade of Lumina* high, calling upon its magical power...");
+                Thread.Sleep(1000);
+                Console.WriteLine("A brilliant light envelops you, and with a mighty swing, you unleash a burst of radiant energy!");
+
+                enemyHP -= 50; //discuss
+            }
+
+            static void EscapeCave()
+            {
+                string[] caveEscapeDialogue = new string[]
+                {
+                      "Narrator: As you venture deeper into the cave, the air grows thick and heavy. A sudden realization hits you—there's no oxygen left in this part of the cave!",
+                      "\n\tJust then, a massive figure blocks your path. It's the Guardian of the Cave!",
+                      "\nGuardian: You have crossed into the danger zone. For your recklessness, you must answer my riddle to pass!",
+                      "\nNarrator: You feel the weight of the moment—answer correctly, and you may proceed. Fail, and you may never escape this cave..."
+                };
+                foreach (string words in caveEscapeDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                Console.WriteLine("Guardian: So, the riddle is this: Convert the binary 10000001 into a decimal!");
+                int deci = Convert.ToInt32(Console.ReadLine());
+
+                if (deci == 129)
+                {
+                    Console.WriteLine("\nGuardian: 'Correct! You may proceed and DO NOT ever come back.'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\nNarrator: With a sense of relief, you step past the Guardian and continue your adventure...");
+                    Thread.Sleep(2000);
+                }
+                else
+                {
+                    Console.WriteLine("\nGuardian: 'Incorrect! You have sealed your fate...'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\nNarrator: The Guardian raises his hand, and darkness engulfs you. You perish in the cave...");
+                    Thread.Sleep(2000);
+                }
+
 
             }
 
