@@ -30,7 +30,29 @@ namespace MCNR
         }
         static void CraftPotion()
         {
-            if()
+            //check if the player has enough flowers to craft the potion
+            if (flower >= HealthPotion.requiredQuantity)
+            {
+                //deduct the required materials from the inventory
+                flower -= HealthPotion.requiredQuantity;
+
+                //create the potion and add it to the inventory
+                HealthPotion potion = new HealthPotion
+                {
+                    name = "Health Potion",
+                    healingAmount = 20,  //set an appropriate healing amount
+                };
+
+                //add the potion to the inventory 
+                //AddToInventory(potion.name);
+
+                Console.WriteLine($"You crafted a {potion.name}! It heals for {potion.healingAmount} HP.");
+                Console.WriteLine($"Remaining Delicate Flowers: {flower}");
+            }
+            else
+            {
+                Console.WriteLine("You don't have enough Delicate Flowers to craft a potion.");
+            }
         }
         //**************************************************//
 
@@ -687,6 +709,14 @@ namespace MCNR
                     Console.WriteLine(intro1);
                     Thread.Sleep(2000);
                 }
+                Console.WriteLine("Elysia: 'What potion are you thinking of brewing?'...");
+                Console.WriteLine("\nHit '1' to craft a healing potion");
+                string choice = Console.ReadLine();
+                if (choice == "1")
+                {
+                    CraftPotion();
+                }
+
             }
         }
         //**************************************************//
