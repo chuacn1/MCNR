@@ -76,7 +76,8 @@ namespace MCNR
             //CaveOrForest();
             //CavePath1Or2();       //Enemy or Special Sword
             //CaveEnemyPath1();      // if 1 = Enemy
-            SpecialSword();   //if 2 = SpecialSword
+            SpecialSword();   //if 2 = SpecialSword  
+            //EscapeCave(); //right after he got special sword
             //
 
 
@@ -561,6 +562,44 @@ namespace MCNR
                 enemyHP -= 50; //discuss
             }
 
+            static void EscapeCave() //need to check cuz its wrong
+            {
+                string[] caveEscapeDialogue = new string[]
+                {
+                      "Narrator: As you venture deeper into the cave, the air grows thick and heavy. A sudden realization hits you—there's no oxygen left in this part of the cave!",
+                      "\n\tJust then, a massive figure blocks your path. It's the Guardian of the Cave!",
+                      "\nGuardian: You have crossed into the danger zone. For your recklessness, you must answer my riddle to pass!",
+                      "\nNarrator: You feel the weight of the moment—answer correctly, and you may proceed. Fail, and you may never escape this cave..."
+                };
+                foreach (string words in caveEscapeDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                Console.WriteLine("Guardian: So, the riddle is this: Convert the binary 10000001 into a decimal!");
+                int deci = Convert.ToInt32(Console.ReadLine());
+
+                if (deci == 129)
+                {
+                    Console.WriteLine("\nGuardian: 'Correct! You may proceed and DO NOT ever come back.'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\nNarrator: With a sense of relief, you step past the Guardian and continue your adventure...");
+                    Thread.Sleep(2000);
+                }
+                else
+                {
+                    Console.WriteLine("\nGuardian: 'Incorrect! You have sealed your fate...'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\nNarrator: The Guardian raises his hand, and darkness engulfs you. You perish in the cave...");
+                    Thread.Sleep(2000);
+                }
+
+
+            }
+
             static void EnteringTownAnimation()
             {
                 //array with text 
@@ -757,4 +796,3 @@ namespace MCNR
 
     }
 }
-
