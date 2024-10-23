@@ -12,7 +12,29 @@ namespace MCNR
         static int enemyHP = 0;
         static int playerHP = 0;
         static int ore = 0;
+        static int flower = 0;
 
+        //*****HEALTH POTION METHODS*****//
+        public class HealthPotion
+        {
+            //details for health potion
+            public string name { get; set; }
+            public int healingAmount { get; set; }
+            public int Cost { get; set; }
+            public int maxUses { get; set; } = 3;
+            public int currentUses { get; set; }
+
+            //required material to craft this potion
+            public static string requiredMaterial = "Delicate Flower";
+            public static int requiredQuantity = 1;
+        }
+        static void CraftPotion()
+        {
+            if()
+        }
+        //**************************************************//
+
+        //*****WEAPON METHODS*****//
         public class Weapon
         {
 
@@ -65,6 +87,9 @@ namespace MCNR
                 Console.WriteLine("Maximum upgrade level reached for this weapon");
             }
         }
+        //**************************************************//
+
+        //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
             Introduction();
@@ -74,7 +99,9 @@ namespace MCNR
             Town();
             Console.ReadLine();
 
+         //**************************************************//
 
+            //*****INTRODUCTION METHOD*****//
             static void Introduction()
             {
                 string title = "Quest for the Lost Kingdom";
@@ -129,7 +156,9 @@ namespace MCNR
 
             }
 
+            //**************************************************//
 
+            //*****TUTORIAL METHOD*****//
             static void Tutorial()
             {
                 enemyHP = 20;
@@ -267,7 +296,9 @@ namespace MCNR
                     return;  //stop program
                 }
             }
+            //**************************************************//
 
+            //*****TUTORIAL INVENTORY METHOD******//
             static void TutorialInventory()
             {
                 string[] tutorialInventoryDialogue1 = new string[]
@@ -310,6 +341,7 @@ namespace MCNR
 
                 money += 10;
                 ore += 1;
+                flower += 1;
 
                 if (pick == 'P')
                 {
@@ -317,6 +349,8 @@ namespace MCNR
                     AddCoins(10);
 
                     AddIron(1);
+
+                    AddFlower(1);
 
                     AddToInventory("Gleaming Coins");       // 
 
@@ -327,6 +361,8 @@ namespace MCNR
                     Console.WriteLine($"Coins collected: {money}");
 
                     Console.WriteLine($"Iron collected: {ore}");
+
+                    Console.WriteLine($"Delicate flower collected: {flower}");
 
 
 
@@ -342,27 +378,41 @@ namespace MCNR
                 Thread.Sleep(2000);
                 Console.Clear();
             }
+            //**************************************************//
 
-
+            //*****ADD COINS METHOD*****//
             static void AddCoins(int amount)
             {
                 // Ensure the coins are in the first index
                 items[0] = "Gleaming Coins"; // Set item name for coins
                 counts[0] += amount; // Increment coin count
             }
+            //**************************************************//
 
+            //*****ADD IRON METHOD*****//
             static void AddIron(int iron)
             {
-                //iron is added to third index
-                items[2] = "Sturdy Iron"; //set item name for iron
-                counts[2] += iron; //increment iron count
+                //iron is added to second index
+                items[1] = "Sturdy Iron"; //set item name for iron
+                counts[1] += iron; //increment iron count
             }
+            //**************************************************//
 
+            //******ADD FLOWER METHOD*****//
+            static void AddFlower(int flower)
+            {
+                //flower is added to third index
+                items[2] = "Delicate Flower"; //set item name for flower
+                counts[2] += flower; //increment flower count
+            }
+            //**************************************************//
 
+            //******ADD TO INVENTORY METHOD******//
             static void AddToInventory(string item) //when enemy drop loot call AddToInventory in method as shown in TutorialInventory!!!!!!
             {
-                items[1] = "Trusty Sword"; //sword took up a slot
-                counts[1] = 1;
+                //add sword to 4th index
+                items[3] = "Trusty Sword"; //sword took up a slot
+                counts[3] = 1;
 
                 // check if the item already exists in the inventory
                 for (int i = 0; i < items.Length; i++)
@@ -394,7 +444,9 @@ namespace MCNR
                 Console.WriteLine("Inventory full! Cannot add more items.");
                 Console.ReadLine();
             }
+            //**************************************************//
 
+            //*****CAVE ENEMY PATH1 METHOD******//
             static void CaveEnemyPath1()
             {
 
@@ -422,7 +474,9 @@ namespace MCNR
                 EnemyVsPlayer();
 
             }
+            //**************************************************//
 
+            //******ENTER TOWN METHOD*****//
             static void EnteringTownAnimation()
             {
                 //array with text 
@@ -443,14 +497,15 @@ namespace MCNR
 
                 Console.Clear();
             }
+            //**************************************************//
 
+            //*****TOWN METHOD*****//
             static void Town()
             {
                 //border
                 string border = new string('=', 100);
 
                 //title and border
-                //****************************************************************************************//
                 Console.WriteLine(border);
                 //title text
                 //this title will be centered
@@ -480,7 +535,6 @@ namespace MCNR
                 //print bottom text
                 Console.WriteLine(centeredText2);
                 Console.WriteLine(border);
-                //****************************************************************************************//
 
                 //hit enter to clear screen
                 Console.WriteLine();
@@ -535,9 +589,13 @@ namespace MCNR
                 }
 
             }
+            //**************************************************//
 
+            //*****VISIT BLACKSMITH METHOD*****//
             static void VisitBlackSmith()
             {
+                Weapon playerWeapon = new Weapon("Trusty Sword", 10, 20);
+
                 //blacksmith dialogue
                 string[] blackSmith = new string[]
                {
@@ -563,12 +621,14 @@ namespace MCNR
                 string choice = Console.ReadLine();
                 if (choice == "1")
                 {
-                    Console.WriteLine("Upgrading your weapon...");
+                    UpgradeWeapon(playerWeapon);
 
                 }
 
             }
+            //**************************************************//
 
+            //*****VISIT POTIONMAKER METHOD*****//
             static void VisitPotionMaker()
             {
                 string[] potionMaker = new string[]
@@ -589,7 +649,9 @@ namespace MCNR
                 }
             }
         }
+        //**************************************************//
 
+        //*****CAVE OR FOREST METHOD*****//
         static void CaveOrForest() //player will choose where he want to go cave or forest
         {
             int choose;
@@ -615,7 +677,7 @@ namespace MCNR
             Console.ReadLine();
 
         }
-
+        //**************************************************//
 
     }
 }
