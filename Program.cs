@@ -114,14 +114,14 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
-            Introduction();
-            Tutorial();
-            TutorialInventory();
+            //Introduction();
+            //Tutorial();
+            //TutorialInventory();
 
-            EnteringTownAnimation();
+            //EnteringTownAnimation();
             Town();
-            VisitBlackSmith();
-            VisitPotionMaker();
+            
+
             NPC(); //------------------------------------------------------------------------------------// MANISH  
            
 
@@ -285,8 +285,8 @@ namespace MCNR
                 string[] introDialogue = new string[]
                 {
                     "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
-                    $"\nYou are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
-                    "\nYour quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
+                    $"\n\tYou are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
+                    "\n\tYour quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
                 };
 
 
@@ -344,8 +344,11 @@ namespace MCNR
             {
                 string[] tutorialInventoryDialogue1 = new string[]
                 {
-                    "Narrator: With the first enemy vanquished, you find no treasure—only the thrill of victory. But as you catch your breath, another foe approaches, promising loot upon defeat...",
-                    "\nNarrator: You have five spaces in your inventory—one already claimed by your trusty sword. Prepare wisely for what lies ahead!",
+                    "Narrator: With the first enemy vanquished...",
+                    "\n\tYou find no treasure—only the thrill of victory...",
+                    "\n\tBut as you catch your breath...",
+                    "\n\tAnother foe approaches!. Promising loot upon defeat...",
+                    "\n\tYou have five spaces in your inventory—one already claimed by your trusty sword. Prepare wisely for what lies ahead!",
 
                 };
 
@@ -512,39 +515,21 @@ namespace MCNR
             //*****TOWN METHOD*****//
             static void Town()
             {
-                //border
-                string border = new string('=', 100);
-
-                //title and border
-                Console.WriteLine(border);
-                //title text
-                //this title will be centered
                 string title = "You have entered the Town of Eldoria";
-                int totalWidth1 = 100;
+                string next = "Hit <enter to continue>";
+                int borderWidth1 = next.Length + 6;
+                int borderWidth = title.Length + 6;
 
-                //leftpadding
-                int leftPadding1 = (totalWidth1 - title.Length) / 2;
+                //border + title
 
-                //padding text with spaces to center it
-                string centeredText1 = title.PadLeft(leftPadding1 + title.Length).PadRight(totalWidth1);
+                Console.WriteLine("╔" + new string('═', borderWidth) + "╗");
+                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
+                Console.WriteLine($"║   {title}   ║");
+                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
+                Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
+                Console.WriteLine($"\n{next}");
 
-                //print title text
-                Console.WriteLine(centeredText1);
-
-                //bottom text
-                //text that is going to be centered
-                string next = "Hit <enter> to continue";
-                int totalWidth2 = 100;
-
-                //left padding
-                int leftPadding2 = (totalWidth2 - next.Length) / 2;
-
-                //padding text with spaces to center it
-                string centeredText2 = next.PadLeft(leftPadding2 + next.Length).PadRight(totalWidth2);
-
-                //print bottom text
-                Console.WriteLine(centeredText2);
-                Console.WriteLine(border);
+                
 
                 //hit enter to clear screen
                 Console.WriteLine();
@@ -757,9 +742,9 @@ namespace MCNR
                 {
                     Console.Beep(1000, 500);
                     Console.WriteLine("You have defeated the Cave Troll!");
-                    // Here you can add rewards or further actions
+                    //here we will add rewards or further actions
                 }
-                else if (playerHP <= 0)
+                else if (playerHP <= 0) //maybe we make this able to retry the enemy??
                 {
                     Console.Beep(400, 500);
                     Console.WriteLine("You have fallen in battle against the Cave Troll.");
@@ -777,6 +762,7 @@ namespace MCNR
                 Console.Clear();
 
                 money += 10;
+                //iron += 1;
 
                 if (pick == 'P')
                 {
@@ -933,7 +919,7 @@ namespace MCNR
                 {
                     AddToInventory("Blade of Lumina");
                     Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The *Blade of Lumina* is now yours!");
-                    Console.WriteLine("\nNarrator: You can now unleash the 'Light of Valor' in battle, a radiant strike against darkness. Use it wisely!");
+                    Console.WriteLine("\n\tYou can now unleash the 'Light of Valor' in battle, a radiant strike against darkness. Use it wisely!");
                 }
                 else
                 {
