@@ -122,7 +122,7 @@ namespace MCNR
             //Town();
             //VisitBlackSmith();
             //VisitPotionMaker();
-            //NPC();------------------------------------------------------------------------------------// MANISH    
+            //NPC();------------------------------------------------------------------------------------// MANISH  
             //CaveOrForest();---------------------------------------------------------------------------// MANISH    
 
             //CaveOrForest();
@@ -140,6 +140,7 @@ namespace MCNR
             //SpecialFlower(); 
             //Exit();-----------------------------------------------------------------------------------// MANISH
 
+            
 
             // IF THERE'S TIME, MAKE IT VISUALLY NEATER //
             static void EnemyVsPlayer()
@@ -486,7 +487,189 @@ namespace MCNR
             }
             //**************************************************//
 
-            // MANISH //
+            static void EnteringTownAnimation()
+            {
+                //array with text 
+                string[] animationFrames = new string[]
+                {
+                    "Narrator: Walking down the path...",
+                    "\n\tThe town gates appear on the horizon...",
+                    "\n\tYou approach the gates...",
+                    "\n\tThe gates slowly creak open...",
+                    "\n\tYou step into the town, greeted by the sights and sounds of life."
+                };
+
+                foreach (string frame in animationFrames)
+                {
+                    Console.WriteLine(frame);   // Display the current frame
+                    Thread.Sleep(2000);         // Pause for 1.5 seconds before showing the next frame
+                }
+
+                Console.Clear();
+            }
+            //**************************************************//
+
+            //*****TOWN METHOD*****//
+            static void Town()
+            {
+                //border
+                string border = new string('=', 100);
+
+                //title and border
+                Console.WriteLine(border);
+                //title text
+                //this title will be centered
+                string title = "You have entered the Town of Eldoria";
+                int totalWidth1 = 100;
+
+                //leftpadding
+                int leftPadding1 = (totalWidth1 - title.Length) / 2;
+
+                //padding text with spaces to center it
+                string centeredText1 = title.PadLeft(leftPadding1 + title.Length).PadRight(totalWidth1);
+
+                //print title text
+                Console.WriteLine(centeredText1);
+
+                //bottom text
+                //text that is going to be centered
+                string next = "Hit <enter> to continue";
+                int totalWidth2 = 100;
+
+                //left padding
+                int leftPadding2 = (totalWidth2 - next.Length) / 2;
+
+                //padding text with spaces to center it
+                string centeredText2 = next.PadLeft(leftPadding2 + next.Length).PadRight(totalWidth2);
+
+                //print bottom text
+                Console.WriteLine(centeredText2);
+                Console.WriteLine(border);
+
+                //hit enter to clear screen
+                Console.WriteLine();
+                string input = Console.ReadLine();
+                if (input != null)
+                {
+                    Console.Clear();
+                    Thread.Sleep(500);
+                }
+
+                //game dialogue
+                string[] gameDialogue = new string[]
+                {
+                "Narrator: After your training...",
+                "\n\tYou make your way to the bustling town centre...",
+                "\n\tA townsfolk informs you about the Blacksmith and Potion Maker...",
+                "\nStranger: 'The Blacksmith in town crafts the finest weapons in the realm' says the stranger...",
+                "\n\t'The Potion Maker will provide with the best elixirs you will ever consume' he also tells you...",
+                "\nNarrator: You thank the stranger and head on your way...",
+                "\n\tNow, which shall we visit first?..."
+                };
+
+                foreach (string words in gameDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                //ask user if they want to visit blacksmith or potion maker
+                Console.WriteLine("\nNarrator: Now that you are in Eldoria. Would you like to visit:");
+                Console.WriteLine("\n\t1. The Blacksmith");
+                Console.WriteLine("\n\t2. The Potion Maker");
+                Console.Write("\nEnter 1 or 2: ");
+
+                //read player input
+                string choice = Console.ReadLine();
+                Console.Clear();
+
+                //process the players choice
+                if (choice == "1")
+                {
+                    VisitBlackSmith();
+
+                }
+
+                else if (choice == "2")
+                {
+                    VisitPotionMaker();
+
+                }
+
+            }
+            //**************************************************//
+
+            //*****VISIT BLACKSMITH METHOD*****//
+            static void VisitBlackSmith()
+            {
+                Weapon playerWeapon = new Weapon("Trusty Sword", 10, 20);
+
+                //blacksmith dialogue
+                string[] blackSmith = new string[]
+               {
+                "Narrator: You visit the Blacksmith...",
+                "\n\tThe sound of the hammers hitting the anvils fill the air...",
+                "\nStranger: 'Hello there stranger'...",
+                "\nThrain Ironhand: 'The name is Thrain Ironhand'...",
+                "\n\t'I am the Blacksmith around these parts'...",
+                "\n\t'How can I help you?'..."
+               };
+
+                foreach (string intro in blackSmith)
+                {
+                    Console.WriteLine(intro);
+                    Thread.Sleep(2000);
+                }
+                Console.Clear();
+
+                //upgrade item dialogue
+
+                Console.WriteLine("Thrain: 'Welcome to the Blacksmith!'...");
+                Console.WriteLine("\n\t'Hit '1' to upgrade your sword...");
+                string choice = Console.ReadLine();
+                if (choice == "1")
+                {
+                    UpgradeWeapon(playerWeapon);
+
+                }
+
+            }
+            //**************************************************//
+
+            //*****VISIT POTIONMAKER METHOD*****//
+            static void VisitPotionMaker()
+            {
+                string[] potionMaker = new string[]
+             {
+                "Narrator: You visit the Potion Maker...",
+                "\n\tYou pan around the room and see colorful bottles and strange herbs...",
+                "\n\tYou see a hooded figure look up at you with glistening eyes...",
+                "\nStranger: 'Hello sir'...",
+                "\nElyisa Moonshade: 'My name is Elysia Moonshade'...",
+                "\n\t'I can provide you with the most powerful concoctions of any kind...'",
+                "\n\t'How may I help you?'..."
+             };
+
+                foreach (string intro1 in potionMaker)
+                {
+                    Console.WriteLine(intro1);
+                    Thread.Sleep(2000);
+                }
+                Console.WriteLine("Elysia: 'What potion are you thinking of brewing?'...");
+                Console.WriteLine("\nHit '1' to craft a healing potion");
+                string choice = Console.ReadLine();
+                if (choice == "1")
+                {
+                    CraftPotion();
+                }
+
+            }
+        
+            //**************************************************//
+
+            // MANISH/NGATAI //
             static void NPC()
             {
 
@@ -1143,6 +1326,8 @@ namespace MCNR
 
                 }
             }
+
+            //static void Exit()
         }
     }
 }
