@@ -18,6 +18,20 @@ namespace MCNR
         static int specialsword = 0;
 
         //*****HEALTH POTION METHODS*****//
+        public class StrengthPotion
+        {
+            public string name { get; set; }
+            public int increaseAmount { get; set; }
+            public int cost { get; set; }
+            public int maxUses { get; set; }
+            public int currentUses { get; set; }
+
+            //required material to craft this potion
+            public static string requireMaterial = "Crystal Flower";
+            public static int requiredQuantity = 1 + HealthPotion.requiredQuantity;
+        }
+
+
         public class HealthPotion
         {
             //details for health potion
@@ -117,10 +131,17 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             //InitializeInventory();
             ////PrintInventory();   
             ////Introduction();
             ////Tutorial();
+=======
+            InitializeInventory();
+            //PrintInventory();   
+            //Introduction();
+            Tutorial();
+>>>>>>> ab35a599f7d87fe8977c6510cbd635c094fa6084
 
             //EnteringTownAnimation();
             //Town();
@@ -153,65 +174,74 @@ namespace MCNR
 
                 do
                 {
-                    Console.Write("\n\tPress 'A' to strike: ");
+                    //prompt player to attack or check inventory
+                    Console.Write("Press 'A' to strike or 'I' to check your inventory: ");
                     string input = Console.ReadLine();
-                    if (input.Length > 0) // Checks if the input has at least one character
 
+                    char choice = ' '; //declare choice outside of the input check
+
+                    if (input.Length > 0) //checks if the input has at least one character
                     {
-                        char attack = input.ToLower()[0];
-
+                        choice = input.ToLower()[0];
                         Console.WriteLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Please try again.");
+                    }
 
-                        // Player Attack
-                        if (attack == 'a')
+                    //player Attack
+                    if (choice == 'a')
+                    {
+                        Console.Beep(1000, 300);
+                        int hitmiss = rand.Next(1, 5);
+                        switch (hitmiss)
                         {
-                            Console.Beep(1000, 300);
-                            int hitmiss = rand.Next(1, 5);
-                            switch (hitmiss)
-                            {
-                                case 1:
-                                    enemyHP = 20;
-                                    Console.WriteLine($"Enemy HP: {enemyHP}");
-                                    Console.WriteLine($"Your HP: {playerHP}");
-                                    Console.WriteLine("Your swing goes wide, missing the enemy entirely!");
-                                    Console.WriteLine("0 damage\n");
-                                    Console.WriteLine("The enemy retaliates!\n");
-                                    Thread.Sleep(1500);
-                                    break;
-                                case 2:
-                                    enemyHP -= 5;
-                                    Console.WriteLine($"Enemy HP: {enemyHP}");
-                                    Console.WriteLine($"Your HP: {playerHP}");
-                                    Console.WriteLine("You strike true!");
-                                    Console.WriteLine("5 damage dealt!\n");
-                                    Console.WriteLine("The enemy retaliates!\n");
-                                    Thread.Sleep(1500);
-                                    break;
-                                case 3:
-                                    enemyHP -= 10;
-                                    Console.WriteLine($"Enemy HP: {enemyHP}");
-                                    Console.WriteLine($"Your HP: {playerHP}");
-                                    Console.WriteLine("A fierce blow!");
-                                    Console.WriteLine("10 damage dealt!\n");
-                                    Console.WriteLine("The enemy retaliates!\n");
-                                    Thread.Sleep(1500);
-                                    break;
-                                default:
-                                    enemyHP -= 2;
-                                    Console.WriteLine($"Enemy HP: {enemyHP}");
-                                    Console.WriteLine($"Your HP: {playerHP}");
-                                    Console.WriteLine("You landed a glancing blow.");
-                                    Console.WriteLine("2 damage dealt!\n");
-                                    Console.WriteLine("The enemy retaliates!\n");
-                                    Thread.Sleep(1500);
-                                    break;
-                            }
+                            case 1:
+                                enemyHP = 20;
+                                Console.WriteLine($"Enemy HP: {enemyHP}");
+                                Console.WriteLine($"Your HP: {playerHP}");
+                                Console.WriteLine("Your swing goes wide, missing the enemy entirely!");
+                                Console.WriteLine("0 damage\n");
+                                Console.WriteLine("The enemy retaliates!\n");
+                                Thread.Sleep(1500);
+                                break;
+                            case 2:
+                                enemyHP -= 5;
+                                Console.WriteLine($"Enemy HP: {enemyHP}");
+                                Console.WriteLine($"Your HP: {playerHP}");
+                                Console.WriteLine("You strike true!");
+                                Console.WriteLine("5 damage dealt!\n");
+                                Console.WriteLine("The enemy retaliates!\n");
+                                Thread.Sleep(1500);
+                                break;
+                            case 3:
+                                enemyHP -= 10;
+                                Console.WriteLine($"Enemy HP: {enemyHP}");
+                                Console.WriteLine($"Your HP: {playerHP}");
+                                Console.WriteLine("A fierce blow!");
+                                Console.WriteLine("10 damage dealt!\n");
+                                Console.WriteLine("The enemy retaliates!\n");
+                                Thread.Sleep(1500);
+                                break;
+                            default:
+                                enemyHP -= 2;
+                                Console.WriteLine($"Enemy HP: {enemyHP}");
+                                Console.WriteLine($"Your HP: {playerHP}");
+                                Console.WriteLine("You landed a glancing blow.");
+                                Console.WriteLine("2 damage dealt!\n");
+                                Console.WriteLine("The enemy retaliates!\n");
+                                Thread.Sleep(1500);
+                                break;
                         }
                     }
-                    else //if user did not press 'a'
+                    else if (choice == 'i')
                     {
-                        Console.WriteLine("That action is not valid.");
+                        PrintInventory();
+                        continue;
                     }
+
+
 
                     // Enemy Attack
                     Console.Beep(800, 300);
@@ -259,10 +289,10 @@ namespace MCNR
                             break;
                     }
 
-                }
 
-                //once enemy or player dies, stops loop
-                while (enemyHP > 0 && playerHP > 0);
+
+                    //once enemy or player dies, stops loop
+                } while (enemyHP > 0 && playerHP > 0);
 
                 return playerHP;
 
@@ -352,8 +382,9 @@ namespace MCNR
                   {
                     "Narrator: With the enemy defeated...",
                     "\nYou discover a trove of spoils: Gleaming coins",
-                    "\n\t\tDelicate flower...",
-                    "\n\t\tSturdy piece of iron...",
+                    "\n\t\t\tDelicate flower...",
+                    "\n\t\t\tSturdy piece of iron...",
+                    "\n\t\t\tHealth Potion",
                     "\nNarrator: You have five spaces in your inventory...",
                     "\n\tOne already claimed by your trusty sword..."
 
@@ -382,6 +413,8 @@ namespace MCNR
 
                 if (pick == 'P')
                 {
+                    AddCoins(10);
+
                     AddIron(1);
 
                     AddFlower(1);
@@ -394,15 +427,10 @@ namespace MCNR
 
                     AddToInventory($"Sturdy Iron");          //
 
-
-                    PrintInventory();
-
-
-
+                    AddToInventory($"Health Potion");
                 }
-
+                //if player wrong input
                 else
-
                 {
                     Console.WriteLine("Invalid. Press 'P' to collect your loot!");
 
@@ -498,8 +526,8 @@ namespace MCNR
             //*****ADD POTION METHOD*****//
             static void AddPotion(int amount)
             {
-                items[3] = "Health Potion";
-                counts[3] += amount;
+                items[4] = "Health Potion";
+                counts[4] += amount;
             }
 
             static void AddSpecialSword(int amount)
@@ -537,7 +565,7 @@ namespace MCNR
                     if (items[i] == null)
                     {
                         items[i] = item;
-                        //counts[i];
+                        //counts[i] = 1;
                         Console.WriteLine($"\n{item} added to inventory. Total count: {counts[i]}");
                         Console.ReadLine();
                         return;
@@ -561,15 +589,58 @@ namespace MCNR
             //*****Print Inventory Method*****//
             static void PrintInventory()
             {
+                string border = new string('-', 60);
+                Console.Clear();
+                Console.WriteLine("Your Inventory:\n");
+                Console.WriteLine(border);
                 for (int i = 0; i < items.Length; i++)
                 {
-                    if (items[i] != null)
+                    if (!string.IsNullOrEmpty(items[i]))
                     {
-                        Console.WriteLine("Inventory\n");
-                        Console.WriteLine($"{items[i]}: {counts[i]}\n");
+                        Console.WriteLine($"{items[i]}: {counts[i]}");
                     }
                 }
 
+                Console.WriteLine("\nPress enter to return to the game...");
+                string input = Console.ReadLine();
+                if (input != null)
+                {
+                    Console.Clear();
+                    Thread.Sleep(1000);
+                    return;
+                }
+
+            }
+            //**************************************************//
+
+            static void GameLoop()
+            {
+                bool gameRunning = true;
+
+                while (gameRunning)
+                {
+                    Console.WriteLine("Press 'I' to view your inventory, or any key to continue the game");
+                    char input = Console.ReadKey(true).KeyChar;
+
+                    switch (input)
+                    {
+                        case 'I':
+                            PrintInventory();
+                            break;
+                        case 'C':
+                            return;
+                            break;
+                        case 'Q':
+                            Console.WriteLine("Thanks for playing!");
+                            gameRunning = false;
+                            break;
+                        default:
+                            Console.WriteLine("Invalid Input. Please press 'I', 'C' or 'Q'");
+                            break;
+
+                    }
+
+                }
             }
             //*****Entering Town Animation*****//
             static void EnteringTownAnimation()
