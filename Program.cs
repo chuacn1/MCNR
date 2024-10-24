@@ -30,6 +30,29 @@ namespace MCNR
             public static string requireMaterial = "Crystal Flower";
             public static int requiredQuantity = 1 + HealthPotion.requiredQuantity;
         }
+        static void CraftStrengthPotion()
+        {
+            if (crystalflower >= StrengthPotion.requiredQuantity)
+            {
+                //deduct the material from the inventory
+                crystalflower -= StrengthPotion.requiredQuantity;
+
+                //create the potion and add it to the inventory
+                StrengthPotion potion = new StrengthPotion
+                {
+                    name = "Strength Potion",
+                    increaseAmount = 30
+                };
+
+                Console.WriteLine($"You crafted a {potion.name}! It will increase your max health by {potion.increaseAmount} HP");
+                Console.WriteLine($"Remaining {StrengthPotion.requireMaterial}: {crystalflower}");
+            }
+            else
+            {
+                Console.WriteLine("You don't have enough Crystal Flowers to craft this potion.");
+            }
+            Console.ReadLine();
+        }
 
 
         public class HealthPotion
