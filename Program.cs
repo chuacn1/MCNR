@@ -821,7 +821,7 @@ namespace MCNR
             static void VisitPotionMaker()
             {
                 string[] potionMaker = new string[]
-                {
+             {
                 "Narrator: You visit the Potion Maker...",
                 "\n\tYou pan around the room and see colorful bottles and strange herbs...",
                 "\n\tYou see a hooded figure look up at you with glistening eyes...",
@@ -829,20 +829,31 @@ namespace MCNR
                 "\nElyisa Moonshade: 'My name is Elysia Moonshade'...",
                 "\n\t'I can provide you with the most powerful concoctions of any kind...'",
                 "\n\t'How may I help you?'..."
-                };
+             };
 
                 foreach (string intro1 in potionMaker)
                 {
                     Console.WriteLine(intro1);
                     Thread.Sleep(2000);
                 }
-                Console.WriteLine("Elysia: 'What potion are you thinking of brewing?'...");
+                Console.WriteLine("\nElysia: 'What potion are you thinking of brewing?'...");
                 Console.WriteLine("\nHit '1' to craft a healing potion");
+                Console.WriteLine("\nHit '2' to craft a strength potion");
+                Console.Write("\nEnter '1' or '2': ");
+
                 string choice = Console.ReadLine();
+                Console.Clear();
+
                 if (choice == "1")
                 {
                     CraftPotion();
                 }
+                else if (choice == "2")
+                {
+                    CraftStrengthPotion();
+                }
+
+
 
             }
 
