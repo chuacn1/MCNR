@@ -131,17 +131,14 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
-<<<<<<< HEAD
             //InitializeInventory();
             ////PrintInventory();   
             ////Introduction();
             ////Tutorial();
-=======
             InitializeInventory();
             //PrintInventory();   
             //Introduction();
             Tutorial();
->>>>>>> ab35a599f7d87fe8977c6510cbd635c094fa6084
 
             //EnteringTownAnimation();
             //Town();
@@ -807,38 +804,29 @@ namespace MCNR
 
             //**************************************************//
 
-            // MANISH/NGATAI //
             static void NPC()
             {
 
             }
-            // MANISH -- EDIT/CHANGE THIS // 
+
             static void CaveOrForest() //player will choose where he want to go cave or forest
             {
                 int choose;
                 Console.WriteLine("Press 1 for cave or Press 2 for forest: ");
-                string decision = Console.ReadLine();
-                // Validate input to prevent exceptions
-                if (!int.TryParse(decision, out choose) || (choose != 1 && choose != 2))
-                {
-                    Console.WriteLine("Invalid input. Please enter 1 or 2.");
-                    return; // Exit if invalid
-                }
-                // Additional border design for output
-                Console.WriteLine(new string('-', 30));
-                if (choose == 1)
+                int decision = Convert.ToInt32(Console.ReadLine());
+
+                if (decision == 1)
                 {
                     Console.WriteLine("Entering the cave...");
+                    CavePath1OrPath2();
                 }
                 else
                 {
                     Console.WriteLine("Entering the forest...");
+                    ForestPath1OrPath2();
                 }
-                Console.WriteLine(new string('-', 30));
-                Console.ReadLine();
-
             }
-            
+
             static void CavePath1OrPath2()
             {
                 Console.WriteLine("\nNarrator: You stand in the heart of the cave, surrounded by the echoes of dripping water and the scent of damp earth. Two distinct paths lie before you. \n\t Would you like to:");
@@ -898,7 +886,7 @@ namespace MCNR
                 }
 
             }
-            // MANISH //
+
             static void ForestPath1OrPath2()
             {
                 Console.WriteLine("\nNarrator: You find yourself in a serene glade deep within the forest, surrounded by towering trees and the gentle rustle of leaves. Two distinct paths lie before you. \n\t Would you like to:");
@@ -932,376 +920,123 @@ namespace MCNR
             // MANISH //
             static void ForestExitOrPath3()
             {
-                static void CaveExitOrPath3()
+                Console.WriteLine("\nNarrator: Would you like to:");
+                Console.WriteLine("\n\t1. Go deeper into the forest");
+                Console.WriteLine("\n\t2. Retrace back");
+                Console.WriteLine("\n\t0. Exit the Forest");
+                Console.Write("\nEnter 1, 2 or 0: ");
+
+                //read player input
+                string choice = Console.ReadLine();
+                Console.Clear();
+
+                //process the players choice
+                if (choice == "1")
                 {
-                    Console.WriteLine("\nNarrator: Would you like to:");
-                    Console.WriteLine("\n\t1. Go deeper into the forest");
-                    Console.WriteLine("\n\t2. Retrace back");
-                    Console.WriteLine("\n\t0. Exit the Forest");
-                    Console.Write("\nEnter 1, 2 or 0: ");
-
-                    //read player input
-                    string choice = Console.ReadLine();
-                    Console.Clear();
-
-                    //process the players choice
-                    if (choice == "1")
-                    {
-                       ForestExitOrPath3();
-                    }
-
-                    else if (choice == "2")
-                    {
-                       ForestPath1OrPath2();
-                    }
-
-                    else if (choice == "0")
-                    {
-                        CaveOrForest();
-                    }
-
-                }
-                // MANISH //
-                static void Exit()
-                {
-
+                    ForestEnemyPath3();
                 }
 
-
-                //*****CAVE METHOD******//
-                static void CaveEnemyPath1()
+                else if (choice == "2")
                 {
+                    ForestPath1OrPath2();
+                }
 
-                    string[] caveEnemyDialogue = new string[]
-                    {
+                else if (choice == "0")
+                {
+                    CaveOrForest();
+                }
+
+            }
+
+            //*****CAVE METHOD******//
+            static void CaveEnemyPath1()
+            {
+
+                string[] caveEnemyDialogue = new string[]
+                {
                     "Narrator: As you delve deeper into the cave, the air grows colder and the shadows seem to shift around you...",
                     "\n\tSuddenly, a growl echoes through the darkness, and a menacing figure emerges from the shadows!",
                     "\nNarrator: It's a Cave Troll, towering above you with a fearsome glare!",
                     "\nCave Troll: 'You dare intrude in my domain?! Prepare to face my wrath!'",
                     "\nNarrator: With adrenaline pumping through your veins, you ready your sword. The battle is about to begin!",
                     "\n\tWill you fight bravely or flee into the darkness? Press 'A' to attack!"
-                    };
+                };
 
-                    foreach (string line in caveEnemyDialogue)
-                    {
-                        Console.WriteLine(line);
-                        Thread.Sleep(2000);
-                    }
+                foreach (string line in caveEnemyDialogue)
+                {
+                    Console.WriteLine(line);
+                    Thread.Sleep(2000);
+                }
 
-                    Console.Clear();
+                Console.Clear();
 
-                    enemyHP = 30;
+                enemyHP = 30;
 
-                    playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
+                playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
 
-                    if (enemyHP <= 0)
-                    {
-                        Console.Beep(1000, 500);
-                        Console.WriteLine("You have defeated the Cave Troll!");
-                        //here we will add rewards or further actions
-                    }
-                    else if (playerHP <= 0) //maybe we make this able to retry the enemy??
-                    {
-                        Console.Beep(400, 500);
-                        Console.WriteLine("You have fallen in battle against the Cave Troll.");
-                        Console.WriteLine("Game Over.");
-                        Environment.Exit(0);
-                    }
-                    else
-                    {
-                        // In case of some unexpected outcome, though unlikely
-                        Console.WriteLine("The battle ended unexpectedly.");
-                    }
+                if (enemyHP <= 0)
+                {
+                    Console.Beep(1000, 500);
+                    Console.WriteLine("You have defeated the Cave Troll!");
+                    //here we will add rewards or further actions
+                }
+                else if (playerHP <= 0) //maybe we make this able to retry the enemy??
+                {
+                    Console.Beep(400, 500);
+                    Console.WriteLine("You have fallen in battle against the Cave Troll.");
+                    Console.WriteLine("Game Over.");
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    // In case of some unexpected outcome, though unlikely
+                    Console.WriteLine("The battle ended unexpectedly.");
+                }
 
-                    Console.WriteLine("Press 'P' to collect your loot!\n");
-                    char pick = Convert.ToChar(Console.ReadLine().ToUpper());
-                    Console.Clear();
+                Console.WriteLine("Press 'P' to collect your loot!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                Console.Clear();
 
-                    money += 10;
-                    //iron += 1;
+                money += 10;
+                //iron += 1;
 
-                    if (pick == 'P')
-                    {
+                if (pick == 'P')
+                {
 
-                        AddCoins(10);
+                    AddCoins(10);
 
-                        AddToInventory("Gleaming Coins");       // 
+                    AddToInventory("Gleaming Coins");       // 
 
-                        AddToInventory("Sturdy Iron");          //
+                    AddToInventory("Sturdy Iron");          //
 
-                        Console.WriteLine($"Coins collected: {money}");
-                    }
+                    Console.WriteLine($"Coins collected: {money}");
+                }
 
-                    else
+                else
 
-                    {
-                        Console.WriteLine("Invalid. Press 'P' to collect your loot!");
-
-                    }
-
-
+                {
+                    Console.WriteLine("Invalid. Press 'P' to collect your loot!");
 
                 }
 
-                static void CaveEnemyPath3()
+
+
+            }
+
+            static void CaveEnemyPath3()
+            {
                 {
+                    string[] caveEnemyDialogue = new string[]
                     {
-                        string[] caveEnemyDialogue = new string[]
-                        {
                         "Narrator: As you navigate through the winding passages of the cave, a strange shimmering light catches your eye... ",
                         "\n\tSuddenly, the ground trembles, and a massive creature emerges from the shadows!",
                         "\nNarrator: It's a Crystal Golem, its body adorned with glimmering gems that sparkle ominously!",
                         "\nCrystal Golem: 'You dare disturb my slumber?! Prepare to be crushed!'",
                         "\nNarrator: Heart racing, you grip your weapon tightly. The confrontation is imminent!",
                         "\n\tWill you stand your ground or try to escape? Press 'A' to attack!"
-                        };
-
-                        foreach (string line in caveEnemyDialogue)
-                        {
-                            Console.WriteLine(line);
-                            Thread.Sleep(2000);
-                        }
-
-                        Console.Clear();
-
-                        enemyHP = 25; // Adjusted enemy HP for balance
-
-
-                        playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
-                        if (enemyHP <= 0)
-                        {
-                            Console.Beep(1000, 500);
-                            Console.WriteLine("You have defeated the Crystal Golem!");
-
-                        }
-                        else if (playerHP <= 0)
-                        {
-                            Console.Beep(400, 500);
-                            Console.WriteLine("You have fallen in battle against the Crystal Golem.");
-                            Console.WriteLine("Game Over.");
-                            Environment.Exit(0);
-                        }
-                        else
-                        {
-                            // In case of some unexpected outcome, though unlikely
-                            Console.WriteLine("The battle ended unexpectedly.");
-                        }
-
-                        Console.WriteLine("Press 'P' to collect your loot!\n");
-                        char pick = Convert.ToChar(Console.ReadLine().ToUpper());
-                        Console.Clear();
-
-                        money += 10; // player earns 10 coins
-
-                        if (pick == 'P')
-                        {
-                            AddCoins(10);
-                            AddToInventory("Shimmering Coins");
-                            AddToInventory("Sturdy Iron");
-
-                            Console.WriteLine($"Coins collected: {money}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid. Press 'P' to collect your loot!");
-                        }
-                    }
-
-                }
-
-                static void SpecialSword()
-                {
-                    //dialogue when the player finds the chest
-                    Console.WriteLine("Narrator: As you explore the depths of the cave, you stumble upon an ancient chest, its surface adorned with intricate carvings...");
-                    Thread.Sleep(2000);
-                    Console.WriteLine("\nNarrator: Curiosity piqued, you kneel before the chest and notice a strange inscription on the lock.");
-                    Thread.Sleep(2000);
-                    Console.WriteLine("\nNarrator: It reads: 'To reveal the power within, speak the word of light.'");
-                    Thread.Sleep(2000);
-
-                    //hint for the passcode
-                    Console.WriteLine("\nNarrator: You think for a moment. Perhaps the answer lies in the very essence of what you seek. It's a simple word related to illumination...");
-                    Console.WriteLine("What could it be? Type your guess:");
-
-                    string passcode = "LIGHT"; //correct passcode
-                    bool chestOpened = false;
-
-                    while (!chestOpened)
-                    {
-                        string playerGuess = Console.ReadLine().ToUpper();
-
-                        if (playerGuess == passcode)
-                        {
-                            chestOpened = true;
-                            Console.WriteLine("\nNarrator: The chest creaks open as the passcode is accepted!");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("\nInside, you find a magnificent sword, its blade shimmering with a faint, ethereal glow.");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("\nNarrator: This is the *Blade of Lumina*, said to be forged by the celestial smiths of old...");
-                            ContinueWithSpecialSwordDialogue();
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nNarrator: The lock remains steadfast. Perhaps you should think of something brighter... Try again:");
-                        }
-                    }
-                }
-
-                static void ContinueWithSpecialSwordDialogue()
-                {
-                    //the rest of the dialogue about the special sword
-                    string[] specialSwordDialogue =
-                    {
-                    "Narrator: This ancient relic, the *Blade of Lumina*, pulses with magical energy, a testament to its storied past.",
-                    "\nNarrator: Legends say that this sword possesses great power, but it can only be wielded once.",
-                    "\nNarrator: As you hold the blade, you feel a profound connection, as if it recognizes your bravery and desire to protect the innocent.",
-                    "\nNarrator: Will you claim it as your own?"
-                };
-
-                    foreach (string line in specialSwordDialogue)
-                    {
-                        Console.WriteLine(line);
-                        Thread.Sleep(2000);
-                    }
-
-                    Console.Clear();
-
-                    // Prompt to collect the sword
-                    Console.WriteLine("Press 'C' to claim the Blade of Lumina and add it to your inventory!\n");
-                    char pick = Convert.ToChar(Console.ReadLine().ToUpper());
-
-                    if (pick == 'C')
-                    {
-                        specialsword += 1;
-                        AddSpecialSword(1);
-                        AddToInventory("Blade of Lumina");
-                        Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The Blade of Lumina is now yours!");
-                        Console.WriteLine("\n\tRemember, this sword can only be used once, so choose your moment wisely!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid choice. The sword remains in the chest, waiting for a worthy hero.");
-                    }
-
-                }
-
-                static void EscapeCave()
-                {
-                    string[] caveEscapeDialogue = new string[]
-                    {
-                      "Narrator: As you venture deeper into the cave, the air grows thick and heavy. A sudden realization hits you—there's no oxygen left in this part of the cave!",
-                      "\n\tJust then, a massive figure blocks your path. It's the Guardian of the Cave!",
-                      "\nGuardian: You have crossed into the danger zone. For your recklessness, you must answer my riddle to pass!",
-                      "\nNarrator: You feel the weight of the moment—answer correctly, and you may proceed. Fail, and you may never escape this cave..."
-                    };
-                    foreach (string words in caveEscapeDialogue)
-                    {
-                        Console.WriteLine(words);
-                        Thread.Sleep(2000);
-                    }
-
-                    Console.Clear();
-
-                    Console.WriteLine("Guardian: So, the riddle is this: Convert the binary 10000001 into a decimal!");
-                    int deci = Convert.ToInt32(Console.ReadLine());
-
-                    if (deci == 129)
-                    {
-                        Console.WriteLine("\nGuardian: 'Correct! You may proceed and DO NOT ever come back.'");
-                        Thread.Sleep(2000);
-                        Console.WriteLine("\nNarrator: With a sense of relief, you step past the Guardian and continue your adventure...");
-                        Thread.Sleep(2000);
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nGuardian: 'Incorrect! You have sealed your fate...'");
-                        Thread.Sleep(2000);
-                        Console.WriteLine("\nNarrator: The Guardian raises his hand, and darkness engulfs you. You perish in the cave...");
-                        Thread.Sleep(2000);
-                    }
-
-
-                }
-
-                //*****FOREST METHOD******//
-                static void ForestEnemyPath1()
-                {
-                    string[] flowerBiomeDialogue = new string[]
-                    {
-                    "Narrator: As you wander through the vibrant flower fields, a sweet fragrance fills the air...",
-                    "\n\tSuddenly, a rustle in the blossoms catches your attention, and a colorful figure emerges!",
-                    "\nNarrator: It's a Flower Guardian, radiating with a gentle glow and a watchful gaze!",
-                    "\nPetal Wraith: 'You dare tread in my enchanted garden?! Prepare to be tested!'",
-                    "\nNarrator: With your heart racing, you ready your staff. The challenge is about to begin!",
-                    "\n\tWill you face thePetal Wraith bravely or retreat into the flowers? Press 'A' to challenge!"
                     };
 
-                    foreach (string line in flowerBiomeDialogue)
-                    {
-                        Console.WriteLine(line);
-                        Thread.Sleep(2000);
-                    }
-
-                    Console.Clear();
-
-                    enemyHP = 30;
-                    playerHP = 50;
-
-                    playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
-                    if (enemyHP <= 0)
-                    {
-                        Console.Beep(1000, 500);
-                        Console.WriteLine("You have defeated the Petal Wraith!");
-                        // Here you can add rewards or further actions
-                    }
-                    else if (playerHP <= 0)
-                    {
-                        Console.Beep(400, 500);
-                        Console.WriteLine("You have fallen in battle against the Petal Wraith.");
-                        Console.WriteLine("Game Over.");
-                        Environment.Exit(0);
-                    }
-                    else
-                    {
-                        // In case of some unexpected outcome, though unlikely
-                        Console.WriteLine("The battle ended unexpectedly.");
-                    }
-
-                    Console.WriteLine("Press 'P' to collect your loots!\n");
-                    char pick = Convert.ToChar(Console.ReadLine().ToUpper());
-                    Console.Clear();
-
-                    money += 10;
-
-                    if (pick == 'P')
-                    {
-                        AddCoins(10);
-
-                        AddToInventory("Gleaming Coins");
-                        AddToInventory("Delicate Flower");
-
-                        Console.WriteLine($"Coins collected: {money}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid. Press 'P' to collect your loots!");
-                    }
-
-                }
-
-                static void ForestEnemyPath3()
-                {
-                    string[] flowerBiomeDialogue = new string[]
-                    {
-                    "Narrator: As you wander through the colorful flower fields, the vibrant blooms dance in the breeze...",
-                    "\n\tSuddenly, the ground shakes, and a colossal creature bursts through the petals!",
-                    "\nNarrator: It's a Blooming Behemoth, its massive form covered in lush flowers and vines!",
-                    "\nBlooming Behemoth: 'You dare intrude upon my garden?! Prepare to face my wrath!'",
-                    "\nNarrator: Heart racing, you grip your staff tightly. The confrontation is imminent!",
-                    "\n\tWill you stand your ground or try to escape? Press 'A' to attack!"
-                    };
-
-                    foreach (string line in flowerBiomeDialogue)
+                    foreach (string line in caveEnemyDialogue)
                     {
                         Console.WriteLine(line);
                         Thread.Sleep(2000);
@@ -1316,176 +1051,456 @@ namespace MCNR
                     if (enemyHP <= 0)
                     {
                         Console.Beep(1000, 500);
-                        Console.WriteLine("You have defeated the Blooming Behemoth!");
+                        Console.WriteLine("You have defeated the Crystal Golem!");
+
                     }
                     else if (playerHP <= 0)
                     {
                         Console.Beep(400, 500);
-                        Console.WriteLine("You have fallen in battle against the Blooming Behemoth.");
+                        Console.WriteLine("You have fallen in battle against the Crystal Golem.");
                         Console.WriteLine("Game Over.");
                         Environment.Exit(0);
                     }
                     else
                     {
+                        // In case of some unexpected outcome, though unlikely
                         Console.WriteLine("The battle ended unexpectedly.");
                     }
 
-                    Console.WriteLine("Press 'P' to collect your rewards!\n");
+                    Console.WriteLine("Press 'P' to collect your loot!\n");
                     char pick = Convert.ToChar(Console.ReadLine().ToUpper());
                     Console.Clear();
 
-                    money += 10; // Player earns 10 coins
+                    money += 10; // player earns 10 coins
 
                     if (pick == 'P')
                     {
                         AddCoins(10);
-                        AddToInventory("Gleaming Coins");
-                        AddToInventory("Delicate Flower");
+                        AddToInventory("Shimmering Coins");
+                        AddToInventory("Sturdy Iron");
 
                         Console.WriteLine($"Coins collected: {money}");
                     }
                     else
                     {
-                        Console.WriteLine("Invalid. Press 'P' to collect your rewards!");
+                        Console.WriteLine("Invalid. Press 'P' to collect your loot!");
                     }
-
                 }
 
-                static void SpecialFlower()
+            }
+
+            static void SpecialSword()
+            {
+                //dialogue when the player finds the chest
+                Console.WriteLine("Narrator: As you explore the depths of the cave, you stumble upon an ancient chest, its surface adorned with intricate carvings...");
+                Thread.Sleep(2000);
+                Console.WriteLine("\nNarrator: Curiosity piqued, you kneel before the chest and notice a strange inscription on the lock.");
+                Thread.Sleep(2000);
+                Console.WriteLine("\nNarrator: It reads: 'To reveal the power within, speak the word of light.'");
+                Thread.Sleep(2000);
+
+                //hint for the passcode
+                Console.WriteLine("\nNarrator: You think for a moment. Perhaps the answer lies in the very essence of what you seek. It's a simple word related to illumination...");
+                Console.WriteLine("What could it be? Type your guess:");
+
+                string passcode = "LIGHT"; //correct passcode
+                bool chestOpened = false;
+
+                while (!chestOpened)
                 {
-                    string[] specialFlowerDialogue = new string[]
-                    {
-                "Narrator: As you step into the clearing, the air sparkles with golden light, and vibrant flowers bloom all around you...",
-                "\n\tYou feel a warm presence envelop you, and a gentle voice resonates through the air.",
-                "\nFlower Angel: 'Welcome, brave traveler. You have entered a sacred space, illuminated by love and nature.'",
-                "\n\tThe Flower Angel appears before you, her wings shimmering with the colors of the rainbow.",
-                "\nFlower Angel: 'Before you can approach the special flower, you must prove your worthiness. Answer my riddles, and you shall gain access.'",
-                "\n\tThe air thickens with anticipation as the Flower Angel continues."
-                    };
+                    string playerGuess = Console.ReadLine().ToUpper();
 
-                    foreach (string line in specialFlowerDialogue)
+                    if (playerGuess == passcode)
                     {
-                        Console.WriteLine(line);
+                        chestOpened = true;
+                        Console.WriteLine("\nNarrator: The chest creaks open as the passcode is accepted!");
                         Thread.Sleep(2000);
+                        Console.WriteLine("\nInside, you find a magnificent sword, its blade shimmering with a faint, ethereal glow.");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("\nNarrator: This is the *Blade of Lumina*, said to be forged by the celestial smiths of old...");
+                        ContinueWithSpecialSwordDialogue();
                     }
+                    else
+                    {
+                        Console.WriteLine("\nNarrator: The lock remains steadfast. Perhaps you should think of something brighter... Try again:");
+                    }
+                }
+            }
 
-                    // Player's response
-                    bool hasAnsweredCorrectly = false;
-                    int totalCorrect = 0;
+            static void ContinueWithSpecialSwordDialogue()
+            {
+                //the rest of the dialogue about the special sword
+                string[] specialSwordDialogue =
+                {
+                    "Narrator: This ancient relic, the *Blade of Lumina*, pulses with magical energy, a testament to its storied past.",
+                    "\nNarrator: Legends say that this sword possesses great power, but it can only be wielded once.",
+                    "\nNarrator: As you hold the blade, you feel a profound connection, as if it recognizes your bravery and desire to protect the innocent.",
+                    "\nNarrator: Will you claim it as your own?"
+                };
 
-                    do
+                foreach (string line in specialSwordDialogue)
+                {
+                    Console.WriteLine(line);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                // Prompt to collect the sword
+                Console.WriteLine("Press 'C' to claim the Blade of Lumina and add it to your inventory!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+
+                if (pick == 'C')
+                {
+                    specialsword += 1;
+                    AddSpecialSword(1);
+                    AddToInventory("Blade of Lumina");
+                    Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The Blade of Lumina is now yours!");
+                    Console.WriteLine("\n\tRemember, this sword can only be used once, so choose your moment wisely!");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice. The sword remains in the chest, waiting for a worthy hero.");
+                }
+
+            }
+
+            static void EscapeCave()
+            {
+                string[] caveEscapeDialogue = new string[]
+                {
+                      "Narrator: As you venture deeper into the cave, the air grows thick and heavy. A sudden realization hits you—there's no oxygen left in this part of the cave!",
+                      "\n\tJust then, a massive figure blocks your path. It's the Guardian of the Cave!",
+                      "\nGuardian: You have crossed into the danger zone. For your recklessness, you must answer my riddle to pass!",
+                      "\nNarrator: You feel the weight of the moment—answer correctly, and you may proceed. Fail, and you may never escape this cave..."
+                };
+                foreach (string words in caveEscapeDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                Console.WriteLine("Guardian: So, the riddle is this: Convert the binary 10000001 into a decimal!");
+                int deci = Convert.ToInt32(Console.ReadLine());
+
+                if (deci == 129)
+                {
+                    Console.WriteLine("\nGuardian: 'Correct! You may proceed and DO NOT ever come back.'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\nNarrator: With a sense of relief, you step past the Guardian and continue your adventure...");
+                    Thread.Sleep(2000);
+                }
+                else
+                {
+                    Console.WriteLine("\nGuardian: 'Incorrect! You have sealed your fate...'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\nNarrator: The Guardian raises his hand, and darkness engulfs you. You perish in the cave...");
+                    Thread.Sleep(2000);
+                }
+
+
+            }
+
+            //*****FOREST METHOD******//
+            static void ForestEnemyPath1()
+            {
+                string[] flowerBiomeDialogue = new string[]
+                {
+                    "Narrator: As you wander through the vibrant flower fields, a sweet fragrance fills the air...",
+                    "\n\tSuddenly, a rustle in the blossoms catches your attention, and a colorful figure emerges!",
+                    "\nNarrator: It's a Flower Guardian, radiating with a gentle glow and a watchful gaze!",
+                    "\nPetal Wraith: 'You dare tread in my enchanted garden?! Prepare to be tested!'",
+                    "\nNarrator: With your heart racing, you ready your staff. The challenge is about to begin!",
+                    "\n\tWill you face thePetal Wraith bravely or retreat into the flowers? Press 'A' to challenge!"
+                };
+
+                foreach (string line in flowerBiomeDialogue)
+                {
+                    Console.WriteLine(line);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                enemyHP = 30;
+                playerHP = 50;
+
+                playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
+                if (enemyHP <= 0)
+                {
+                    Console.Beep(1000, 500);
+                    Console.WriteLine("You have defeated the Petal Wraith!");
+                    // Here you can add rewards or further actions
+                }
+                else if (playerHP <= 0)
+                {
+                    Console.Beep(400, 500);
+                    Console.WriteLine("You have fallen in battle against the Petal Wraith.");
+                    Console.WriteLine("Game Over.");
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    // In case of some unexpected outcome, though unlikely
+                    Console.WriteLine("The battle ended unexpectedly.");
+                }
+
+                Console.WriteLine("Press 'P' to collect your loots!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                Console.Clear();
+
+                money += 10;
+
+                if (pick == 'P')
+                {
+                    AddCoins(10);
+
+                    AddToInventory("Gleaming Coins");
+                    AddToInventory("Delicate Flower");
+
+                    Console.WriteLine($"Coins collected: {money}");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid. Press 'P' to collect your loots!");
+                }
+
+            }
+
+            static void ForestEnemyPath3()
+            {
+                string[] flowerBiomeDialogue = new string[]
+                {
+                    "Narrator: As you wander through the colorful flower fields, the vibrant blooms dance in the breeze...",
+                    "\n\tSuddenly, the ground shakes, and a colossal creature bursts through the petals!",
+                    "\nNarrator: It's a Blooming Behemoth, its massive form covered in lush flowers and vines!",
+                    "\nBlooming Behemoth: 'You dare intrude upon my garden?! Prepare to face my wrath!'",
+                    "\nNarrator: Heart racing, you grip your staff tightly. The confrontation is imminent!",
+                    "\n\tWill you stand your ground or try to escape? Press 'A' to attack!"
+                };
+
+                foreach (string line in flowerBiomeDialogue)
+                {
+                    Console.WriteLine(line);
+                    Thread.Sleep(2000);
+                }
+
+                Console.Clear();
+
+                enemyHP = 25; // Adjusted enemy HP for balance
+
+
+                playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
+                if (enemyHP <= 0)
+                {
+                    Console.Beep(1000, 500);
+                    Console.WriteLine("You have defeated the Blooming Behemoth!");
+                }
+                else if (playerHP <= 0)
+                {
+                    Console.Beep(400, 500);
+                    Console.WriteLine("You have fallen in battle against the Blooming Behemoth.");
+                    Console.WriteLine("Game Over.");
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("The battle ended unexpectedly.");
+                }
+
+                Console.WriteLine("Press 'P' to collect your rewards!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                Console.Clear();
+
+                money += 10; // Player earns 10 coins
+
+                if (pick == 'P')
+                {
+                    AddCoins(10);
+                    AddToInventory("Gleaming Coins");
+                    AddToInventory("Delicate Flower");
+
+                    Console.WriteLine($"Coins collected: {money}");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid. Press 'P' to collect your rewards!");
+                }
+
+            }
+
+            static void SpecialFlower()
+            {
+                string[] specialFlowerDialogue = new string[]
+                {
+                        "Narrator: As you step into the clearing, the air sparkles with golden light, and vibrant flowers bloom all around you...",
+                        "\n\tYou feel a warm presence envelop you, and a gentle voice resonates through the air.",
+                        "\nFlower Angel: 'Welcome, brave traveler. You have entered a sacred space, illuminated by love and nature.'",
+                        "\n\tThe Flower Angel appears before you, her wings shimmering with the colors of the rainbow.",
+                        "\nFlower Angel: 'Before you can approach the special flower, you must prove your worthiness. Answer my riddles, and you shall gain access.'",
+                        "\n\tThe air thickens with anticipation as the Flower Angel continues."
+                };
+
+                foreach (string line in specialFlowerDialogue)
+                {
+                    Console.WriteLine(line);
+                    Thread.Sleep(2000);
+                }
+
+                // Player's response
+                bool hasAnsweredCorrectly = false;
+                int totalCorrect = 0;
+
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Flower Angel: 'Are you ready to accept the challenge of the Healing Riddles?'");
+                    Console.WriteLine("\nPress 'Y' to accept or 'N' to back away.");
+                    char response = Convert.ToChar(Console.ReadLine().ToUpper());
+
+                    if (response == 'Y')
                     {
                         Console.Clear();
-                        Console.WriteLine("Flower Angel: 'Are you ready to accept the challenge of the Healing Riddles?'");
-                        Console.WriteLine("\nPress 'Y' to accept or 'N' to back away.");
-                        char response = Convert.ToChar(Console.ReadLine().ToUpper());
+                        int correct = 0;
 
-                        if (response == 'Y')
+                        // First Riddle
+                        Console.WriteLine("Flower Angel: 'Very well! Here is your first riddle...'");
+                        Console.WriteLine("I rise with the dawn and set with the night, I give warmth and light, but I’m not a fire’s might. What am I?");
+                        string ans1 = Console.ReadLine().ToUpper();
+
+                        if (ans1 == "THE SUN" || ans1 == "SUN" || ans1 == "A SUN")
                         {
+                            correct++;
                             Console.Clear();
-                            int correct = 0;
-
-                            // First Riddle
-                            Console.WriteLine("Flower Angel: 'Very well! Here is your first riddle...'");
-                            Console.WriteLine("I rise with the dawn and set with the night, I give warmth and light, but I’m not a fire’s might. What am I?");
-                            string ans1 = Console.ReadLine().ToUpper();
-
-                            if (ans1 == "THE SUN" || ans1 == "SUN" || ans1 == "A SUN")
-                            {
-                                correct++;
-                                Console.Clear();
-                                Console.WriteLine("The air around you shimmers with approval as the Flower Angel smiles warmly.");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("Flower Angel: 'You have proven your worthiness for the first riddle!'");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("The path ahead glows with radiant light, beckoning you to continue.");
-                                Thread.Sleep(2000);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Flower Angel: 'Alas, brave traveler, your answer is not correct.'");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("Narrator: A shadow of doubt crosses your mind. But do not be disheartened; every challenge is a lesson.");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("Flower Angel: 'Take a moment to reflect. You have one more chance.'");
-                                Thread.Sleep(2000);
-                            }
-
-                            Console.Clear();
-
-                            // Second Riddle
-                            Console.WriteLine("Flower Angel: 'Now, for your next riddle...'");
+                            Console.WriteLine("The air around you shimmers with approval as the Flower Angel smiles warmly.");
                             Thread.Sleep(2000);
-                            Console.WriteLine("I bloom in the spring, bringing joy to the eye. I can symbolize love, yet I wither and die. What am I?");
-                            string ans2 = Console.ReadLine().ToUpper();
-
-                            if (ans2 == "A FLOWER" || ans2 == "FLOWER" || ans2 == "FLOWERS")
-                            {
-                                correct++;
-                                Console.WriteLine("The air around you shimmers with approval as the Flower Angel smiles warmly.");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("Flower Angel: 'You have proven your worthiness for the second riddle!'");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("The petals around you dance in the breeze, celebrating your success.");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                            }
-                            else
-                            {
-                                Console.WriteLine("Flower Angel: 'Alas, brave traveler, your answer is not correct.'");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("Narrator: The vibrant colors around you dim slightly, reminding you of the path yet to take.");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("Flower Angel: 'Do not be discouraged; every challenge teaches us something valuable.'");
-                                Thread.Sleep(2000);
-                            }
-
-                            // Update total correct answers
-                            totalCorrect += correct;
-
-                            // Check if the player has answered correctly at least once
-                            if (correct > 0)
-                            {
-                                hasAnsweredCorrectly = true; // Exit the loop if at least one riddle was answered correctly
-                            }
+                            Console.WriteLine("Flower Angel: 'You have proven your worthiness for the first riddle!'");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("The path ahead glows with radiant light, beckoning you to continue.");
+                            Thread.Sleep(2000);
                         }
                         else
                         {
-                            Console.WriteLine("\nFlower Angel: 'Remember, only those who seek the truth may find the path to love. Return when you are ready.'");
+                            Console.WriteLine("Flower Angel: 'Alas, brave traveler, your answer is not correct.'");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("Narrator: A shadow of doubt crosses your mind. But do not be disheartened; every challenge is a lesson.");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("Flower Angel: 'Take a moment to reflect. You have one more chance.'");
+                            Thread.Sleep(2000);
                         }
 
-                    } while (!hasAnsweredCorrectly); // Continue looping until the player answers at least one riddle correctly
-
-
-                    if (totalCorrect > 0)
-                    {
                         Console.Clear();
-                        if (totalCorrect == 1)
+
+                        // Second Riddle
+                        Console.WriteLine("Flower Angel: 'Now, for your next riddle...'");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("I bloom in the spring, bringing joy to the eye. I can symbolize love, yet I wither and die. What am I?");
+                        string ans2 = Console.ReadLine().ToUpper();
+
+                        if (ans2 == "A FLOWER" || ans2 == "FLOWER" || ans2 == "FLOWERS")
                         {
-                            Console.WriteLine("Flower Angel: 'Ah, you have successfully answered one riddle!'");
+                            correct++;
+                            Console.WriteLine("The air around you shimmers with approval as the Flower Angel smiles warmly.");
                             Thread.Sleep(2000);
-                            Console.WriteLine("Flower Angel: 'You shall receive a Crystal Flower, a token of your wisdom.'");
+                            Console.WriteLine("Flower Angel: 'You have proven your worthiness for the second riddle!'");
                             Thread.Sleep(2000);
-                            Console.WriteLine("Flower Angel: 'Take it to the Potion Maker, where you can craft a healing potion that will increase your strength.'");
-                            Console.WriteLine("CrystalFlower");
+                            Console.WriteLine("The petals around you dance in the breeze, celebrating your success.");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Flower Angel: 'Alas, brave traveler, your answer is not correct.'");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("Narrator: The vibrant colors around you dim slightly, reminding you of the path yet to take.");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("Flower Angel: 'Do not be discouraged; every challenge teaches us something valuable.'");
+                            Thread.Sleep(2000);
+                        }
+
+                        // Update total correct answers
+                        totalCorrect += correct;
+
+                        // Check if the player has answered correctly at least once
+                        if (correct > 0)
+                        {
+                            hasAnsweredCorrectly = true; // Exit the loop if at least one riddle was answered correctly
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nFlower Angel: 'Remember, only those who seek the truth may find the path to love. Return when you are ready.'");
+                    }
+
+                } while (!hasAnsweredCorrectly); // Continue looping until the player answers at least one riddle correctly
+
+
+                if (totalCorrect > 0)
+                {
+                    Console.Clear();
+                    if (totalCorrect == 1)
+                    {
+                        Console.WriteLine("Flower Angel: 'Ah, you have successfully answered one riddle!'");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("Flower Angel: 'You shall receive a Crystal Flower, a token of your wisdom.'");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("Flower Angel: 'Take it to the Potion Maker, where you can craft a healing potion that will increase your strength.'");
+                        Console.WriteLine("CrystalFlower");
+                        Console.WriteLine();
+                        Console.WriteLine("Press 'P' to collect your loot!\n");
+                        char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                        Console.Clear();
+
+                        money += 10;
+                        flower += 1;
+                        crystalflower += 1;
+
+                        if (pick == 'P')
+                        {
+                            AddFlower(1);
+
+                            AddCrystalFlower(1);
+
+                            AddCoins(10);
+
+                            AddToInventory("Delicate Flower");
+
+                            Console.WriteLine($"Coins collected: {money}");
+
+                            Console.WriteLine($"Flowers collected: {flower}");
+
+                            Console.WriteLine($"Crystal flower collected: {crystalflower}");
+                        }
+
+                        else if (totalCorrect == 2)
+                        {
+                            Console.WriteLine("Flower Angel: 'Incredible! You have answered both riddles with grace!'");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("Flower Angel: 'You are blessed with 2 Crystal flowers, symbols of your exceptional insight.'");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("Flower Angel: 'Use them wisely at the Potion Maker to create a powerful potion that will grant you double the strength.'");
+                            Console.WriteLine("Delicate Flower x10");
                             Console.WriteLine();
                             Console.WriteLine("Press 'P' to collect your loot!\n");
-                            char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+
+                            char picked = Convert.ToChar(Console.ReadLine().ToUpper());
                             Console.Clear();
 
                             money += 10;
                             flower += 1;
-                            crystalflower += 1;
+                            crystalflower += 2;
 
-                            if (pick == 'P')
+                            if (picked == 'P')
                             {
                                 AddFlower(1);
 
-                                AddCrystalFlower(1);
+                                AddCrystalFlower(2);
 
                                 AddCoins(10);
 
-                                AddToInventory("Delicate Flower");
+                                AddToInventory("Crystal Flower");
 
                                 Console.WriteLine($"Coins collected: {money}");
 
@@ -1494,79 +1509,44 @@ namespace MCNR
                                 Console.WriteLine($"Crystal flower collected: {crystalflower}");
                             }
 
-                            else if (totalCorrect == 2)
+                        }
+                        //**************************************************//
+
+                        //*****CAVE OR FOREST METHOD*****//
+                        static void CaveOrForest() //player will choose where he want to go cave or forest
+                        {
+                            int choose;
+                            Console.WriteLine("Press 1 for cave or Press 2 for forest: ");
+                            string decision = Console.ReadLine();
+                            // Validate input to prevent exceptions
+                            if (!int.TryParse(decision, out choose) || (choose != 1 && choose != 2))
                             {
-                                Console.WriteLine("Flower Angel: 'Incredible! You have answered both riddles with grace!'");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("Flower Angel: 'You are blessed with 2 Crystal flowers, symbols of your exceptional insight.'");
-                                Thread.Sleep(2000);
-                                Console.WriteLine("Flower Angel: 'Use them wisely at the Potion Maker to create a powerful potion that will grant you double the strength.'");
-                                Console.WriteLine("Delicate Flower x10");
-                                Console.WriteLine();
-                                Console.WriteLine("Press 'P' to collect your loot!\n");
-
-                                char picked = Convert.ToChar(Console.ReadLine().ToUpper());
-                                Console.Clear();
-
-                                money += 10;
-                                flower += 1;
-                                crystalflower += 2;
-
-                                if (picked == 'P')
-                                {
-                                    AddFlower(1);
-
-                                    AddCrystalFlower(2);
-
-                                    AddCoins(10);
-
-                                    AddToInventory("Crystal Flower");
-
-                                    Console.WriteLine($"Coins collected: {money}");
-
-                                    Console.WriteLine($"Flowers collected: {flower}");
-
-                                    Console.WriteLine($"Crystal flower collected: {crystalflower}");
-                                }
-
+                                Console.WriteLine("Invalid input. Please enter 1 or 2.");
+                                return; // Exit if invalid
                             }
-                            //**************************************************//
-
-                            //*****CAVE OR FOREST METHOD*****//
-                            static void CaveOrForest() //player will choose where he want to go cave or forest
+                            // Additional border design for output
+                            Console.WriteLine(new string('-', 30));
+                            if (choose == 1)
                             {
-                                int choose;
-                                Console.WriteLine("Press 1 for cave or Press 2 for forest: ");
-                                string decision = Console.ReadLine();
-                                // Validate input to prevent exceptions
-                                if (!int.TryParse(decision, out choose) || (choose != 1 && choose != 2))
-                                {
-                                    Console.WriteLine("Invalid input. Please enter 1 or 2.");
-                                    return; // Exit if invalid
-                                }
-                                // Additional border design for output
-                                Console.WriteLine(new string('-', 30));
-                                if (choose == 1)
-                                {
-                                    Console.WriteLine("Entering the cave...");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Entering the forest...");
-                                }
-                                Console.WriteLine(new string('-', 30));
-                                Console.ReadLine();
-
+                                Console.WriteLine("Entering the cave...");
                             }
-                            //**************************************************//
+                            else
+                            {
+                                Console.WriteLine("Entering the forest...");
+                            }
+                            Console.WriteLine(new string('-', 30));
+                            Console.ReadLine();
 
                         }
+                        //**************************************************//
 
                     }
                 }
-
-                //static void Exit()
             }
         }
     }
 }
+
+            //static void Exit()
+        
+     
