@@ -114,11 +114,11 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
-            //Introduction();
-            //Tutorial();
-            //TutorialInventory();
+            Introduction();
+            Tutorial();
+            TutorialInventory();
 
-            //EnteringTownAnimation();
+            EnteringTownAnimation();
             Town();
             
 
@@ -149,7 +149,7 @@ namespace MCNR
 
                 do
                 {
-                    Console.WriteLine("Press 'A' to strike");
+                    Console.WriteLine("\nPress 'A' to strike");
                     string input = Console.ReadLine();
                     if (input.Length > 0) // Checks if the input has at least one character
 
@@ -172,7 +172,7 @@ namespace MCNR
                                     Console.WriteLine("Your swing goes wide, missing the enemy entirely!");
                                     Console.WriteLine("0 damage\n");
                                     Console.WriteLine("The enemy retaliates!\n");
-                                    Thread.Sleep(1000);
+                                    Thread.Sleep(1500);
                                     break;
                                 case 2:
                                     enemyHP -= 5;
@@ -181,7 +181,7 @@ namespace MCNR
                                     Console.WriteLine("You strike true!");
                                     Console.WriteLine("5 damage dealt!\n");
                                     Console.WriteLine("The enemy retaliates!\n");
-                                    Thread.Sleep(1000);
+                                    Thread.Sleep(1500);
                                     break;
                                 case 3:
                                     enemyHP -= 10;
@@ -190,7 +190,7 @@ namespace MCNR
                                     Console.WriteLine("A fierce blow!");
                                     Console.WriteLine("10 damage dealt!\n");
                                     Console.WriteLine("The enemy retaliates!\n");
-                                    Thread.Sleep(1000);
+                                    Thread.Sleep(1500);
                                     break;
                                 default:
                                     enemyHP -= 2;
@@ -199,7 +199,7 @@ namespace MCNR
                                     Console.WriteLine("You landed a glancing blow.");
                                     Console.WriteLine("2 damage dealt!\n");
                                     Console.WriteLine("The enemy retaliates!\n");
-                                    Thread.Sleep(1000);
+                                    Thread.Sleep(1500);
                                     break;
                             }
                         }
@@ -285,8 +285,12 @@ namespace MCNR
                 string[] introDialogue = new string[]
                 {
                     "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
-                    $"\n\tYou are {playersName}, a budding hero, awakening to the call of adventure, equipped only with your bravery and a timeworn sword...",
-                    "\n\tYour quest commences at the edge of your village, where murmurs of a formidable foe—the Shadow Lord—cast a pall of fear across the land."
+                    $"\n\tYou are {playersName}...",
+                    "\n\tA budding hero!. Awakening to the call of adventure...",
+                    "\n\tEquipped only with your bravery and a timeworn sword...",
+                    "\n\tYour quest commences at the edge of your village...",
+                    "\n\tWhere murmurs of a formidable foe...",
+                    "\n\t'The Shadow Lord' cast a pall of fear across the land."
                 };
 
 
@@ -295,13 +299,14 @@ namespace MCNR
                     Console.WriteLine(words);
                     Thread.Sleep(2000);
                 }
-
+                Console.ReadLine();
                 Console.Clear();
 
                 string[] tutorialControlDialogue = new string[]
                 {
-                    "Narrator: You enter the realm, prepared to showcase your skills...",
-                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills, press 'A' to strike.",
+                    "Narrator: You enter the realm...",
+                    "\n\tPrepared to showcase your skills...",
+                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills"
                 };
 
 
@@ -310,7 +315,8 @@ namespace MCNR
                     Console.WriteLine(words);
                     Thread.Sleep(2000);
                 }
-
+                //Console.Write("\nPress 'A' to strike!: ");
+                Console.ReadLine();
                 Console.Clear();
 
             }
@@ -348,7 +354,8 @@ namespace MCNR
                     "\n\tYou find no treasure—only the thrill of victory...",
                     "\n\tBut as you catch your breath...",
                     "\n\tAnother foe approaches!. Promising loot upon defeat...",
-                    "\n\tYou have five spaces in your inventory—one already claimed by your trusty sword. Prepare wisely for what lies ahead!",
+                    "\n\tYou have five spaces in your inventory—one already claimed by your trusty sword...",
+                    "\n\tPrepare wisely for what lies ahead!..."
 
                 };
 
@@ -363,8 +370,12 @@ namespace MCNR
 
                 string[] tutorialInventoryDialogue2 = new string[]
             {
-                    "Narrator: With the enemy defeated, you discover a trove of spoils: gleaming coins, a delicate flower, and a sturdy piece of iron.",
-                    "\nNarrator: You have five spaces in your inventory—one already claimed by your trusty sword."
+                    "Narrator: With the enemy defeated...",
+                    "\n\tYou discover a trove of spoils: Gleaming coins",
+                    "\n\t\tDelicate flower...",
+                    "\n\t\tSturdy piece of iron...",
+                    "\nNarrator: You have five spaces in your inventory...",
+                    "\n\tOne already claimed by your trusty sword..."
 
             };
 
