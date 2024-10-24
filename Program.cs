@@ -349,8 +349,19 @@ namespace MCNR
                     Environment.Exit(0);  //stop program
                 }
 
+<<<<<<< HEAD
                 string[] tutorialInventoryDialogue2 = new string[]
                   {
+=======
+                //add 10 coins after defeating 2nd enemy
+                if (enemyHP <= 0)
+                {
+                    money += 10;
+                    AddCoins(10);
+
+                    string[] tutorialInventoryDialogue2 = new string[]
+                {
+>>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
                     "Narrator: With the enemy defeated...",
                     "\nYou discover a trove of spoils: Gleaming coins",
                     "\n\t\tDelicate flower...",
@@ -358,14 +369,62 @@ namespace MCNR
                     "\nNarrator: You have five spaces in your inventory...",
                     "\n\tOne already claimed by your trusty sword..."
 
+<<<<<<< HEAD
                   };
+=======
+                };
+>>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
 
 
-                foreach (string words in tutorialInventoryDialogue2)
-                {
-                    Console.WriteLine(words);
+                    foreach (string words in tutorialInventoryDialogue2)
+                    {
+                        Console.WriteLine(words);
+                        Thread.Sleep(2000);
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine("Gleaming Coins");
+                    Console.WriteLine("Delicate Flower");
+                    Console.WriteLine("Sturdy Iron");
+                    Console.WriteLine();
+                    Console.WriteLine("Press 'P' to collect your loot!\n");
+                    char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                    Console.Clear();
+
+                    money += 10;
+                    ore += 1;
+                    flower += 1;
+
+                    if (pick == 'P')
+                    {
+                        AddIron(1);
+
+                        AddFlower(1);
+
+                        AddToInventory($"Gleaming Coins");       // 
+
+                        AddToInventory($"Delicate Flower");      //
+
+                        AddToInventory($"Sturdy Iron");          //
+
+                        PrintInventory();
+
+
+
+                    }
+
+                    else
+
+                    {
+                        Console.WriteLine("Invalid. Press 'P' to collect your loot!");
+
+                    }
+                    Console.WriteLine("\nNarrator: Gather more flowers to purchase health potions at the Potion Maker");
+                    Console.WriteLine("\n\tCollect iron to upgrade your sword at the Blacksmith.");
+                    Console.ReadLine();
                     Thread.Sleep(2000);
+                    Console.Clear();
                 }
+<<<<<<< HEAD
                 Console.WriteLine();
                 Console.WriteLine("Gleaming Coins");
                 Console.WriteLine("Delicate Flower");
@@ -413,6 +472,8 @@ namespace MCNR
                 Console.ReadLine();
                 Thread.Sleep(2000);
                 Console.Clear();
+=======
+>>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
             }
         
         //**************************************************//
@@ -424,7 +485,11 @@ namespace MCNR
                 items[0] = "Gleaming Coins"; // Set item name for coins
                 money = amount;
                 counts[0] += amount; // Increment coin count
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
 
             }
             //**************************************************//
@@ -456,7 +521,11 @@ namespace MCNR
 
             //******ADD TO INVENTORY METHOD******//
             static void AddToInventory(string item) //when enemy drop loot call AddToInventory in method as shown in TutorialInventory!!!!!!
+<<<<<<< HEAD
             {
+=======
+            {               
+>>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
                 //check if the item already exists in the inventory
                 for (int i = 0; i < items.Length; i++)
                 {
@@ -508,7 +577,11 @@ namespace MCNR
                         Console.WriteLine($"{items[i]}: {counts[i]}\n");
                     }
                 }
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
             }
             //*****Entering Town Animation*****//
             static void EnteringTownAnimation()
