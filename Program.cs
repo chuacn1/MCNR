@@ -6,13 +6,14 @@ namespace MCNR
     internal class Program
     {
         //ARRAY FOR INVENTORIES
-        static string[] items = new string[6];
-        static int[] counts = new int[6];
+        static string[] items = new string[7];
+        static int[] counts = new int[7];
         static int money = 0;
-        static int enemyHP = 0;
-        static int playerHP = 0;
+        static int enemyHP;
+        static int playerHP;
         static int ore = 0;
         static int flower = 0;
+        static int potion = 0;  
 
         //*****HEALTH POTION METHODS*****//
         public class HealthPotion
@@ -114,16 +115,18 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
-            Introduction();
-            Tutorial();
+            InitializeInventory();
+            //PrintInventory();   
+            //Introduction();
+            //Tutorial();
             TutorialInventory();
 
             EnteringTownAnimation();
             Town();
-            
+
 
             NPC(); //------------------------------------------------------------------------------------// MANISH  
-           
+
 
             //CaveOrForest();
             CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword -------------------------------// MANISH  
@@ -143,13 +146,13 @@ namespace MCNR
 
 
             // IF THERE'S TIME, MAKE IT VISUALLY NEATER //
-            static void EnemyVsPlayer()
+            static int EnemyVsPlayer(int playerHP, ref int enemyHP)
             {
                 Random rand = new Random();
 
                 do
                 {
-                    Console.WriteLine("\nPress 'A' to strike");
+                    Console.Write("\n\tPress 'A' to strike: ");
                     string input = Console.ReadLine();
                     if (input.Length > 0) // Checks if the input has at least one character
 
@@ -260,6 +263,8 @@ namespace MCNR
                 //once enemy or player dies, stops loop
                 while (enemyHP > 0 && playerHP > 0);
 
+                return playerHP;
+
             }
 
             static void Introduction()
@@ -322,12 +327,13 @@ namespace MCNR
             }
 
 
+
             static void Tutorial()
             {
                 enemyHP = 20;
                 playerHP = 50;
 
-                EnemyVsPlayer();
+                playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
 
                 if (enemyHP <= 0) //enemy dies
                 {
@@ -342,42 +348,17 @@ namespace MCNR
                     Console.ReadLine();
                     Environment.Exit(0);  //stop program
                 }
-            }
-            //**************************************************//
-
-            //*****TUTORIAL INVENTORY METHOD******//
-            static void TutorialInventory()
-            {
-                string[] tutorialInventoryDialogue1 = new string[]
-                {
-                    "Narrator: With the first enemy vanquished...",
-                    "\n\tYou find no treasure—only the thrill of victory...",
-                    "\n\tBut as you catch your breath...",
-                    "\n\tAnother foe approaches!. Promising loot upon defeat...",
-                    "\n\tYou have five spaces in your inventory—one already claimed by your trusty sword...",
-                    "\n\tPrepare wisely for what lies ahead!..."
-
-                };
-
-
-                foreach (string words in tutorialInventoryDialogue1)
-                {
-                    Console.WriteLine(words);
-                    Thread.Sleep(2000);
-                }
-
-                EnemyVsPlayer();
 
                 string[] tutorialInventoryDialogue2 = new string[]
-            {
+                  {
                     "Narrator: With the enemy defeated...",
-                    "\n\tYou discover a trove of spoils: Gleaming coins",
+                    "\nYou discover a trove of spoils: Gleaming coins",
                     "\n\t\tDelicate flower...",
                     "\n\t\tSturdy piece of iron...",
                     "\nNarrator: You have five spaces in your inventory...",
                     "\n\tOne already claimed by your trusty sword..."
 
-            };
+                  };
 
 
                 foreach (string words in tutorialInventoryDialogue2)
@@ -389,6 +370,7 @@ namespace MCNR
                 Console.WriteLine("Gleaming Coins");
                 Console.WriteLine("Delicate Flower");
                 Console.WriteLine("Sturdy Iron");
+                Console.WriteLine("Health Potion");
                 Console.WriteLine();
                 Console.WriteLine("Press 'P' to collect your loot!\n");
                 char pick = Convert.ToChar(Console.ReadLine().ToUpper());
@@ -397,27 +379,24 @@ namespace MCNR
                 money += 10;
                 ore += 1;
                 flower += 1;
+                potion += 1;
 
                 if (pick == 'P')
                 {
-
-                    AddCoins(10);
-
                     AddIron(1);
 
                     AddFlower(1);
 
-                    AddToInventory("Gleaming Coins");       // 
+                    AddPotion(1);
 
-                    AddToInventory("Delicate Flower");      //
+                    AddToInventory($"Gleaming Coins");       // 
 
-                    AddToInventory("Sturdy Iron");          //
+                    AddToInventory($"Delicate Flower");      //
 
-                    Console.WriteLine($"Coins collected: {money}");
+                    AddToInventory($"Sturdy Iron");          //
 
-                    Console.WriteLine($"Iron collected: {ore}");
 
-                    Console.WriteLine($"Delicate flower collected: {flower}");
+                    PrintInventory();
 
 
 
@@ -429,47 +408,56 @@ namespace MCNR
                     Console.WriteLine("Invalid. Press 'P' to collect your loot!");
 
                 }
-                Console.WriteLine("\nNarrator: Gather more flowers to purchase health potions at the Potion Maker, and collect iron to upgrade your sword at the Blacksmith.");
+                Console.WriteLine("\nNarrator: Gather more flowers to purchase health potions at the Potion Maker");
+                Console.WriteLine("\n\tCollect iron to upgrade your sword at the Blacksmith.");
+                Console.ReadLine();
                 Thread.Sleep(2000);
                 Console.Clear();
             }
-            //**************************************************//
+        
+        //**************************************************//
 
-            //*****ADD COINS METHOD*****//
-            static void AddCoins(int amount)
+        //*****ADD COINS METHOD*****//
+        static void AddCoins(int amount)
             {
                 // Ensure the coins are in the first index
                 items[0] = "Gleaming Coins"; // Set item name for coins
+                money = amount;
                 counts[0] += amount; // Increment coin count
+
+
             }
             //**************************************************//
 
             //*****ADD IRON METHOD*****//
-            static void AddIron(int iron)
+            static void AddIron(int amount)
             {
                 //iron is added to second index
                 items[1] = "Sturdy Iron"; //set item name for iron
-                counts[1] += iron; //increment iron count
+                counts[1] += amount; //increment iron count
             }
             //**************************************************//
 
             //******ADD FLOWER METHOD*****//
-            static void AddFlower(int flower)
+            static void AddFlower(int amount)
             {
                 //flower is added to third index
                 items[2] = "Delicate Flower"; //set item name for flower
-                counts[2] += flower; //increment flower count
+                counts[2] += amount; //increment flower count
             }
             //**************************************************//
+
+            //*****ADD POTION METHOD*****//
+            static void AddPotion(int amount)
+            {
+                items[3] = "Health Potion";
+                counts[3] += amount;
+            }
 
             //******ADD TO INVENTORY METHOD******//
             static void AddToInventory(string item) //when enemy drop loot call AddToInventory in method as shown in TutorialInventory!!!!!!
             {
-                //add sword to 4th index
-                items[3] = "Trusty Sword"; //sword took up a slot
-                counts[3] = 1;
-
-                // check if the item already exists in the inventory
+                //check if the item already exists in the inventory
                 for (int i = 0; i < items.Length; i++)
                 {
                     if (items[i] == item)
@@ -482,13 +470,13 @@ namespace MCNR
                     }
                 }
 
-                // if item does not exist, find empty slot
+                //if item does not exist, find empty slot
                 for (int i = 0; i < items.Length; i++)
                 {
                     if (items[i] == null)
                     {
                         items[i] = item;
-                        counts[i] = 1;
+                        //counts[i];
                         Console.WriteLine($"\n{item} added to inventory. Total count: {counts[i]}");
                         Console.ReadLine();
                         return;
@@ -501,6 +489,28 @@ namespace MCNR
             }
             //**************************************************//
 
+            //*****Initialize Inventory Method*****//
+            static void InitializeInventory()
+            {
+                items[3] = "Trusty Sword"; //sword took up a slot
+                counts[3] = 1;
+            }
+            //**************************************************//
+
+            //*****Print Inventory Method*****//
+            static void PrintInventory()
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i] != null)
+                    {
+                        Console.WriteLine("Inventory\n");
+                        Console.WriteLine($"{items[i]}: {counts[i]}\n");
+                    }
+                }
+
+            }
+            //*****Entering Town Animation*****//
             static void EnteringTownAnimation()
             {
                 //array with text 
@@ -540,7 +550,7 @@ namespace MCNR
                 Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
                 Console.WriteLine($"\n{next}");
 
-                
+
 
                 //hit enter to clear screen
                 Console.WriteLine();
@@ -662,7 +672,7 @@ namespace MCNR
                 }
 
             }
-        
+
             //**************************************************//
 
             // MANISH/NGATAI //
@@ -702,7 +712,7 @@ namespace MCNR
 
             }
             // MANISH //
-            static void CaveExitOrPath3() 
+            static void CaveExitOrPath3()
             {
 
             }
@@ -746,10 +756,10 @@ namespace MCNR
                 Console.Clear();
 
                 enemyHP = 30;
-                playerHP = 50;
 
-                EnemyVsPlayer();
-                if (enemyHP <= 0)
+            playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
+
+            if (enemyHP <= 0)
                 {
                     Console.Beep(1000, 500);
                     Console.WriteLine("You have defeated the Cave Troll!");
@@ -820,9 +830,9 @@ namespace MCNR
                     Console.Clear();
 
                     enemyHP = 25; // Adjusted enemy HP for balance
-                    playerHP = 50;
+                    
 
-                    EnemyVsPlayer();
+                    playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
                     if (enemyHP <= 0)
                     {
                         Console.Beep(1000, 500);
@@ -1011,7 +1021,7 @@ namespace MCNR
                 enemyHP = 30;
                 playerHP = 50;
 
-                EnemyVsPlayer();
+                playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
                 if (enemyHP <= 0)
                 {
                     Console.Beep(1000, 500);
@@ -1074,9 +1084,9 @@ namespace MCNR
                 Console.Clear();
 
                 enemyHP = 25; // Adjusted enemy HP for balance
-                playerHP = 50;
+                
 
-                EnemyVsPlayer();
+                playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
                 if (enemyHP <= 0)
                 {
                     Console.Beep(1000, 500);
