@@ -859,10 +859,27 @@ namespace MCNR
 
             //**************************************************//
 
-            static void NPC()
-            {
+            static void EldrinDialogue( )
+                {
+                    Console.WriteLine("\n[Eldrin the Wise]: Greetings, adventurer! I can sense you seek to challenge the Big Boss ahead.");
+                
 
-            }
+                // Check player readiness
+                if 
+                    {
+                        Console.WriteLine("\n[Eldrin the Wise]: You look strong enough to face the Big Boss! You've gathered sufficient loot and trained well.");
+                        Console.WriteLine("Prepare yourself, and may your courage lead you to victory!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n[Eldrin the Wise]: Hmmm, I sense you’re not quite ready for the battle ahead.");
+                        Console.WriteLine("I recommend you practice your skills and gather more loot from the enemies in the forest.");
+                        Console.WriteLine("You might even discover special items that will aid you in the upcoming fight.");
+                        Console.WriteLine("Return to me when you feel stronger, and I’ll be here to guide you.");
+                    }
+                }
+
+            
 
             static void CaveOrForest() //player will choose where he want to go cave or forest
             {
@@ -1601,6 +1618,7 @@ namespace MCNR
         }
     }
 }
+
 
             //static void Exit()
         
