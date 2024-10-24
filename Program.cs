@@ -14,6 +14,8 @@ namespace MCNR
         static int ore = 0;
         static int flower = 0;
         static int potion = 0;  
+        static int crystalflower = 0;
+        static int specialsword = 0;
 
         //*****HEALTH POTION METHODS*****//
         public class HealthPotion
@@ -119,7 +121,6 @@ namespace MCNR
             //PrintInventory();   
             //Introduction();
             //Tutorial();
-            TutorialInventory();
 
             EnteringTownAnimation();
             Town();
@@ -326,8 +327,6 @@ namespace MCNR
 
             }
 
-
-
             static void Tutorial()
             {
                 enemyHP = 20;
@@ -349,19 +348,8 @@ namespace MCNR
                     Environment.Exit(0);  //stop program
                 }
 
-<<<<<<< HEAD
                 string[] tutorialInventoryDialogue2 = new string[]
                   {
-=======
-                //add 10 coins after defeating 2nd enemy
-                if (enemyHP <= 0)
-                {
-                    money += 10;
-                    AddCoins(10);
-
-                    string[] tutorialInventoryDialogue2 = new string[]
-                {
->>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
                     "Narrator: With the enemy defeated...",
                     "\nYou discover a trove of spoils: Gleaming coins",
                     "\n\t\tDelicate flower...",
@@ -369,62 +357,14 @@ namespace MCNR
                     "\nNarrator: You have five spaces in your inventory...",
                     "\n\tOne already claimed by your trusty sword..."
 
-<<<<<<< HEAD
                   };
-=======
-                };
->>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
 
 
-                    foreach (string words in tutorialInventoryDialogue2)
-                    {
-                        Console.WriteLine(words);
-                        Thread.Sleep(2000);
-                    }
-                    Console.WriteLine();
-                    Console.WriteLine("Gleaming Coins");
-                    Console.WriteLine("Delicate Flower");
-                    Console.WriteLine("Sturdy Iron");
-                    Console.WriteLine();
-                    Console.WriteLine("Press 'P' to collect your loot!\n");
-                    char pick = Convert.ToChar(Console.ReadLine().ToUpper());
-                    Console.Clear();
-
-                    money += 10;
-                    ore += 1;
-                    flower += 1;
-
-                    if (pick == 'P')
-                    {
-                        AddIron(1);
-
-                        AddFlower(1);
-
-                        AddToInventory($"Gleaming Coins");       // 
-
-                        AddToInventory($"Delicate Flower");      //
-
-                        AddToInventory($"Sturdy Iron");          //
-
-                        PrintInventory();
-
-
-
-                    }
-
-                    else
-
-                    {
-                        Console.WriteLine("Invalid. Press 'P' to collect your loot!");
-
-                    }
-                    Console.WriteLine("\nNarrator: Gather more flowers to purchase health potions at the Potion Maker");
-                    Console.WriteLine("\n\tCollect iron to upgrade your sword at the Blacksmith.");
-                    Console.ReadLine();
+                foreach (string words in tutorialInventoryDialogue2)
+                {
+                    Console.WriteLine(words);
                     Thread.Sleep(2000);
-                    Console.Clear();
                 }
-<<<<<<< HEAD
                 Console.WriteLine();
                 Console.WriteLine("Gleaming Coins");
                 Console.WriteLine("Delicate Flower");
@@ -472,24 +412,67 @@ namespace MCNR
                 Console.ReadLine();
                 Thread.Sleep(2000);
                 Console.Clear();
-=======
->>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
             }
         
-        //**************************************************//
+            //**************************************************//
 
-        //*****ADD COINS METHOD*****//
-        static void AddCoins(int amount)
+            static void UsingPotion()
+            {
+                Console.WriteLine("Press 3 for Health Potion");
+                int input = Convert.ToInt32(Console.ReadLine());
+
+                if (input == 3)
+                {
+                    playerHP = 50;
+                    potion -= 1; 
+
+                    Console.WriteLine($"Your health has been restored to {playerHP} points! <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+
+                    Console.WriteLine($"Enemy HP: {enemyHP}");
+                    Console.WriteLine($"Your HP: {playerHP}");
+                    Console.WriteLine("<enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+
+            }
+
+            static void UsingSpecialSword ()
+            {
+                Console.WriteLine("Press 4 for Special Sword");
+                int input = Convert.ToInt32 (Console.ReadLine());
+
+                if (input == 4)
+                {
+                    specialsword -= 1;
+                    enemyHP -= 100;
+
+                    Console.WriteLine("You grip the hilt of your Sowrd Sword, feeling its power coursing through you.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("A brilliant flash of light erupts as the sword strikes your enemy.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine($"The enemy staggers back, losing 100 health points! <enter>");
+                    Console.ReadLine ();
+                    Console.Clear ();
+                    Console.WriteLine($"Enemy HP: {enemyHP}");
+                    Console.WriteLine($"Your HP: {playerHP}");
+                    Console.WriteLine("<enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+
+                }
+            }
+
+            //*****ADD COINS METHOD*****//
+            static void AddCoins(int amount)
             {
                 // Ensure the coins are in the first index
                 items[0] = "Gleaming Coins"; // Set item name for coins
                 money = amount;
                 counts[0] += amount; // Increment coin count
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
 
             }
             //**************************************************//
@@ -519,13 +502,22 @@ namespace MCNR
                 counts[3] += amount;
             }
 
+            static void AddSpecialSword (int amount)
+            {
+                items[4] = "Blade of Lumina";
+                counts[4] += amount;
+            }
+
+            static void AddCrystalFlower (int amount)
+            {
+                items[5] = "Crystal Flower";
+                counts[5] += amount;    
+
+            }
+
             //******ADD TO INVENTORY METHOD******//
             static void AddToInventory(string item) //when enemy drop loot call AddToInventory in method as shown in TutorialInventory!!!!!!
-<<<<<<< HEAD
             {
-=======
-            {               
->>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
                 //check if the item already exists in the inventory
                 for (int i = 0; i < items.Length; i++)
                 {
@@ -577,11 +569,7 @@ namespace MCNR
                         Console.WriteLine($"{items[i]}: {counts[i]}\n");
                     }
                 }
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> 9869068189a420e7031a3e62c789098d9a8be2f6
             }
             //*****Entering Town Animation*****//
             static void EnteringTownAnimation()
@@ -988,12 +976,11 @@ namespace MCNR
             static void ContinueWithSpecialSwordDialogue()
             {
                 //the rest of the dialogue about the special sword
-                string[] specialSwordDialogue = new string[]
+                string[] specialSwordDialogue = 
                 {
-                    "Narrator: Unlike your trusty sword, the *Blade of Lumina* pulses with magical energy, and legends speak of its unique ability: 'Light of Valor.'",
-                    "\nNarrator: When wielded, this sword can unleash a radiant burst of light, dealing extra damage to foes and stunning them momentarily.",
-                    "\nNarrator: However, such power comes with a cost—you may only use 'Light of Valor' once, so choose the moment wisely.",
-                    "\nNarrator: You can feel a powerful connection to the blade, as if it senses your bravery and desire to protect the innocent.",
+                    "Narrator: This ancient relic, the *Blade of Lumina*, pulses with magical energy, a testament to its storied past.",
+                    "\nNarrator: Legends say that this sword possesses great power, but it can only be wielded once.",
+                    "\nNarrator: As you hold the blade, you feel a profound connection, as if it recognizes your bravery and desire to protect the innocent.",
                     "\nNarrator: Will you claim it as your own?"
                 };
 
@@ -1006,29 +993,22 @@ namespace MCNR
                 Console.Clear();
 
                 // Prompt to collect the sword
-                Console.WriteLine("Press 'C' to claim the *Blade of Lumina* and add it to your inventory!\n");
+                Console.WriteLine("Press 'C' to claim the Blade of Lumina and add it to your inventory!\n");
                 char pick = Convert.ToChar(Console.ReadLine().ToUpper());
 
                 if (pick == 'C')
                 {
+                    specialsword += 1;
+                    AddSpecialSword(1);
                     AddToInventory("Blade of Lumina");
-                    Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The *Blade of Lumina* is now yours!");
-                    Console.WriteLine("\n\tYou can now unleash the 'Light of Valor' in battle, a radiant strike against darkness. Use it wisely!");
+                    Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The Blade of Lumina is now yours!");
+                    Console.WriteLine("\n\tRemember, this sword can only be used once, so choose your moment wisely!");
                 }
                 else
                 {
                     Console.WriteLine("Invalid choice. The sword remains in the chest, waiting for a worthy hero.");
                 }
-            }
 
-            static void UseLightOfValor()  //Can only be use once, if (playerAction == "LIGHT") add this method BossVsPlayer
-
-            {
-                Console.WriteLine("\nYou raise the *Blade of Lumina* high, calling upon its magical power...");
-                Thread.Sleep(1000);
-                Console.WriteLine("A brilliant light envelops you, and with a mighty swing, you unleash a burst of radiant energy!");
-
-                enemyHP -= 50; //discuss
             }
 
             static void EscapeCave()
@@ -1068,7 +1048,6 @@ namespace MCNR
 
 
             }
-
 
             //*****FOREST METHOD******//
             static void ForestEnemyPath1()
@@ -1311,42 +1290,43 @@ namespace MCNR
                     {
                         Console.WriteLine("Flower Angel: 'Ah, you have successfully answered one riddle!'");
                         Thread.Sleep(2000);
-                        Console.WriteLine("Flower Angel: 'You shall receive 5 Delicate Flower, a token of your wisdom.'");
+                        Console.WriteLine("Flower Angel: 'You shall receive a Crystal Flower, a token of your wisdom.'");
                         Thread.Sleep(2000);
-                        Console.WriteLine("Flower Angel: 'Take it to the Health Centre, where you can craft a healing potion that will increase your strength.'");
-                        Console.WriteLine("Delicate Flower x5");
+                        Console.WriteLine("Flower Angel: 'Take it to the Potion Maker, where you can craft a healing potion that will increase your strength.'");
+                        Console.WriteLine("CrystalFlower");
                         Console.WriteLine();
                         Console.WriteLine("Press 'P' to collect your loot!\n");
                         char pick = Convert.ToChar(Console.ReadLine().ToUpper());
                         Console.Clear();
 
                         money += 10;
-                        ore += 0;
-                        flower += 10;
+                        flower += 1;
+                        crystalflower += 1;
 
                         if (pick == 'P')
                         {
                             AddFlower(1);
 
+                            AddCrystalFlower(1);
+
+                            AddCoins(10);
+
                             AddToInventory("Delicate Flower");
 
                             Console.WriteLine($"Coins collected: {money}");
 
-                            Console.WriteLine($"Iron collected: {ore}");
+                            Console.WriteLine($"Flowers collected: {flower}");
 
-                            Console.WriteLine($"Delicate flower collected: {flower}");
-
-
-
+                            Console.WriteLine($"Crystal flower collected: {crystalflower}");
                         }
 
                         else if (totalCorrect == 2)
                         {
                             Console.WriteLine("Flower Angel: 'Incredible! You have answered both riddles with grace!'");
                             Thread.Sleep(2000);
-                            Console.WriteLine("Flower Angel: 'You are blessed with 10 delicate flowers, symbols of your exceptional insight.'");
+                            Console.WriteLine("Flower Angel: 'You are blessed with 2 Crystal flowers, symbols of your exceptional insight.'");
                             Thread.Sleep(2000);
-                            Console.WriteLine("Flower Angel: 'Use them wisely at the Health Centre to create a powerful potion that will grant you double the strength.'");
+                            Console.WriteLine("Flower Angel: 'Use them wisely at the Potion Maker to create a powerful potion that will grant you double the strength.'");
                             Console.WriteLine("Delicate Flower x10");
                             Console.WriteLine();
                             Console.WriteLine("Press 'P' to collect your loot!\n");
@@ -1355,20 +1335,24 @@ namespace MCNR
                             Console.Clear();
 
                             money += 10;
-                            ore += 0;
-                            flower += 10;
+                            flower += 1;
+                            crystalflower += 2;
 
                             if (picked == 'P')
                             {
                                 AddFlower(1);
 
-                                AddToInventory("Delicate Flower");
+                                AddCrystalFlower(2);
+
+                                AddCoins (10);
+
+                                AddToInventory("Crystal Flower");
 
                                 Console.WriteLine($"Coins collected: {money}");
 
-                                Console.WriteLine($"Iron collected: {ore}");
+                                Console.WriteLine($"Flowers collected: {flower}");
 
-                                Console.WriteLine($"Delicate flower collected: {flower}");
+                                Console.WriteLine($"Crystal flower collected: {crystalflower}");
                             }
 
                         }
