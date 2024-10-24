@@ -18,6 +18,20 @@ namespace MCNR
         static int specialsword = 0;
 
         //*****HEALTH POTION METHODS*****//
+        public class StrengthPotion
+        {
+            public string name { get; set; }
+            public int increaseAmount { get; set; }
+            public int cost { get; set; }
+            public int maxUses { get; set; }
+            public int currentUses { get; set; }
+
+            //required material to craft this potion
+            public static string requireMaterial = "Crystal Flower";
+            public static int requiredQuantity = 1 + HealthPotion.requiredQuantity;
+        }
+
+
         public class HealthPotion
         {
             //details for health potion
@@ -121,7 +135,6 @@ namespace MCNR
             //PrintInventory();   
             //Introduction();
             Tutorial();
-            TutorialInventory();
 
             EnteringTownAnimation();
             Town();
@@ -220,7 +233,7 @@ namespace MCNR
                         PrintInventory();
                         continue;
                     }
-                   
+
 
 
                     // Enemy Attack
@@ -362,8 +375,9 @@ namespace MCNR
                   {
                     "Narrator: With the enemy defeated...",
                     "\nYou discover a trove of spoils: Gleaming coins",
-                    "\n\t\tDelicate flower...",
-                    "\n\t\tSturdy piece of iron...",
+                    "\n\t\t\tDelicate flower...",
+                    "\n\t\t\tSturdy piece of iron...",
+                    "\n\t\t\tHealth Potion",
                     "\nNarrator: You have five spaces in your inventory...",
                     "\n\tOne already claimed by your trusty sword..."
 
@@ -392,6 +406,8 @@ namespace MCNR
 
                 if (pick == 'P')
                 {
+                    AddCoins(10);
+
                     AddIron(1);
 
                     AddFlower(1);
@@ -404,14 +420,10 @@ namespace MCNR
 
                     AddToInventory($"Sturdy Iron");          //
 
-
-
-
-
+                    AddToInventory($"Health Potion");
                 }
-
+                //if player wrong input
                 else
-
                 {
                     Console.WriteLine("Invalid. Press 'P' to collect your loot!");
 
@@ -546,7 +558,7 @@ namespace MCNR
                     if (items[i] == null)
                     {
                         items[i] = item;
-                        counts[i] = 1;
+                        //counts[i] = 1;
                         Console.WriteLine($"\n{item} added to inventory. Total count: {counts[i]}");
                         Console.ReadLine();
                         return;
