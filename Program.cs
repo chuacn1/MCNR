@@ -117,6 +117,18 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
+<<<<<<< HEAD
+            //Introduction();
+            //Tutorial();
+            //TutorialInventory();
+
+           // EnteringTownAnimation();
+            //Town();
+            
+
+           // NPC(); //------------------------------------------------------------------------------------// MANISH  
+           
+=======
             InitializeInventory();
             //PrintInventory();   
             //Introduction();
@@ -128,21 +140,22 @@ namespace MCNR
 
             NPC(); //------------------------------------------------------------------------------------// MANISH  
 
+>>>>>>> 0a16bf586255fa6edc4f305fcad52f0f008a1db3
 
             //CaveOrForest();
-            CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword -------------------------------// MANISH  
-            CaveEnemyPath1();
-            CaveExitOrPath3(); // After CaveEnemyPath1, E = Exit the cave or 1 = CaveEnemyPath3----------// MANISH 
-            CaveEnemyPath3();
-            SpecialSword();
-            EscapeCave();
+            //CavePath1OrPath2();  // 1 = CaveEnemyPath1 , 2 = SpecialSword -------------------------------// MANISH  
+            //CaveEnemyPath1();
+            //CaveExitOrPath3(); // After CaveEnemyPath1, E = Exit the cave or 1 = CaveEnemyPath3----------// MANISH 
+            //CaveEnemyPath3();
+            //SpecialSword();
+            //EscapeCave();
 
             ForestPath1OrPath2(); //---------------------------------------------------------------------// MANISH 
             ForestEnemyPath1();
             ForestExitOrPath3(); //----------------------------------------------------------------------// MANISH 
             ForestEnemyPath3();
-            SpecialFlower();
-            Exit(); //-----------------------------------------------------------------------------------// MANISH
+            //SpecialFlower();
+            //Exit(); //-----------------------------------------------------------------------------------// MANISH
 
 
 
@@ -747,15 +760,9 @@ namespace MCNR
                 int choose;
                 Console.WriteLine("Press 1 for cave or Press 2 for forest: ");
                 string decision = Console.ReadLine();
-                // Validate input to prevent exceptions
-                if (!int.TryParse(decision, out choose) || (choose != 1 && choose != 2))
-                {
-                    Console.WriteLine("Invalid input. Please enter 1 or 2.");
-                    return; // Exit if invalid
-                }
-                // Additional border design for output
-                Console.WriteLine(new string('-', 30));
-                if (choose == 1)
+                Console.Clear();
+               
+                if (decision == "1")
                 {
                     Console.WriteLine("Entering the cave...");
                 }
@@ -770,27 +777,134 @@ namespace MCNR
             // MANISH //
             static void CavePath1OrPath2()
             {
+                Console.WriteLine("Before you embark  into the dark cave, you must make a choice.");
+                Console.WriteLine("The cave has two mysterious paths.");
+                Console.WriteLine("Press 1 for the Whispering Shadows (Path 1) or press 2 for the Glowing Crystals (Path 2).");
+                Console.WriteLine("If you wish to turn back and exit this adventure, press 3.");
+
+                string decision = Console.ReadLine();
+                Console.Clear();
+
+                // Ensure that the decision is parsed correctly
+                if (decision == "1") 
+                    {
+                        Console.WriteLine("You step cautiously into the Whispering Shadows. The air grows colder, and you hear faint whispers echoing around you.");
+                        Console.WriteLine("As you proceed, shadows dart past your vision, hinting at creatures lurking in the darkness...");
+                    }
+                else if (decision == "2")
+                {
+                    Console.WriteLine("You walk towards the Glowing Crystals. A soft, enchanting light illuminates the cave walls, revealing stunning formations.");
+                    Console.WriteLine("The beauty mesmerizes you, but beware; beauty can hide dangers...");
+                }
+            
+                
+                else if (decision == "3")
+                {
+                    Console.WriteLine("You decide to turn back, leaving the cave's mysteries for another day. Sometimes, wisdom lies in retreat.");
+                }
+                else
+                {
+                    Console.WriteLine("That choice is not an option. The cave awaits your decision...");
+                }
+
+
+
+
 
             }
             // MANISH //
             static void CaveExitOrPath3()
             {
+                Console.WriteLine("Before crossing the cave, you must decide your next move carefully.");
+                Console.WriteLine("Choose 3 to venture down the Enchanted Path (Path 3) or type '0' to exit and retreat to safety.");
 
+                string decision = Console.ReadLine();
+
+                // Try to parse the decision to an integer
+                if (decision == "3")
+                {
+                    Console.WriteLine("You gather your courage and step onto the Enchanted Path. The air shimmers with magic, and strange lights dance around you.");
+                    Console.WriteLine("As you walk, you feel a sense of wonder and danger intertwining, with every step leading you deeper into the unknown...");
+                }
+                else if (decision == "0")
+                {
+                    Console.WriteLine("You wisely decide to retreat, knowing that sometimes the bravest choice is to live to fight another day.");
+                    Console.WriteLine("The cave's secrets will remain, waiting for a more daring adventurer...");
+                }
+                else
+                {
+                    Console.WriteLine("That choice is not valid. The cave echoes your indecision, urging you to make a bolder move!");
+                }
             }
             // MANISH //
             static void ForestPath1OrPath2()
             {
+                Console.WriteLine("Before you embark into the dark forest, you must make a choice.");
+                Console.WriteLine("The forest has two mysterious paths.");
+                Console.WriteLine("Press 1 for the Enchanted Glade (Path 1) or press 2 for the Twilight Thicket (Path 2).");
+                Console.WriteLine("If you wish to turn back and exit this adventure, press 3.");
 
+                string decision = Console.ReadLine();
+
+                // Ensure that the decision is parsed correctly
+                if (decision == "1")
+                {
+                    Console.WriteLine("You step cautiously into the Enchanted Glade. A gentle breeze carries the sweet scent of blooming flowers.");
+                    Console.WriteLine("The trees around you seem to whisper secrets, their leaves shimmering in the dappled sunlight.");
+                    Console.WriteLine("As you wander deeper, you spot mystical creatures peeking out from behind the trees, curious about your presence...");
+                }
+                else if (decision == "2")
+                {
+                    Console.WriteLine("You venture into the Twilight Thicket, where the light dims and shadows stretch long.");
+                    Console.WriteLine("The air is thick with mystery, and you can hear the distant hoot of an owl, echoing through the stillness.");
+                    Console.WriteLine("As you tread carefully, you notice bioluminescent fungi illuminating your path, guiding you deeper into the unknown...");
+                }
+                else if (decision == "3")
+                {
+                    Console.WriteLine("You choose to retreat, stepping back from the forest's enchanting allure.");
+                    Console.WriteLine("The forest stands silent, holding its secrets for another brave soul to uncover another day.");
+                }
+                else
+                {
+                    Console.WriteLine("That choice is not an option. The forest awaits your decision...");
+                }
             }
             // MANISH //
             static void ForestExitOrPath3()
             {
+                Console.WriteLine("As you stand at the edge of the forest, the towering trees beckon you into their embrace.");
+                Console.WriteLine("You must decide your next move wisely.");
+                Console.WriteLine("Choose 3 to embark on the Mystic Trail (Path 3) or type '0' to retreat back to the safety of familiar lands.");
+
+                string decision = Console.ReadLine();
+
+                if (decision == "3")
+                {
+                    Console.WriteLine("With a surge of bravery, you step onto the Mystic Trail. The sunlight filters through the leaves, casting enchanting patterns on the forest floor.");
+                    Console.WriteLine("As you walk, the sounds of nature surround you—birds chirping, leaves rustling, and the distant murmur of a hidden stream.");
+                    Console.WriteLine("You feel an exhilarating blend of curiosity and adventure as the path leads you deeper into the heart of the forest...");
+                }
+                else if (decision == "0")
+                {
+                    Console.WriteLine("You wisely choose to turn back, knowing that not all adventures are meant to be taken in haste.");
+                    Console.WriteLine("The forest watches you retreat, its secrets hidden among the shadows, waiting for a more daring explorer...");
+                }
+                else
+                {
+                    Console.WriteLine("That choice is not valid. The forest whispers your indecision, urging you to embrace the journey ahead!");
+                }
 
             }
             // MANISH //
             static void Exit()
             {
-
+                Console.WriteLine("Do you want to exit?");
+                Console.WriteLine("Press 0");
+                string exit = Console.ReadLine();
+                if (exit == "0")
+                {
+                    Console.WriteLine("lOOSER");
+                }
             }
 
 
