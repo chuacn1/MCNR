@@ -470,7 +470,11 @@ namespace MCNR
             //**************************************************//
 
             //*****ADD POTION METHOD*****//
-            static void A
+            static void AddPotion(int amount)
+            {
+                items[3] = "Health Potion";
+                counts[3] += amount;
+            }
 
             //******ADD TO INVENTORY METHOD******//
             static void AddToInventory(string item) //when enemy drop loot call AddToInventory in method as shown in TutorialInventory!!!!!!
