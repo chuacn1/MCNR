@@ -705,34 +705,55 @@ namespace MCNR
                 foreach (string words in gameDialogue)
                 {
                     Console.WriteLine(words);
-                    Thread.Sleep(2000);
+                    Thread.Sleep(500);
+                }
+                Console.Clear();
+
+                //loop until the player chooses to leave
+                bool continueInTown = true;
+
+                while (continueInTown)
+                {
+                    //ask user if they want to visit blacksmith or potion maker
+                    Console.WriteLine("\nNarrator: Now that you are in Eldoria. What would you like to do?:");
+                    Console.WriteLine("\n\t1. The Blacksmith");
+                    Console.WriteLine("\n\t2. The Potion Maker");
+                    Console.WriteLine("\n\t3. View your inventory");
+                    Console.Write("\nEnter 1, 2 or 3: ");
+
+                    //read player input
+                    string choice = Console.ReadLine();
+                    Console.Clear();
+
+                    //process the players choice
+                    switch (choice)
+                    {
+                        case "1":
+                            VisitBlackSmith();
+                            break;
+
+                        case "2":
+                            VisitPotionMaker();
+                            break;
+
+                        case "3":
+                            PrintInventory();
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid input. Please try again.");
+                            break;
+                    }
+                }
+                Console.WriteLine("\nReturn to town? Y/N: ");
+                string continueChoice = Console.ReadLine().ToLower();
+
+                if (continueChoice == "y")
+                {
+                    continueInTown = false; //exit the loop if the player does not want to return to town (unlikely)
                 }
 
                 Console.Clear();
-
-                //ask user if they want to visit blacksmith or potion maker
-                Console.WriteLine("\nNarrator: Now that you are in Eldoria. Would you like to visit:");
-                Console.WriteLine("\n\t1. The Blacksmith");
-                Console.WriteLine("\n\t2. The Potion Maker");
-                Console.Write("\nEnter 1 or 2: ");
-
-                //read player input
-                string choice = Console.ReadLine();
-                Console.Clear();
-
-                //process the players choice
-                if (choice == "1")
-                {
-                    VisitBlackSmith();
-
-                }
-
-                else if (choice == "2")
-                {
-                    VisitPotionMaker();
-
-                }
-
             }
             //**************************************************//
 
