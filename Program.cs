@@ -155,23 +155,23 @@ namespace MCNR
         static void Main(string[] args)
         {
             //InitializeInventory();
-            ////PrintInventory();   
-            ////Introduction();
-            ////Tutorial();
-            InitializeInventory();
-            //PrintInventory();   
+            //PrintInventory();
             //Introduction();
-            Tutorial();
+            //Tutorial();
+            //InitializeInventory();
+            //PrintInventory();
+            //Introduction();
+            //Tutorial();
 
             //EnteringTownAnimation();
             //Town();
 
 
-            //NPC(); 
+            //EldrinDialogue();
 
 
             //CaveOrForest();
-            //CavePath1OrPath2(); 
+            //CavePath1OrPath2();
             //CaveEnemyPath1();
             //CaveExitOrPath3();
             //CaveEnemyPath3();
@@ -180,10 +180,17 @@ namespace MCNR
 
             //ForestPath1OrPath2();
             //ForestEnemyPath1();
-            //ForestExitOrPath3(); 
+            //ForestExitOrPath3();
             //ForestEnemyPath3();
             //SpecialFlower();
-            //Exit(); 
+            //Exit();
+
+            Tutorial(); // missing tutorial for using inventory and using potions
+            EnteringTownAnimation();
+            Town();
+            EldrinDialogue();
+
+
 
 
 
@@ -461,6 +468,13 @@ namespace MCNR
                 Thread.Sleep(2000);
                 Console.Clear();
             }
+
+            //--------------------------------------------------------------------------------------------------------------------<<<<<<<
+            static void TutorialUsingPotionAndInventory()
+            {
+
+            }
+            //--------------------------------------------------------------------------------------------------------------------<<<<<<<
 
             //**************************************************//
 
@@ -859,27 +873,32 @@ namespace MCNR
 
             //**************************************************//
 
-            static void EldrinDialogue( )
+            static void EldrinDialogue()
+            {
+                Console.WriteLine("\n[Eldrin the Wise]: Ah, brave adventurer! I see you’ve made it this far.");
+                Console.WriteLine("But tell me, do you feel ready to face the Big Boss that lurks ahead and have you practiced and gathered loot from the enemies in the forest and cave?");
+
+                Console.Write("\nEnter 'yes' if you feel prepared, or 'no' if you need more time: ");
+                string response = Console.ReadLine().ToLower();
+
+                if (response == "yes")
                 {
-                    Console.WriteLine("\n[Eldrin the Wise]: Greetings, adventurer! I can sense you seek to challenge the Big Boss ahead.");
-                
-
-                // Check player readiness
-                if 
-                    {
-                        Console.WriteLine("\n[Eldrin the Wise]: You look strong enough to face the Big Boss! You've gathered sufficient loot and trained well.");
-                        Console.WriteLine("Prepare yourself, and may your courage lead you to victory!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n[Eldrin the Wise]: Hmmm, I sense you’re not quite ready for the battle ahead.");
-                        Console.WriteLine("I recommend you practice your skills and gather more loot from the enemies in the forest.");
-                        Console.WriteLine("You might even discover special items that will aid you in the upcoming fight.");
-                        Console.WriteLine("Return to me when you feel stronger, and I’ll be here to guide you.");
-                    }
+                    Console.WriteLine("\n[Eldrin the Wise]: Very well! May your courage shine bright. Prepare yourself well; the battle ahead will be fierce!");
+                    Console.WriteLine("Remember, if you need any last-minute advice or supplies, you know where to find me.");
                 }
-
-            
+                else if (response == "no")
+                {
+                    Console.WriteLine("\n[Eldrin the Wise]: I thought so. The path ahead is fraught with danger.");
+                    Console.WriteLine("I advise you to practice your skills and gather loot from the enemies in the forest and cave.");
+                    Console.WriteLine("You may also discover special items that will aid you in your upcoming battle.");
+                    Console.WriteLine("Return when you feel stronger, and I’ll be here to guide you.");
+                    CaveOrForest();
+                }
+                else
+                {
+                    Console.WriteLine("\n[Eldrin the Wise]: It seems I didn’t quite understand your answer. Please tell me if you feel ready or not.");
+                }
+            }
 
             static void CaveOrForest() //player will choose where he want to go cave or forest
             {
