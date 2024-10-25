@@ -170,13 +170,15 @@ namespace MCNR
             //EldrinDialogue();
 
 
-            //CaveOrForest();
-            //CavePath1OrPath2();
-            //CaveEnemyPath1();
+  
+            ////CavePath1OrPath2();
+            ////CaveEnemyPath1();
             //CaveExitOrPath3();
             //CaveEnemyPath3();
-            //SpecialSword();
+            ////SpecialSword();
+            //SpecialSwordDialogue();
             //EscapeCave();
+            //EscapeCaveDialogue();
 
             //ForestPath1OrPath2();
             //ForestEnemyPath1();
@@ -185,16 +187,21 @@ namespace MCNR
             //SpecialFlower();
             //Exit();
 
-            Tutorial(); // missing tutorial for using inventory and using potions
-            EnteringTownAnimation();
-            Town();
-            EldrinDialogue();
+
+
+
+            // ========= ACTUAL FLOW OF THE GAME FOR MAIN ========= //
+            //Introduction();
+            /*Tutorial();*/ // missing tutorial for using inventory and using potions
+            //EnteringTownAnimation();
+            ////Town();
+            //EldrinDialogue();
 
 
 
 
 
-            // IF THERE'S TIME, MAKE IT VISUALLY NEATER //
+            // not working properly //
             static int EnemyVsPlayer(int playerHP, ref int enemyHP)
             {
                 Random rand = new Random();
@@ -353,7 +360,7 @@ namespace MCNR
                     "\n\tEquipped only with your bravery and a timeworn sword...",
                     "\n\tYour quest commences at the edge of your village...",
                     "\n\tWhere murmurs of a formidable foe...",
-                    "\n\t'The Shadow Lord' cast a pall of fear across the land."
+                    "\n\t'The Shadow Lord' cast a pall of fear across the land <enter>."
                 };
 
 
@@ -369,7 +376,7 @@ namespace MCNR
                 {
                     "Narrator: You enter the realm...",
                     "\n\tPrepared to showcase your skills...",
-                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills"
+                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills <enter>"
                 };
 
 
@@ -394,13 +401,15 @@ namespace MCNR
                 if (enemyHP <= 0) //enemy dies
                 {
                     Console.Beep(1000, 500);
-                    Console.WriteLine("You have triumphed over the foe!");
+                    Console.WriteLine("You have triumphed over the foe! <enter>");
                     Console.ReadLine();
                 }
                 if (playerHP <= 0) //player dies
                 {
                     Console.Beep(400, 500);
-                    Console.WriteLine("You have fallen in battle.");
+                    Console.WriteLine("You have fallen in battle. <enter>");
+                    Console.ReadLine();
+                    Console.WriteLine("G A M E O V E R <enter>");
                     Console.ReadLine();
                     Environment.Exit(0);  //stop program
                 }
@@ -408,14 +417,15 @@ namespace MCNR
                 string[] tutorialInventoryDialogue2 = new string[]
                   {
                     "Narrator: With the enemy defeated...",
-                    "\nYou discover a trove of spoils: Gleaming coins",
+                    "\nYou discover a trove of spoils: \n\t\t\tGleaming coins",
                     "\n\t\t\tDelicate flower...",
                     "\n\t\t\tSturdy piece of iron...",
                     "\n\t\t\tHealth Potion",
                     "\nNarrator: You have five spaces in your inventory...",
                     "\n\tOne already claimed by your trusty sword..."
-
                   };
+
+                Console.Clear();
 
 
                 foreach (string words in tutorialInventoryDialogue2)
@@ -456,16 +466,15 @@ namespace MCNR
 
                     AddToInventory($"Health Potion");
                 }
-                //if player wrong input
+
                 else
                 {
                     Console.WriteLine("Invalid. Press 'P' to collect your loot!");
 
                 }
                 Console.WriteLine("\nNarrator: Gather more flowers to purchase health potions at the Potion Maker");
-                Console.WriteLine("\n\tCollect iron to upgrade your sword at the Blacksmith.");
+                Console.WriteLine("\n\tCollect iron to upgrade your sword at the Blacksmith. <enter>");
                 Console.ReadLine();
-                Thread.Sleep(2000);
                 Console.Clear();
             }
 
@@ -586,7 +595,7 @@ namespace MCNR
                     if (items[i] == item)
                     {
                         counts[i]++;
-                        Console.WriteLine($"\n{item} count increased. Total count: {counts[i]}");
+                        Console.WriteLine($"\n{item} count increased. Total count: {counts[i]} <enter>");
                         Console.ReadLine();
                         return;
 
@@ -600,14 +609,14 @@ namespace MCNR
                     {
                         items[i] = item;
                         //counts[i] = 1;
-                        Console.WriteLine($"\n{item} added to inventory. Total count: {counts[i]}");
+                        Console.WriteLine($"\n{item} added to inventory. Total count: {counts[i]} <enter>");
                         Console.ReadLine();
                         return;
 
                     }
                 }
 
-                Console.WriteLine("Inventory full! Cannot add more items.");
+                Console.WriteLine("Inventory full! Cannot add more items. <enter>");
                 Console.ReadLine();
             }
             //**************************************************//
@@ -742,7 +751,7 @@ namespace MCNR
                 foreach (string words in gameDialogue)
                 {
                     Console.WriteLine(words);
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                 }
                 Console.Clear();
 
@@ -755,8 +764,9 @@ namespace MCNR
                     Console.WriteLine("\nNarrator: Now that you are in Eldoria. What would you like to do?:");
                     Console.WriteLine("\n\t1. The Blacksmith");
                     Console.WriteLine("\n\t2. The Potion Maker");
-                    Console.WriteLine("\n\t3. View your inventory");
-                    Console.Write("\nEnter 1, 2 or 3: ");
+                    Console.WriteLine("\n\t3. Set forth on your quest");
+                    Console.WriteLine("\n\t4. View your inventory");
+                    Console.Write("\nEnter 1, 2, 3 or 4: ");
 
                     //read player input
                     string choice = Console.ReadLine();
@@ -774,6 +784,10 @@ namespace MCNR
                             break;
 
                         case "3":
+                            EldrinDialogue();
+                            break;
+
+                        case "4":
                             PrintInventory();
                             break;
 
@@ -874,47 +888,98 @@ namespace MCNR
             //**************************************************//
 
             static void EldrinDialogue()
+
             {
                 Console.WriteLine("\n[Eldrin the Wise]: Ah, brave adventurer! I see you’ve made it this far.");
-                Console.WriteLine("But tell me, do you feel ready to face the Big Boss that lurks ahead and have you practiced and gathered loot from the enemies in the forest and cave?");
+                Thread.Sleep(2000);
+                Console.WriteLine("\n\t\tBut tell me, do you feel prepared to confront the Big Boss lurking ahead?\n\t\tHave you gathered enough loot and practiced your skills against the enemies in the forest and cave? <enter>");
+                Console.ReadLine();
+                EldrinPath();
+            }
 
+            static void EldrinPath()
+            {
+                Console.Clear();
                 Console.Write("\nEnter 'yes' if you feel prepared, or 'no' if you need more time: ");
                 string response = Console.ReadLine().ToLower();
 
                 if (response == "yes")
                 {
+                    Console.Clear();
                     Console.WriteLine("\n[Eldrin the Wise]: Very well! May your courage shine bright. Prepare yourself well; the battle ahead will be fierce!");
-                    Console.WriteLine("Remember, if you need any last-minute advice or supplies, you know where to find me.");
+                    //INSERT BOSS METHOD HERE
                 }
                 else if (response == "no")
                 {
+                    Console.Clear();
                     Console.WriteLine("\n[Eldrin the Wise]: I thought so. The path ahead is fraught with danger.");
-                    Console.WriteLine("I advise you to practice your skills and gather loot from the enemies in the forest and cave.");
-                    Console.WriteLine("You may also discover special items that will aid you in your upcoming battle.");
-                    Console.WriteLine("Return when you feel stronger, and I’ll be here to guide you.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\n\t\tI advise you to practice your skills and gather loot from the enemies in the forest and cave.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\n\t\tYou may also discover special items that will aid you in your upcoming battle.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\n\t\tReturn when you feel stronger, and I’ll be here to guide you. <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
                     CaveOrForest();
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("\n[Eldrin the Wise]: It seems I didn’t quite understand your answer. Please tell me if you feel ready or not.");
+                    EldrinPath();
                 }
             }
 
             static void CaveOrForest() //player will choose where he want to go cave or forest
             {
                 int choose;
-                Console.WriteLine("Press 1 for cave or Press 2 for forest: ");
+                Console.WriteLine("Which do you want to go Cave or Forest?: ");
+                Console.WriteLine("\n\t1. Cave");
+                Console.WriteLine("\n\t2. Forest");
+                Console.WriteLine("\n\tEnter 1 or 2");
+
                 int decision = Convert.ToInt32(Console.ReadLine());
 
                 if (decision == 1)
                 {
+
+                    Console.Clear();
+                    Console.WriteLine("Entering the cave.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Entering the cave..");
+                    Thread.Sleep(1000);
+                    Console.Clear();
                     Console.WriteLine("Entering the cave...");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Thread.Sleep(3000);
+                    Console.Clear();
                     CavePath1OrPath2();
                 }
+
+                else if (decision == 2)
+                {
+
+                    Console.Clear();
+                    Console.WriteLine("Entering the forest.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Entering the forest..");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Entering the forest...");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    ForestPath1OrPath2();
+                }
+
                 else
                 {
-                    Console.WriteLine("Entering the forest...");
-                    ForestPath1OrPath2();
+                    Console.WriteLine("Invalid Input. <enter>");
+                    Console.ReadLine();
+                    CaveOrForest();
                 }
             }
 
@@ -924,7 +989,7 @@ namespace MCNR
                 Console.WriteLine("\n\t1. Go to Path 1");
                 Console.WriteLine("\n\t2. Go to Path 2");
                 Console.WriteLine("\n\t0. Exit the Cave");
-                Console.Write("\nEnter 1, 2 or 0: ");
+                Console.Write("\n\tEnter 1, 2 or 0: ");
 
                 //read player input
                 string choice = Console.ReadLine();
@@ -938,12 +1003,19 @@ namespace MCNR
 
                 else if (choice == "2")
                 {
-                    SpecialSword();
+                    SpecialSwordDialogue();
                 }
 
                 else if (choice == "0")
                 {
                     CaveOrForest();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid! <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+                    CavePath1OrPath2();
                 }
 
             }
@@ -1008,7 +1080,7 @@ namespace MCNR
 
 
             }
-            // MANISH //
+
             static void ForestExitOrPath3()
             {
                 Console.WriteLine("\nNarrator: Would you like to:");
@@ -1050,7 +1122,7 @@ namespace MCNR
                     "\nNarrator: It's a Cave Troll, towering above you with a fearsome glare!",
                     "\nCave Troll: 'You dare intrude in my domain?! Prepare to face my wrath!'",
                     "\nNarrator: With adrenaline pumping through your veins, you ready your sword. The battle is about to begin!",
-                    "\n\tWill you fight bravely or flee into the darkness? Press 'A' to attack!"
+                    "\n\tWill you fight bravely or flee into the darkness?"
                 };
 
                 foreach (string line in caveEnemyDialogue)
@@ -1068,14 +1140,18 @@ namespace MCNR
                 if (enemyHP <= 0)
                 {
                     Console.Beep(1000, 500);
-                    Console.WriteLine("You have defeated the Cave Troll!");
+                    Console.WriteLine("You have defeated the Cave Troll! <enter>");
+                    Console.ReadLine();
                     //here we will add rewards or further actions
                 }
                 else if (playerHP <= 0) //maybe we make this able to retry the enemy??
                 {
                     Console.Beep(400, 500);
-                    Console.WriteLine("You have fallen in battle against the Cave Troll.");
-                    Console.WriteLine("Game Over.");
+                    Console.WriteLine("You have fallen in battle against the Cave Troll <enter>.");
+                    Console.ReadLine();
+
+                    Console.WriteLine("G A M E O V E R <enter>");
+                    Console.ReadLine();
                     Environment.Exit(0);
                 }
                 else
@@ -1089,18 +1165,24 @@ namespace MCNR
                 Console.Clear();
 
                 money += 10;
-                //iron += 1;
+                ore += 1;
 
                 if (pick == 'P')
                 {
 
                     AddCoins(10);
 
+                    AddIron(1);
+
                     AddToInventory("Gleaming Coins");       // 
 
                     AddToInventory("Sturdy Iron");          //
 
                     Console.WriteLine($"Coins collected: {money}");
+                    Console.WriteLine("<enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+                    CaveExitOrPath3();
                 }
 
                 else
@@ -1116,106 +1198,153 @@ namespace MCNR
 
             static void CaveEnemyPath3()
             {
+                string[] caveEnemyDialogue = new string[]
                 {
-                    string[] caveEnemyDialogue = new string[]
-                    {
                         "Narrator: As you navigate through the winding passages of the cave, a strange shimmering light catches your eye... ",
                         "\n\tSuddenly, the ground trembles, and a massive creature emerges from the shadows!",
                         "\nNarrator: It's a Crystal Golem, its body adorned with glimmering gems that sparkle ominously!",
                         "\nCrystal Golem: 'You dare disturb my slumber?! Prepare to be crushed!'",
                         "\nNarrator: Heart racing, you grip your weapon tightly. The confrontation is imminent!",
-                        "\n\tWill you stand your ground or try to escape? Press 'A' to attack!"
-                    };
+                        "\n\tWill you stand your ground or try to escape?"
+                };
 
-                    foreach (string line in caveEnemyDialogue)
-                    {
-                        Console.WriteLine(line);
-                        Thread.Sleep(2000);
-                    }
-
-                    Console.Clear();
-
-                    enemyHP = 25; // Adjusted enemy HP for balance
-
-
-                    playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
-                    if (enemyHP <= 0)
-                    {
-                        Console.Beep(1000, 500);
-                        Console.WriteLine("You have defeated the Crystal Golem!");
-
-                    }
-                    else if (playerHP <= 0)
-                    {
-                        Console.Beep(400, 500);
-                        Console.WriteLine("You have fallen in battle against the Crystal Golem.");
-                        Console.WriteLine("Game Over.");
-                        Environment.Exit(0);
-                    }
-                    else
-                    {
-                        // In case of some unexpected outcome, though unlikely
-                        Console.WriteLine("The battle ended unexpectedly.");
-                    }
-
-                    Console.WriteLine("Press 'P' to collect your loot!\n");
-                    char pick = Convert.ToChar(Console.ReadLine().ToUpper());
-                    Console.Clear();
-
-                    money += 10; // player earns 10 coins
-
-                    if (pick == 'P')
-                    {
-                        AddCoins(10);
-                        AddToInventory("Shimmering Coins");
-                        AddToInventory("Sturdy Iron");
-
-                        Console.WriteLine($"Coins collected: {money}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid. Press 'P' to collect your loot!");
-                    }
+                foreach (string line in caveEnemyDialogue)
+                {
+                    Console.WriteLine(line);
+                    Thread.Sleep(2000);
                 }
 
+                Console.Clear();
+
+                enemyHP = 25; // Adjusted enemy HP for balance
+
+                playerHP = 100;
+
+                playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
+                if (enemyHP <= 0)
+                {
+                    Console.Beep(1000, 500);
+                    Console.WriteLine("You have defeated the Crystal Golem! <enter>");
+                    Console.ReadLine();
+
+                }
+                else if (playerHP <= 0)
+                {
+                    Console.Beep(400, 500);
+                    Console.WriteLine("You have fallen in battle against the Crystal Golem. <enter>");
+                    Console.WriteLine("G A M E O V E R <enter>");
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    // In case of some unexpected outcome, though unlikely
+                    Console.WriteLine("The battle ended unexpectedly. <enter>");
+                    Console.ReadLine();
+                    CaveEnemyPath3();
+                }
+
+                Console.WriteLine("Press 'P' to collect your loot!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                Console.Clear();
+
+                money += 10; // player earns 10 coins
+                ore += 2;
+
+                if (pick == 'P')
+                {
+                    AddCoins(10);
+                    AddIron(2);
+                    AddToInventory("Shimmering Coins");
+                    AddToInventory("Sturdy Iron");
+
+                    Console.WriteLine($"Coins collected: {money}");
+                    Console.WriteLine("<enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+                    DeadEnd();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid. Press 'P' to collect your loot!");
+                    Console.ReadLine();
+                }
             }
 
-            static void SpecialSword()
+            static void DeadEnd()
+            {
+                Console.WriteLine("Narrator: You've reached a dead end. The darkness surrounds you, and the only way out is to retrace your steps. \nPress 'E' to exit the cave and return to safety.");
+                string exit = Console.ReadLine().ToLower();
+
+                if (exit == "e")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Exiting Cave.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Exiting Cave..");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Exiting Cave...");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Thread.Sleep(2000);
+
+                    CaveOrForest();
+
+                }
+
+                else
+                {
+                    Console.WriteLine("Invalid. Press 'E' to exit the cave");
+                    DeadEnd();
+                }
+            }
+
+            static void SpecialSwordDialogue()
             {
                 //dialogue when the player finds the chest
                 Console.WriteLine("Narrator: As you explore the depths of the cave, you stumble upon an ancient chest, its surface adorned with intricate carvings...");
                 Thread.Sleep(2000);
                 Console.WriteLine("\nNarrator: Curiosity piqued, you kneel before the chest and notice a strange inscription on the lock.");
                 Thread.Sleep(2000);
+                SpecialSwordGuess();          
+            }
+
+            static void SpecialSwordGuess()
+            {
                 Console.WriteLine("\nNarrator: It reads: 'To reveal the power within, speak the word of light.'");
                 Thread.Sleep(2000);
 
                 //hint for the passcode
                 Console.WriteLine("\nNarrator: You think for a moment. Perhaps the answer lies in the very essence of what you seek. It's a simple word related to illumination...");
-                Console.WriteLine("What could it be? Type your guess:");
+                Console.WriteLine("\nType your guess:");
 
                 string passcode = "LIGHT"; //correct passcode
                 bool chestOpened = false;
 
-                while (!chestOpened)
-                {
                     string playerGuess = Console.ReadLine().ToUpper();
 
                     if (playerGuess == passcode)
                     {
+                        Console.Clear();
                         chestOpened = true;
                         Console.WriteLine("\nNarrator: The chest creaks open as the passcode is accepted!");
                         Thread.Sleep(2000);
                         Console.WriteLine("\nInside, you find a magnificent sword, its blade shimmering with a faint, ethereal glow.");
                         Thread.Sleep(2000);
-                        Console.WriteLine("\nNarrator: This is the *Blade of Lumina*, said to be forged by the celestial smiths of old...");
+                        Console.WriteLine("\nNarrator: This is the Blade of Lumina, said to be forged by the celestial smiths of old... <enter>");
+                        Console.ReadLine();
+                        Console.Clear();
+                        
                         ContinueWithSpecialSwordDialogue();
                     }
                     else
                     {
-                        Console.WriteLine("\nNarrator: The lock remains steadfast. Perhaps you should think of something brighter... Try again:");
+                        Console.WriteLine("\nNarrator: The lock remains steadfast. Perhaps you should think of something brighter... Try again <enter>");
+                        Console.ReadLine();
+                        Console.Clear();
+                        SpecialSwordClaim();
                     }
-                }
             }
 
             static void ContinueWithSpecialSwordDialogue()
@@ -1223,7 +1352,7 @@ namespace MCNR
                 //the rest of the dialogue about the special sword
                 string[] specialSwordDialogue =
                 {
-                    "Narrator: This ancient relic, the *Blade of Lumina*, pulses with magical energy, a testament to its storied past.",
+                    "Narrator: This ancient relic, the Blade of Lumina, pulses with magical energy, a testament to its storied past.",
                     "\nNarrator: Legends say that this sword possesses great power, but it can only be wielded once.",
                     "\nNarrator: As you hold the blade, you feel a profound connection, as if it recognizes your bravery and desire to protect the innocent.",
                     "\nNarrator: Will you claim it as your own?"
@@ -1236,34 +1365,44 @@ namespace MCNR
                 }
 
                 Console.Clear();
-
-                // Prompt to collect the sword
-                Console.WriteLine("Press 'C' to claim the Blade of Lumina and add it to your inventory!\n");
-                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
-
-                if (pick == 'C')
-                {
-                    specialsword += 1;
-                    AddSpecialSword(1);
-                    AddToInventory("Blade of Lumina");
-                    Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The Blade of Lumina is now yours!");
-                    Console.WriteLine("\n\tRemember, this sword can only be used once, so choose your moment wisely!");
-                }
-                else
-                {
-                    Console.WriteLine("Invalid choice. The sword remains in the chest, waiting for a worthy hero.");
-                }
-
+                SpecialSwordClaim();
             }
 
-            static void EscapeCave()
+            static void SpecialSwordClaim() 
+            {
+
+                // Prompt to collect the sword
+                Console.WriteLine("\nPress 'C' to claim the Blade of Lumina and add it to your inventory!\n");
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+
+                    if (pick == 'C')
+                    {
+                        specialsword += 1;
+                        AddSpecialSword(1);
+                        AddToInventory("Blade of Lumina");
+                        Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The Blade of Lumina is now yours!");
+                        Console.WriteLine("\n\tRemember, this sword can only be used once, so choose your moment wisely! <enter>");
+                        Console.ReadLine();
+                        Console.Clear();
+                        EscapeCave();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid choice. The sword remains in the chest, waiting for a worthy hero. <enter>");
+                        Console.ReadLine();
+                        Console.Clear();
+                        SpecialSwordClaim();
+                    }
+            }
+
+            static void EscapeCaveDialogue()
             {
                 string[] caveEscapeDialogue = new string[]
                 {
                       "Narrator: As you venture deeper into the cave, the air grows thick and heavy. A sudden realization hits you—there's no oxygen left in this part of the cave!",
                       "\n\tJust then, a massive figure blocks your path. It's the Guardian of the Cave!",
                       "\nGuardian: You have crossed into the danger zone. For your recklessness, you must answer my riddle to pass!",
-                      "\nNarrator: You feel the weight of the moment—answer correctly, and you may proceed. Fail, and you may never escape this cave..."
+                      "\nNarrator: You feel the weight of the moment—answer correctly, and you may proceed. Fail, and you may never escape this cave... <enter>"
                 };
                 foreach (string words in caveEscapeDialogue)
                 {
@@ -1271,8 +1410,14 @@ namespace MCNR
                     Thread.Sleep(2000);
                 }
 
+                Console.ReadLine();
                 Console.Clear();
-
+                EscapeCave();
+            }
+            
+            static void EscapeCave()
+            { 
+        
                 Console.WriteLine("Guardian: So, the riddle is this: Convert the binary 10000001 into a decimal!");
                 int deci = Convert.ToInt32(Console.ReadLine());
 
@@ -1280,15 +1425,33 @@ namespace MCNR
                 {
                     Console.WriteLine("\nGuardian: 'Correct! You may proceed and DO NOT ever come back.'");
                     Thread.Sleep(2000);
-                    Console.WriteLine("\nNarrator: With a sense of relief, you step past the Guardian and continue your adventure...");
+                    Console.WriteLine("\nNarrator: With a sense of relief, you step past the Guardian and exit the cave... <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+
+                    Console.WriteLine("Exiting Cave.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Exiting Cave..");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Exiting Cave...");
                     Thread.Sleep(2000);
+                    Console.Clear();
+                    Thread.Sleep(1000);
+                    CaveOrForest();
+
                 }
                 else
                 {
                     Console.WriteLine("\nGuardian: 'Incorrect! You have sealed your fate...'");
                     Thread.Sleep(2000);
-                    Console.WriteLine("\nNarrator: The Guardian raises his hand, and darkness engulfs you. You perish in the cave...");
-                    Thread.Sleep(2000);
+                    Console.WriteLine("\nNarrator: The Guardian raises his hand, and darkness engulfs you. You perish in the cave... <enter>");
+                    Console.ReadLine();
+                    Console.WriteLine("G A M E  O V E R <enter>");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+
                 }
 
 
@@ -1637,6 +1800,8 @@ namespace MCNR
         }
     }
 }
+    
+
 
 
             //static void Exit()
