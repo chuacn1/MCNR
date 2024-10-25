@@ -170,7 +170,7 @@ namespace MCNR
             //EldrinDialogue();
 
 
-  
+
             ////CavePath1OrPath2();
             ////CaveEnemyPath1();
             //CaveExitOrPath3();
@@ -193,9 +193,9 @@ namespace MCNR
             // ========= ACTUAL FLOW OF THE GAME FOR MAIN ========= //
             //Introduction();
             /*Tutorial();*/ // missing tutorial for using inventory and using potions
-            //EnteringTownAnimation();
-            ////Town();
-            //EldrinDialogue();
+                            //EnteringTownAnimation();
+                            ////Town();
+                            //EldrinDialogue();
 
 
 
@@ -1307,7 +1307,7 @@ namespace MCNR
                 Thread.Sleep(2000);
                 Console.WriteLine("\nNarrator: Curiosity piqued, you kneel before the chest and notice a strange inscription on the lock.");
                 Thread.Sleep(2000);
-                SpecialSwordGuess();          
+                SpecialSwordGuess();
             }
 
             static void SpecialSwordGuess()
@@ -1322,29 +1322,29 @@ namespace MCNR
                 string passcode = "LIGHT"; //correct passcode
                 bool chestOpened = false;
 
-                    string playerGuess = Console.ReadLine().ToUpper();
+                string playerGuess = Console.ReadLine().ToUpper();
 
-                    if (playerGuess == passcode)
-                    {
-                        Console.Clear();
-                        chestOpened = true;
-                        Console.WriteLine("\nNarrator: The chest creaks open as the passcode is accepted!");
-                        Thread.Sleep(2000);
-                        Console.WriteLine("\nInside, you find a magnificent sword, its blade shimmering with a faint, ethereal glow.");
-                        Thread.Sleep(2000);
-                        Console.WriteLine("\nNarrator: This is the Blade of Lumina, said to be forged by the celestial smiths of old... <enter>");
-                        Console.ReadLine();
-                        Console.Clear();
-                        
-                        ContinueWithSpecialSwordDialogue();
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nNarrator: The lock remains steadfast. Perhaps you should think of something brighter... Try again <enter>");
-                        Console.ReadLine();
-                        Console.Clear();
-                        SpecialSwordClaim();
-                    }
+                if (playerGuess == passcode)
+                {
+                    Console.Clear();
+                    chestOpened = true;
+                    Console.WriteLine("\nNarrator: The chest creaks open as the passcode is accepted!");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\nInside, you find a magnificent sword, its blade shimmering with a faint, ethereal glow.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("\nNarrator: This is the Blade of Lumina, said to be forged by the celestial smiths of old... <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+
+                    ContinueWithSpecialSwordDialogue();
+                }
+                else
+                {
+                    Console.WriteLine("\nNarrator: The lock remains steadfast. Perhaps you should think of something brighter... Try again <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+                    SpecialSwordClaim();
+                }
             }
 
             static void ContinueWithSpecialSwordDialogue()
@@ -1368,31 +1368,31 @@ namespace MCNR
                 SpecialSwordClaim();
             }
 
-            static void SpecialSwordClaim() 
+            static void SpecialSwordClaim()
             {
 
                 // Prompt to collect the sword
                 Console.WriteLine("\nPress 'C' to claim the Blade of Lumina and add it to your inventory!\n");
                 char pick = Convert.ToChar(Console.ReadLine().ToUpper());
 
-                    if (pick == 'C')
-                    {
-                        specialsword += 1;
-                        AddSpecialSword(1);
-                        AddToInventory("Blade of Lumina");
-                        Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The Blade of Lumina is now yours!");
-                        Console.WriteLine("\n\tRemember, this sword can only be used once, so choose your moment wisely! <enter>");
-                        Console.ReadLine();
-                        Console.Clear();
-                        EscapeCave();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid choice. The sword remains in the chest, waiting for a worthy hero. <enter>");
-                        Console.ReadLine();
-                        Console.Clear();
-                        SpecialSwordClaim();
-                    }
+                if (pick == 'C')
+                {
+                    specialsword += 1;
+                    AddSpecialSword(1);
+                    AddToInventory("Blade of Lumina");
+                    Console.WriteLine("\nNarrator: You grasp the sword tightly, feeling its power resonate through you. The Blade of Lumina is now yours!");
+                    Console.WriteLine("\n\tRemember, this sword can only be used once, so choose your moment wisely! <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+                    EscapeCave();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice. The sword remains in the chest, waiting for a worthy hero. <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+                    SpecialSwordClaim();
+                }
             }
 
             static void EscapeCaveDialogue()
@@ -1414,10 +1414,10 @@ namespace MCNR
                 Console.Clear();
                 EscapeCave();
             }
-            
+
             static void EscapeCave()
-            { 
-        
+            {
+
                 Console.WriteLine("Guardian: So, the riddle is this: Convert the binary 10000001 into a decimal!");
                 int deci = Convert.ToInt32(Console.ReadLine());
 
@@ -1800,10 +1800,9 @@ namespace MCNR
         }
     }
 }
-    
 
 
 
-            //static void Exit()
-        
-     
+
+//static void Exit()
+
