@@ -16,7 +16,7 @@ namespace MCNR
         static int potion = 0;
         static int crystalflower = 0;
         static int specialsword = 0;
-
+        static int correct = 0;
         //*****HEALTH POTION METHODS*****//
         public class StrengthPotion
         {
@@ -194,7 +194,7 @@ namespace MCNR
             //Introduction();
             /*Tutorial();*/ // missing tutorial for using inventory and using potions
                             //EnteringTownAnimation();
-                            ////Town();
+                            //Town();
                             //EldrinDialogue();
 
 
@@ -481,7 +481,7 @@ namespace MCNR
             //--------------------------------------------------------------------------------------------------------------------<<<<<<<
             static void TutorialUsingPotionAndInventory()
             {
-
+       
             }
             //--------------------------------------------------------------------------------------------------------------------<<<<<<<
 
@@ -900,7 +900,7 @@ namespace MCNR
             static void EldrinPath()
             {
                 Console.Clear();
-                Console.Write("\nEnter 'yes' if you feel prepared, or 'no' if you need more time: ");
+                Console.Write("\nEnter 'yes' if you feel prepared to slaughter the BigBoss, or 'no' if you need more time: ");
                 string response = Console.ReadLine().ToLower();
 
                 if (response == "yes")
@@ -937,7 +937,11 @@ namespace MCNR
                 Console.WriteLine("Which do you want to go Cave or Forest?: ");
                 Console.WriteLine("\n\t1. Cave");
                 Console.WriteLine("\n\t2. Forest");
-                Console.WriteLine("\n\tEnter 1 or 2");
+                Console.WriteLine("\n\t3. Back to Town");
+                Console.WriteLine("\n\t4. Back to Eldrin");
+
+                Console.WriteLine("\n\tEnter 1, 2, 3 or 4");
+
 
                 int decision = Convert.ToInt32(Console.ReadLine());
 
@@ -973,6 +977,39 @@ namespace MCNR
                     Thread.Sleep(1000);
                     Console.Clear();
                     ForestPath1OrPath2();
+                }
+
+                else if (decision == 3)
+                {
+
+                    Console.Clear();
+                    Console.WriteLine("Walking back.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Walking back..");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Walking back...");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    EldrinPath();
+
+                }
+
+                else if (decision == 4)
+                {
+
+                    Console.Clear();
+                    Console.WriteLine("Walking back.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Walking back..");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Walking back...");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Town();
                 }
 
                 else
@@ -1261,7 +1298,7 @@ namespace MCNR
                     Console.WriteLine("<enter>");
                     Console.ReadLine();
                     Console.Clear();
-                    DeadEnd();
+                    DeadEndCave();
                 }
                 else
                 {
@@ -1270,7 +1307,7 @@ namespace MCNR
                 }
             }
 
-            static void DeadEnd()
+            static void DeadEndCave()
             {
                 Console.WriteLine("Narrator: You've reached a dead end. The darkness surrounds you, and the only way out is to retrace your steps. \nPress 'E' to exit the cave and return to safety.");
                 string exit = Console.ReadLine().ToLower();
@@ -1296,9 +1333,38 @@ namespace MCNR
                 else
                 {
                     Console.WriteLine("Invalid. Press 'E' to exit the cave");
-                    DeadEnd();
+                    DeadEndCave();
                 }
             }
+
+            static void DeadEndForest()
+            {
+                Console.WriteLine("Narrator: You've reached a quiet clearing in the forest. Tall trees loom around you, and a sense of stillness fills the air. \nPress 'E' to retrace your steps and return to safety.");
+                string exit = Console.ReadLine().ToLower();
+
+                if (exit == "e")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Retracing your steps through the forest.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Retracing your steps through the forest..");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("Retracing your steps through the forest...");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Thread.Sleep(2000);
+
+                    CaveOrForest();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid. Press 'E' to retrace your steps.");
+                    DeadEndForest();
+                }
+            }
+
 
             static void SpecialSwordDialogue()
             {
@@ -1467,7 +1533,7 @@ namespace MCNR
                     "\nNarrator: It's a Flower Guardian, radiating with a gentle glow and a watchful gaze!",
                     "\nPetal Wraith: 'You dare tread in my enchanted garden?! Prepare to be tested!'",
                     "\nNarrator: With your heart racing, you ready your staff. The challenge is about to begin!",
-                    "\n\tWill you face thePetal Wraith bravely or retreat into the flowers? Press 'A' to challenge!"
+                    "\n\tWill you face thePetal Wraith bravely or retreat into the flowers?"
                 };
 
                 foreach (string line in flowerBiomeDialogue)
@@ -1478,21 +1544,22 @@ namespace MCNR
 
                 Console.Clear();
 
-                enemyHP = 30;
-                playerHP = 50;
+                enemyHP = 20;
+
+
 
                 playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
                 if (enemyHP <= 0)
                 {
                     Console.Beep(1000, 500);
-                    Console.WriteLine("You have defeated the Petal Wraith!");
-                    // Here you can add rewards or further actions
+                    Console.WriteLine("You have defeated the Petal Wraith! <enter>");
+
                 }
                 else if (playerHP <= 0)
                 {
                     Console.Beep(400, 500);
-                    Console.WriteLine("You have fallen in battle against the Petal Wraith.");
-                    Console.WriteLine("Game Over.");
+                    Console.WriteLine("You have fallen in battle against the Petal Wraith. <enter>");
+                    Console.WriteLine("G A M E O V E R <enter>");
                     Environment.Exit(0);
                 }
                 else
@@ -1514,7 +1581,9 @@ namespace MCNR
                     AddToInventory("Gleaming Coins");
                     AddToInventory("Delicate Flower");
 
-                    Console.WriteLine($"Coins collected: {money}");
+                    Console.WriteLine($"Coins collected: {money} <enter>");
+                    Console.ReadLine();
+                    ForestExitOrPath3();
                 }
                 else
                 {
@@ -1532,7 +1601,7 @@ namespace MCNR
                     "\nNarrator: It's a Blooming Behemoth, its massive form covered in lush flowers and vines!",
                     "\nBlooming Behemoth: 'You dare intrude upon my garden?! Prepare to face my wrath!'",
                     "\nNarrator: Heart racing, you grip your staff tightly. The confrontation is imminent!",
-                    "\n\tWill you stand your ground or try to escape? Press 'A' to attack!"
+                    "\n\tWill you stand your ground or try to escape?"
                 };
 
                 foreach (string line in flowerBiomeDialogue)
@@ -1543,20 +1612,22 @@ namespace MCNR
 
                 Console.Clear();
 
-                enemyHP = 25; // Adjusted enemy HP for balance
-
+                enemyHP = 20; // Adjusted enemy HP for balance             
 
                 playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
                 if (enemyHP <= 0)
                 {
                     Console.Beep(1000, 500);
-                    Console.WriteLine("You have defeated the Blooming Behemoth!");
+                    Console.WriteLine("You have defeated the Blooming Behemoth! <enter>");
+                    Console.ReadLine();
                 }
                 else if (playerHP <= 0)
                 {
                     Console.Beep(400, 500);
-                    Console.WriteLine("You have fallen in battle against the Blooming Behemoth.");
-                    Console.WriteLine("Game Over.");
+                    Console.WriteLine("You have fallen in battle against the Blooming Behemoth. <enter>");
+                    Console.ReadLine();
+                    Console.WriteLine("G A M E O V E R <enter>.");
+                    Console.ReadLine();
                     Environment.Exit(0);
                 }
                 else
@@ -1576,7 +1647,10 @@ namespace MCNR
                     AddToInventory("Gleaming Coins");
                     AddToInventory("Delicate Flower");
 
-                    Console.WriteLine($"Coins collected: {money}");
+                    Console.WriteLine($"Coins collected: {money} <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+                    DeadEndForest();
                 }
                 else
                 {
@@ -1585,6 +1659,66 @@ namespace MCNR
 
             }
 
+            static void RiddleOne()
+            {
+                Console.Clear();
+
+
+                // First Riddle
+                Console.WriteLine("Flower Angel: 'Very well! Here is your first riddle...'");
+                Console.WriteLine("I rise with the dawn and set with the night, I give warmth and light, but I’m not a fire’s might. What am I?");
+                string ans1 = Console.ReadLine().ToUpper();
+
+                if (ans1 == "THE SUN" || ans1 == "SUN" || ans1 == "A SUN")
+                {
+                    correct++;
+                    Console.Clear();
+                    Console.WriteLine("The air around you shimmers with approval as the Flower Angel smiles warmly.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Flower Angel: 'You have proven your worthiness for the first riddle!'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("The path ahead glows with radiant light, beckoning you to continue.");
+                    Thread.Sleep(2000);
+                }
+                else
+                {
+                    Console.WriteLine("Flower Angel: 'Alas, brave traveler, your answer is not correct.'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Narrator: A shadow of doubt crosses your mind. But do not be disheartened; every challenge is a lesson.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Flower Angel: 'Take a moment to reflect. You have one more chance.'");
+                    Thread.Sleep(2000);
+                }
+            }
+
+            static void RiddleTwo()
+            {
+                Console.WriteLine("Flower Angel: 'Now, for your next riddle...'");
+                Thread.Sleep(2000);
+                Console.WriteLine("I bloom in the spring, bringing joy to the eye. I can symbolize love, yet I wither and die. What am I?");
+                string ans2 = Console.ReadLine().ToUpper();
+
+                if (ans2 == "A FLOWER" || ans2 == "FLOWER" || ans2 == "FLOWERS")
+                {
+                    correct++;
+                    Console.WriteLine("The air around you shimmers with approval as the Flower Angel smiles warmly.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Flower Angel: 'You have proven your worthiness for the second riddle!'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("The petals around you dance in the breeze, celebrating your success.");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("Flower Angel: 'Alas, brave traveler, your answer is not correct.'");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Narrator: The vibrant colors around you dim slightly, reminding you of the path yet to take.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Flower Angel: 'Do not be discouraged; every challenge teaches us something valuable.'");
+                    Thread.Sleep(2000);
+                }
+            }
             static void SpecialFlower()
             {
                 string[] specialFlowerDialogue = new string[]
@@ -1594,7 +1728,7 @@ namespace MCNR
                         "\nFlower Angel: 'Welcome, brave traveler. You have entered a sacred space, illuminated by love and nature.'",
                         "\n\tThe Flower Angel appears before you, her wings shimmering with the colors of the rainbow.",
                         "\nFlower Angel: 'Before you can approach the special flower, you must prove your worthiness. Answer my riddles, and you shall gain access.'",
-                        "\n\tThe air thickens with anticipation as the Flower Angel continues."
+                        "\n\tThe air thickens with anticipation as the Flower Angel continues. <enter>"
                 };
 
                 foreach (string line in specialFlowerDialogue)
@@ -1603,132 +1737,61 @@ namespace MCNR
                     Thread.Sleep(2000);
                 }
 
-                // Player's response
-                bool hasAnsweredCorrectly = false;
-                int totalCorrect = 0;
+                Console.ReadLine();
 
-                do
+                Console.Clear();
+                Console.WriteLine("Flower Angel: 'Are you ready to accept the challenge of the Healing Riddles?'");
+                Console.WriteLine("\nPress 'Y' to accept or 'N' to back away.");
+                char response = Convert.ToChar(Console.ReadLine().ToUpper());
+
+                if (response == 'Y')
                 {
+                    RiddleOne();
+
                     Console.Clear();
-                    Console.WriteLine("Flower Angel: 'Are you ready to accept the challenge of the Healing Riddles?'");
-                    Console.WriteLine("\nPress 'Y' to accept or 'N' to back away.");
-                    char response = Convert.ToChar(Console.ReadLine().ToUpper());
 
-                    if (response == 'Y')
+                    RiddleTwo();
+
+                    if (correct > 0)
                     {
-                        Console.Clear();
-                        int correct = 0;
-
-                        // First Riddle
-                        Console.WriteLine("Flower Angel: 'Very well! Here is your first riddle...'");
-                        Console.WriteLine("I rise with the dawn and set with the night, I give warmth and light, but I’m not a fire’s might. What am I?");
-                        string ans1 = Console.ReadLine().ToUpper();
-
-                        if (ans1 == "THE SUN" || ans1 == "SUN" || ans1 == "A SUN")
+                        if (correct == 1)
                         {
-                            correct++;
+                            Console.WriteLine("Flower Angel: 'Ah, you have successfully answered one riddle!'");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("Flower Angel: 'You shall receive a Crystal Flower, a token of your wisdom.'");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("Flower Angel: 'Take it to the Potion Maker, where you can craft a healing potion that will increase your strength.'");
+                            Console.WriteLine("CrystalFlower");
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'P' to collect your loot!\n");
+                            char pick = Convert.ToChar(Console.ReadLine().ToUpper());
                             Console.Clear();
-                            Console.WriteLine("The air around you shimmers with approval as the Flower Angel smiles warmly.");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("Flower Angel: 'You have proven your worthiness for the first riddle!'");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("The path ahead glows with radiant light, beckoning you to continue.");
-                            Thread.Sleep(2000);
+
+                            money += 10;
+                            flower += 1;
+                            crystalflower += 1;
+
+                            if (pick == 'P')
+                            {
+                                AddFlower(1);
+
+                                AddCrystalFlower(1);
+
+                                AddCoins(10);
+
+                                AddToInventory("Delicate Flower");
+
+                                Console.WriteLine($"Coins collected: {money} <enter>");
+
+                                Console.WriteLine($"Flowers collected: {flower} <enter>");
+
+                                Console.WriteLine($"Crystal flower collected: {crystalflower} <enter>");
+                                Console.ReadLine();
+
+                                CaveOrForest();
+                            }
                         }
-                        else
-                        {
-                            Console.WriteLine("Flower Angel: 'Alas, brave traveler, your answer is not correct.'");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("Narrator: A shadow of doubt crosses your mind. But do not be disheartened; every challenge is a lesson.");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("Flower Angel: 'Take a moment to reflect. You have one more chance.'");
-                            Thread.Sleep(2000);
-                        }
-
-                        Console.Clear();
-
-                        // Second Riddle
-                        Console.WriteLine("Flower Angel: 'Now, for your next riddle...'");
-                        Thread.Sleep(2000);
-                        Console.WriteLine("I bloom in the spring, bringing joy to the eye. I can symbolize love, yet I wither and die. What am I?");
-                        string ans2 = Console.ReadLine().ToUpper();
-
-                        if (ans2 == "A FLOWER" || ans2 == "FLOWER" || ans2 == "FLOWERS")
-                        {
-                            correct++;
-                            Console.WriteLine("The air around you shimmers with approval as the Flower Angel smiles warmly.");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("Flower Angel: 'You have proven your worthiness for the second riddle!'");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("The petals around you dance in the breeze, celebrating your success.");
-                            Thread.Sleep(2000);
-                            Console.Clear();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Flower Angel: 'Alas, brave traveler, your answer is not correct.'");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("Narrator: The vibrant colors around you dim slightly, reminding you of the path yet to take.");
-                            Thread.Sleep(2000);
-                            Console.WriteLine("Flower Angel: 'Do not be discouraged; every challenge teaches us something valuable.'");
-                            Thread.Sleep(2000);
-                        }
-
-                        // Update total correct answers
-                        totalCorrect += correct;
-
-                        // Check if the player has answered correctly at least once
-                        if (correct > 0)
-                        {
-                            hasAnsweredCorrectly = true; // Exit the loop if at least one riddle was answered correctly
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nFlower Angel: 'Remember, only those who seek the truth may find the path to love. Return when you are ready.'");
-                    }
-
-                } while (!hasAnsweredCorrectly); // Continue looping until the player answers at least one riddle correctly
-
-
-                if (totalCorrect > 0)
-                {
-                    Console.Clear();
-                    if (totalCorrect == 1)
-                    {
-                        Console.WriteLine("Flower Angel: 'Ah, you have successfully answered one riddle!'");
-                        Thread.Sleep(2000);
-                        Console.WriteLine("Flower Angel: 'You shall receive a Crystal Flower, a token of your wisdom.'");
-                        Thread.Sleep(2000);
-                        Console.WriteLine("Flower Angel: 'Take it to the Potion Maker, where you can craft a healing potion that will increase your strength.'");
-                        Console.WriteLine("CrystalFlower");
-                        Console.WriteLine();
-                        Console.WriteLine("Press 'P' to collect your loot!\n");
-                        char pick = Convert.ToChar(Console.ReadLine().ToUpper());
-                        Console.Clear();
-
-                        money += 10;
-                        flower += 1;
-                        crystalflower += 1;
-
-                        if (pick == 'P')
-                        {
-                            AddFlower(1);
-
-                            AddCrystalFlower(1);
-
-                            AddCoins(10);
-
-                            AddToInventory("Delicate Flower");
-
-                            Console.WriteLine($"Coins collected: {money}");
-
-                            Console.WriteLine($"Flowers collected: {flower}");
-
-                            Console.WriteLine($"Crystal flower collected: {crystalflower}");
-                        }
-
-                        else if (totalCorrect == 2)
+                        else if (correct == 2)
                         {
                             Console.WriteLine("Flower Angel: 'Incredible! You have answered both riddles with grace!'");
                             Thread.Sleep(2000);
@@ -1755,51 +1818,34 @@ namespace MCNR
                                 AddCoins(10);
 
                                 AddToInventory("Crystal Flower");
+                                Console.ReadLine();
 
-                                Console.WriteLine($"Coins collected: {money}");
+                                Console.WriteLine($"Coins collected: {money}  <enter>");
+                                Console.ReadLine();
 
-                                Console.WriteLine($"Flowers collected: {flower}");
+                                Console.WriteLine($"Flowers collected: {flower} <enter>");
+                                Console.ReadLine();
 
-                                Console.WriteLine($"Crystal flower collected: {crystalflower}");
+                                Console.WriteLine($"Crystal flower collected: {crystalflower} <enter>");
+                                Console.ReadLine();
+                                CaveOrForest();
                             }
-
                         }
-                        //**************************************************//
-
-                        //*****CAVE OR FOREST METHOD*****//
-                        static void CaveOrForest() //player will choose where he want to go cave or forest
-                        {
-                            int choose;
-                            Console.WriteLine("Press 1 for cave or Press 2 for forest: ");
-                            string decision = Console.ReadLine();
-                            // Validate input to prevent exceptions
-                            if (!int.TryParse(decision, out choose) || (choose != 1 && choose != 2))
-                            {
-                                Console.WriteLine("Invalid input. Please enter 1 or 2.");
-                                return; // Exit if invalid
-                            }
-                            // Additional border design for output
-                            Console.WriteLine(new string('-', 30));
-                            if (choose == 1)
-                            {
-                                Console.WriteLine("Entering the cave...");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Entering the forest...");
-                            }
-                            Console.WriteLine(new string('-', 30));
-                            Console.ReadLine();
-
-                        }
-                        //**************************************************//
-
                     }
+                }
+                else if (response == 'N')
+                {
+                    Console.WriteLine("\nFlower Angel: 'Remember, only those who seek the truth may find the path to love. Return when you are ready. <enter>");
+                    Console.ReadLine();
+                    Console.Clear ();
+                    ForestPath1OrPath2();
                 }
             }
         }
     }
 }
+    
+
 
 
 
