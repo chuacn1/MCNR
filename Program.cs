@@ -512,6 +512,7 @@ namespace MCNR
 
                     Console.WriteLine("\nNarrator: Now, let’s head to town and prepare for your next adventure! <enter>");
                     Console.ReadLine();
+                    Console.Clear();
 
                     EnteringTownAnimation();
                 }
