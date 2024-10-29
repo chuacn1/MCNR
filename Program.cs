@@ -168,7 +168,7 @@ namespace MCNR
             //Town();
 
 
-            EldrinDialogue();
+            //EldrinDialogue();
 
 
 
@@ -192,11 +192,12 @@ namespace MCNR
 
             // ========= ACTUAL FLOW OF THE GAME FOR MAIN ========= //
             //Introduction();
-            /*Tutorial();*/ // missing tutorial for using inventory and using potions
-                            //EnteringTownAnimation();
-                            //Town();
-                            //EldrinDialogue();
+            //Tutorial(); // missing tutorial for using inventory and using potions
+            //            //EnteringTownAnimation();
+            //Town();
+            //EldrinDialogue();
 
+            TutorialUsingPotionAndInventory();
 
 
 
@@ -464,6 +465,13 @@ namespace MCNR
                     AddToInventory($"Sturdy Iron");          //
 
                     AddToInventory($"Health Potion");
+
+                    Console.WriteLine("<enter>");
+                    Console.ReadLine();
+
+                    Console.Clear();
+
+                    TutorialUsingPotionAndInventory();
                 }
 
                 else
@@ -495,8 +503,18 @@ namespace MCNR
                 {
                     Console.Clear();
                     PrintInventory();
-                }
 
+                    Console.WriteLine("Narrator: Great! Now you know how to check your inventory.");
+                    Thread.Sleep(2000);
+
+                    Console.WriteLine("Narrator: Remember, during fights with enemies, it's crucial to use 'I' to access your items. You never know when a Health Potion might save you!");
+                    Thread.Sleep(2000);
+
+                    Console.WriteLine("\nNarrator: Now, let’s head to town and prepare for your next adventure! <enter>");
+                    Console.ReadLine();
+
+                    EnteringTownAnimation();
+                }
                 else
                 {
                     Console.WriteLine("Invalid. <enter>");
