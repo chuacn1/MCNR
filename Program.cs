@@ -174,7 +174,7 @@ namespace MCNR
             ////CavePath1OrPath2();
             ////CaveEnemyPath1();
             //CaveExitOrPath3();
-            //CaveEnemyPath3();
+            CaveEnemyPath3();
             ////SpecialSword();
             //SpecialSwordDialogue();
             //EscapeCave();
@@ -231,8 +231,7 @@ namespace MCNR
                         int hitmiss = rand.Next(1, 5);
                         switch (hitmiss)
                         {
-                            case 1:
-                                enemyHP = 20;
+                            case 1:                      
                                 Console.WriteLine($"Enemy HP: {enemyHP}");
                                 Console.WriteLine($"Your HP: {playerHP}");
                                 Console.WriteLine("Your swing goes wide, missing the enemy entirely!");
@@ -393,7 +392,7 @@ namespace MCNR
 
             static void Tutorial()
             {
-                enemyHP = 20;
+                enemyHP = 10;
                 playerHP = 50;
 
                 playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
@@ -1170,7 +1169,7 @@ namespace MCNR
 
                 Console.Clear();
 
-                enemyHP = 30;
+                enemyHP = 20;
 
                 playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
 
@@ -1235,6 +1234,9 @@ namespace MCNR
 
             static void CaveEnemyPath3()
             {
+                   
+                enemyHP = 20;
+
                 string[] caveEnemyDialogue = new string[]
                 {
                         "Narrator: As you navigate through the winding passages of the cave, a strange shimmering light catches your eye... ",
@@ -1253,9 +1255,6 @@ namespace MCNR
 
                 Console.Clear();
 
-                enemyHP = 25; // Adjusted enemy HP for balance
-
-                playerHP = 100;
 
                 playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
                 if (enemyHP <= 0)
@@ -1850,5 +1849,4 @@ namespace MCNR
 
 
 
-//static void Exit()
 
