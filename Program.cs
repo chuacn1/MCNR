@@ -477,14 +477,35 @@ namespace MCNR
                 Console.Clear();
             }
 
-            //--------------------------------------------------------------------------------------------------------------------<<<<<<<
             static void TutorialUsingPotionAndInventory()
             {
+                Console.WriteLine("Narrator: You should check your inventory to see if you have items that can aid you during the fight.");
+                Thread.Sleep(2000);
 
+                Console.WriteLine("\nNarrator: Remember, you earned a Health Potion in the previous battle. You can use that to heal yourself mid-fight if needed!");
+                Thread.Sleep(2000);
+
+                Console.WriteLine("\nNarrator: You can open your inventory at any time during battle by pressing 'I'. It's crucial to know what items you have available!");
+                Thread.Sleep(2000);
+
+                Console.WriteLine("Press 'I' to open up Inventory");
+                string open = Console.ReadLine();
+
+                if (open == "I")
+                {
+                    Console.Clear();
+                    PrintInventory();
+                }
+
+                else
+                {
+                    Console.WriteLine("Invalid. <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+
+                    TutorialUsingPotionAndInventory();
+                }
             }
-            //--------------------------------------------------------------------------------------------------------------------<<<<<<<
-
-            //**************************************************//
 
             static void UsingPotion()
             {
@@ -1364,7 +1385,6 @@ namespace MCNR
                 }
             }
 
-
             static void SpecialSwordDialogue()
             {
                 //dialogue when the player finds the chest
@@ -1718,6 +1738,7 @@ namespace MCNR
                     Thread.Sleep(2000);
                 }
             }
+           
             static void SpecialFlower()
             {
                 string[] specialFlowerDialogue = new string[]
@@ -1841,6 +1862,7 @@ namespace MCNR
                 }
             }
 
+            //*****BIGBOSS METHOD******//
             static void BossEncounter()
             {
                 Console.Clear();
@@ -1904,7 +1926,6 @@ namespace MCNR
                     Console.WriteLine("The battle ended unexpectedly.");
                 }
             }
-
 
             static void StartBossBattle()
             {
