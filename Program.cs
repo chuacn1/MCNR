@@ -1,4 +1,5 @@
-﻿using System.Data.SqlTypes;
+﻿using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Security.Cryptography.X509Certificates;
 
 namespace MCNR
@@ -167,15 +168,15 @@ namespace MCNR
             //Town();
 
 
-            //EldrinDialogue();
+            EldrinDialogue();
 
 
 
             ////CavePath1OrPath2();
             ////CaveEnemyPath1();
             //CaveExitOrPath3();
-            CaveEnemyPath3();
-            ////SpecialSword();
+            //CaveEnemyPath3();
+            //////SpecialSword();
             //SpecialSwordDialogue();
             //EscapeCave();
             //EscapeCaveDialogue();
@@ -186,7 +187,6 @@ namespace MCNR
             //ForestEnemyPath3();
             //SpecialFlower();
             //Exit();
-
 
 
 
@@ -231,7 +231,7 @@ namespace MCNR
                         int hitmiss = rand.Next(1, 5);
                         switch (hitmiss)
                         {
-                            case 1:                      
+                            case 1:
                                 Console.WriteLine($"Enemy HP: {enemyHP}");
                                 Console.WriteLine($"Your HP: {playerHP}");
                                 Console.WriteLine("Your swing goes wide, missing the enemy entirely!");
@@ -480,7 +480,7 @@ namespace MCNR
             //--------------------------------------------------------------------------------------------------------------------<<<<<<<
             static void TutorialUsingPotionAndInventory()
             {
-       
+
             }
             //--------------------------------------------------------------------------------------------------------------------<<<<<<<
 
@@ -906,7 +906,7 @@ namespace MCNR
                 {
                     Console.Clear();
                     Console.WriteLine("\n[Eldrin the Wise]: Very well! May your courage shine bright. Prepare yourself well; the battle ahead will be fierce!");
-                    //INSERT BOSS METHOD HERE
+                    BossEncounter();
                 }
                 else if (response == "no")
                 {
@@ -1234,7 +1234,7 @@ namespace MCNR
 
             static void CaveEnemyPath3()
             {
-                   
+
                 enemyHP = 20;
 
                 string[] caveEnemyDialogue = new string[]
@@ -1836,10 +1836,247 @@ namespace MCNR
                 {
                     Console.WriteLine("\nFlower Angel: 'Remember, only those who seek the truth may find the path to love. Return when you are ready. <enter>");
                     Console.ReadLine();
-                    Console.Clear ();
+                    Console.Clear();
                     ForestPath1OrPath2();
                 }
             }
+
+            static void BossEncounter()
+            {
+                Console.Clear();
+                Console.WriteLine("Narrator: As you step into the boss arena, the shadows coalesce into a massive, ominous form...");
+                Thread.Sleep(3000);
+
+                Console.WriteLine("\nNarrator: The Big Boss looms over you, a menacing figure shrouded in darkness.");
+                Thread.Sleep(2000);
+                Console.WriteLine("\nBoss: Who dares enter my domain? You think you can challenge the darkness I wield?");
+                Thread.Sleep(2000);
+                Console.WriteLine("\nPrepare to be crushed beneath my might! <enter>");
+                Console.ReadLine();
+
+                // Player's response to the boss
+                Console.Clear();
+                Console.WriteLine("\nNarrator: You stand firm, heart racing. “I will not back down! The people of Eldoria will be free from your tyranny!”");
+                Thread.Sleep(2000);
+                Console.WriteLine("\nNarrator: The Big Boss lets out a deep, thunderous laugh. “Foolish child! You will soon learn the true meaning of despair!”");
+                Thread.Sleep(2000);
+
+                Console.WriteLine("\nNarrator: The air thickens with tension as the battle begins... <enter>");
+                Console.ReadLine();
+                Console.Clear();
+
+                // Call your battle method here
+                StartBossBattle();
+
+                if (enemyHP <= 0)
+                {
+                    Console.Beep(1000, 500);
+                    Console.WriteLine("Narrator: With one final, decisive blow, you shatter the Big Boss into pieces!");
+                    Console.WriteLine("\nNarrator: The monstrous shadow that plagued the land begins to dissolve, releasing a burst of light. <enter>");
+                    Console.ReadLine();
+
+                    Console.WriteLine("Narrator: You stand victorious, heart pounding, as the echoes of your triumph fill the air.");
+                    Console.WriteLine("\nNarrator: The townspeople, having witnessed the battle from a distance, rush toward you with cheers and applause! <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Town: You did it! You defeated the Blooming Behemoth!” they shout, their faces alight with joy.");
+                    Console.WriteLine("\nNarrator: Children dance around you, and the elders bow in gratitude.");
+                    Console.WriteLine("\nNarrator: Your name will be sung in songs for generations to come!\n");
+
+                    Console.WriteLine("You are a true hero of Eldoria! <enter>");
+                    Console.ReadLine();
+                    Console.Clear();
+
+                    Win();
+                }
+                else if (playerHP <= 0)
+                {
+                    Console.Beep(400, 500);
+                    Console.WriteLine("As the dust settles, you collapse from your wounds, defeated by the Blooming Behemoth.");
+                    Console.WriteLine("The townspeople look on in despair, mourning the loss of their champion.");
+                    Console.WriteLine("G A M E O V E R <enter>.");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("The battle ended unexpectedly.");
+                }
+            }
+
+
+            static void StartBossBattle()
+            {
+                Random rand = new Random();
+                int playerHP = 1000;
+
+                int bossHP = 200;
+                do
+                {
+                    // Prompt player to attack or check inventory
+                    Console.Write("Press 'A' to strike at the Big Boss or 'I' to check your inventory: ");
+                    string input = Console.ReadLine();
+
+                    char choice = ' '; // Declare choice outside of the input check
+
+                    if (input.Length > 0) // Checks if the input has at least one character
+                    {
+                        choice = input.ToLower()[0];
+                        Console.WriteLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Please try again.");
+                    }
+
+                    // Player Attack
+                    if (choice == 'a')
+                    {
+                        Console.Beep(1000, 300);
+                        int hitmiss = rand.Next(1, 5);
+                        switch (hitmiss)
+                        {
+                            case 1:
+                                Console.WriteLine($"Big Boss HP: {bossHP}");
+                                Console.WriteLine($"Your HP: {playerHP}");
+                                Console.WriteLine("Your swing goes wide, missing the Big Boss entirely!");
+                                Console.WriteLine("0 damage dealt.\n");
+                                Console.WriteLine("The Big Boss chuckles darkly, readying an attack...\n");
+                                Thread.Sleep(1500);
+                                break;
+                            case 2:
+                                bossHP -= 5;
+                                Console.WriteLine($"Big Boss HP: {bossHP}");
+                                Console.WriteLine($"Your HP: {playerHP}");
+                                Console.WriteLine("You strike true! Your weapon glints in the dim light.");
+                                Console.WriteLine("5 damage dealt!\n");
+                                Console.WriteLine("The Big Boss snarls in fury!\n");
+                                Thread.Sleep(1500);
+                                break;
+                            case 3:
+                                bossHP -= 10;
+                                Console.WriteLine($"Big Boss HP: {bossHP}");
+                                Console.WriteLine($"Your HP: {playerHP}");
+                                Console.WriteLine("A fierce blow! You feel the ground shake as your strike lands.");
+                                Console.WriteLine("10 damage dealt!\n");
+                                Console.WriteLine("The Big Boss roars in pain!\n");
+                                Thread.Sleep(1500);
+                                break;
+                            default:
+                                bossHP -= 2;
+                                Console.WriteLine($"Big Boss HP: {bossHP}");
+                                Console.WriteLine($"Your HP: {playerHP}");
+                                Console.WriteLine("You landed a glancing blow, but the Big Boss is still standing.");
+                                Console.WriteLine("2 damage dealt!\n");
+                                Console.WriteLine("The Big Boss glares at you, unfazed...\n");
+                                Thread.Sleep(1500);
+                                break;
+                        }
+                        if (bossHP <= 200 && bossHP > 100)
+                        {
+                            Console.WriteLine("The Big Boss staggers slightly, but quickly regains composure.");
+                            Console.WriteLine("“Is that all you’ve got? I will not fall so easily!”\n");
+                            Thread.Sleep(1500);
+                        }
+                        else if (bossHP <= 100 && bossHP > 50)
+                        {
+                            Console.WriteLine("The Big Boss is visibly weakened, breathing heavily.");
+                            Console.WriteLine("“You may have strength, but you lack resolve!”\n");
+                            Thread.Sleep(1500);
+                        }
+                        else if (bossHP <= 50)
+                        {
+                            Console.WriteLine("The Big Boss lets out a furious roar, clearly enraged.");
+                            Console.WriteLine("“I will not let you take my throne! Prepare for my final attack!”\n");
+                            Thread.Sleep(1500);
+                        }
+                    }
+                    else if (choice == 'i')
+                    {
+                        PrintInventory();
+                        continue;
+                    }
+
+                    // Big Boss Attack
+                    Console.Beep(800, 300);
+                    int misshit = rand.Next(1, 5);
+                    switch (misshit)
+                    {
+                        case 1:
+                            Console.WriteLine($"Big Boss HP: {bossHP}");
+                            Console.WriteLine($"Your HP: {playerHP}");
+                            Console.WriteLine("The Big Boss swings wildly, missing you completely!");
+                            Console.WriteLine("0 damage dealt.\n");
+                            Console.WriteLine("You sense the tension in the air...\n");
+                            Console.WriteLine("Press Enter for your turn");
+                            Console.ReadLine();
+                            Console.Clear();
+                            break;
+                        case 2:
+                            playerHP -= 10;
+                            Console.WriteLine($"Big Boss HP: {bossHP}");
+                            Console.WriteLine($"Your HP: {playerHP}");
+                            Console.WriteLine("The Big Boss strikes with a powerful blow!");
+                            Console.WriteLine("5 damage taken.\n");
+                            Console.WriteLine("You stagger back, barely holding your ground!\n");
+                            Console.WriteLine("Press Enter for your turn");
+                            Console.ReadLine();
+                            Console.Clear();
+                            break;
+                        case 3:
+                            playerHP -= 20;
+                            Console.WriteLine($"Big Boss HP: {bossHP}");
+                            Console.WriteLine($"Your HP: {playerHP}");
+                            Console.WriteLine("The Big Boss slams you with a mighty fist!");
+                            Console.WriteLine("10 damage taken.\n");
+                            Console.WriteLine("You feel the weight of despair press down on you!\n");
+                            Console.WriteLine("Press Enter for your turn");
+                            Console.ReadLine();
+                            Console.Clear();
+                            break;
+                        default:
+                            playerHP -= 50;
+                            Console.WriteLine($"Big Boss HP: {bossHP}");
+                            Console.WriteLine($"Your HP: {playerHP}");
+                            Console.WriteLine("The Big Boss lands a glancing blow.");
+                            Console.WriteLine("2 damage taken.\n");
+                            Console.WriteLine("You brace yourself for the next attack...\n");
+                            Console.WriteLine("Press Enter for your turn");
+                            Console.ReadLine();
+                            Console.Clear();
+                            break;
+                    }
+
+                    // Once enemy or player dies, stops loop
+                } while (bossHP > 0 && playerHP > 0);
+            }
+
+            static void Win()
+            {
+                Console.Clear();
+                Console.Beep(1000, 500);
+
+                Console.WriteLine("Narrator: As the cheers of the townspeople fill the air, you take a moment to bask in your victory.");
+                Thread.Sleep(2000);
+
+                Console.WriteLine("Narrator: The shadows that once haunted Eldoria have been dispelled, and peace has returned to the land.");
+                Thread.Sleep(2000);
+
+                Console.WriteLine("Narrator: Your courage and strength have become legend, and your name will be remembered in tales for generations.");
+                Thread.Sleep(2000);
+
+                Console.WriteLine("Narrator: This is the end of your journey, brave hero. You have faced the darkness and emerged triumphant.");
+                Thread.Sleep(2000);
+
+                Console.WriteLine("Narrator: Congratulations on completing your quest and winning the game!");
+                Thread.Sleep(2000);
+
+                Console.WriteLine("Press Enter to exit the game.");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+
         }
     }
 }
