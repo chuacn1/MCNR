@@ -18,8 +18,22 @@ namespace MCNR
         static int crystalflower = 0;
         static int specialsword = 0;
         static int correct = 0;
-        //*****HEALTH POTION METHODS*****//
-        public class StrengthPotion
+        public static Player player;
+
+        //*****PLAYER NAME METHOD*****//
+ 
+        public class Player
+        {
+            public string Name { get; set; }
+
+            public Player(string name)
+            {
+                Name = name;
+            }
+        }
+        //**************************************************//
+            //*****HEALTH POTION METHODS*****//
+            public class StrengthPotion
         {
             public string name { get; set; }
             public int increaseAmount { get; set; }
@@ -155,6 +169,7 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
+            
             //InitializeInventory();
             //PrintInventory();
             //Introduction();
@@ -196,8 +211,7 @@ namespace MCNR
             EnteringTownAnimation();
             Town();
             EldrinDialogue();
-
-            TutorialUsingPotionAndInventory();
+            //TutorialUsingPotionAndInventory();
 
 
 
@@ -350,6 +364,7 @@ namespace MCNR
                 //storyline intro
                 Console.Write("Please Enter Your Name: ");
                 string playersName = Console.ReadLine();
+                Player player = new Player(playersName);
                 Console.Clear();
 
                 string[] introDialogue = new string[]
@@ -1006,16 +1021,32 @@ namespace MCNR
 
             //**************************************************//
 
+            //*****NPC DIALOGUE*****//
             static void EldrinDialogue()
 
             {
-                Console.WriteLine("\n[Eldrin the Wise]: Ah, brave adventurer! I see you’ve made it this far.");
-                Thread.Sleep(2000);
-                Console.WriteLine("\n\t\tBut tell me, do you feel prepared to confront the Big Boss lurking ahead?\n\t\tHave you gathered enough loot and practiced your skills against the enemies in the forest and cave? <enter>");
-                Console.ReadLine();
+                string[] NPCDialogue = new string[]
+                {
+                    $"[Eldrin the wise]: Ahh, Hello {player}...",
+                    "\n\tYou have explored the Town of Eldoria...",
+                    "\tFor your next quest...",
+                    "\tYou must explore the Cave...",
+                    "\tOr the forest...",
+                    "\tWithin one of these areas is secret loot...",
+                    "\tNow venture onwards and complete your quest!..."
+                };
+
+                foreach (string words in NPCDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                }
                 EldrinPath();
             }
+            //**************************************************//
 
+            //*****ASK USER IF THEY ARE READY*****//
             static void EldrinPath()
             {
                 Console.Clear();
@@ -1048,6 +1079,27 @@ namespace MCNR
                     Console.WriteLine("\n[Eldrin the Wise]: It seems I didn’t quite understand your answer. Please tell me if you feel ready or not.");
                     EldrinPath();
                 }
+            }
+            //**************************************************//
+
+            //*****NPC WHEN PLAYER RETURNS*****//
+            static void ReturnToEldrin()
+            {
+                string[] NPCDialogue = new string[]
+                {
+                    $"Eldrin the wise: Hello again {player.Name}...",
+                    "Are you now ready to face maybe...",
+                    "Your toughest opponent yet?..."
+                };
+
+                foreach (string words in NPCDialogue)
+                {
+                    Console.WriteLine(words);
+                    Thread.Sleep(1000);
+                    Console.Clear();
+
+                }
+                EldrinPath();
             }
 
             //This is where players choose to move forth on their quest or return to town to upgrade//
@@ -1121,7 +1173,7 @@ namespace MCNR
                         Console.WriteLine("Walking back...");
                         Thread.Sleep(1000);
                         Console.Clear();
-                        Town();
+                        ReturnToEldrin();
                         break;
 
                     case 5:
@@ -1135,6 +1187,7 @@ namespace MCNR
                         Console.WriteLine("Opening inventory...");
                         Thread.Sleep(1000);
                         Console.Clear();
+                        PrintInventory();
                         break;
 
                 }; //end of switch
@@ -1414,7 +1467,7 @@ namespace MCNR
                     AddToInventory("Shimmering Coins");
                     AddToInventory("Sturdy Iron");
 
-                    Console.WriteLine($"Coins collected: {money}");
+                    Console.WriteLine($"\nCoins collected: {money}");
                     Console.WriteLine("<enter>");
                     Console.ReadLine();
                     Console.Clear();
