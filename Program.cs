@@ -968,14 +968,19 @@ namespace MCNR
                 //upgrade item dialogue
 
                 Console.WriteLine("Thrain: 'Welcome to the Blacksmith!'...");
-                Console.WriteLine("\n\t'Hit '1' to upgrade your sword...");
+                Console.WriteLine("\n\t1. Upgrade your sword");
+                Console.WriteLine("\t2. Return to town");
                 string choice = Console.ReadLine();
                 if (choice == "1")
                 {
                     UpgradeWeapon(playerWeapon);
 
                 }
-
+                else if (choice == "2")
+                {
+                    ReEnterTown();
+                }
+                Console.Clear();
             }
             //**************************************************//
 
@@ -996,7 +1001,7 @@ namespace MCNR
                 foreach (string intro1 in potionMaker)
                 {
                     Console.WriteLine(intro1);
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1000);
                 }
                 Console.WriteLine("\nElysia: 'What potion are you thinking of brewing?'...");
                 Console.WriteLine("\nHit '1' to craft a healing potion");
@@ -1027,7 +1032,7 @@ namespace MCNR
             {
                 string[] NPCDialogue = new string[]
                 {
-                    $"[Eldrin the wise]: Ahh, Hello {player}...",
+                    $"[Eldrin the wise]: Ahh, Hello {player.Name}...",
                     "\n\tYou have explored the Town of Eldoria...",
                     "\tFor your next quest...",
                     "\tYou must explore the Cave...",
@@ -1040,8 +1045,9 @@ namespace MCNR
                 {
                     Console.WriteLine(words);
                     Thread.Sleep(1000);
-                    Console.Clear();
                 }
+                Console.Clear();
+
                 EldrinPath();
             }
             //**************************************************//
@@ -1050,7 +1056,7 @@ namespace MCNR
             static void EldrinPath()
             {
                 Console.Clear();
-                Console.Write("\nEnter 'yes' if you feel prepared to slaughter the BigBoss, or 'no' if you need more time: ");
+                Console.Write("\nEnter 'yes' if you are prepared to move onwards with your quest, or 'no' if you need more time: ");
                 string response = Console.ReadLine().ToLower();
 
                 if (response == "yes")
@@ -1095,10 +1101,9 @@ namespace MCNR
                 foreach (string words in NPCDialogue)
                 {
                     Console.WriteLine(words);
-                    Thread.Sleep(1000);
-                    Console.Clear();
-
+                    Thread.Sleep(1000);                  
                 }
+                Console.Clear();
                 EldrinPath();
             }
 
