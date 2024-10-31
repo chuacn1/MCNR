@@ -7,8 +7,8 @@ namespace MCNR
     internal class Program
     {
         //ARRAY FOR INVENTORIES
-        static string[] items = new string[7];
-        static int[] counts = new int[7];
+        static string[] items = new string[15];
+        static int[] counts = new int[15];
         static int money = 0;
         static int enemyHP;
         static int playerHP;
@@ -191,11 +191,11 @@ namespace MCNR
 
 
             // ========= ACTUAL FLOW OF THE GAME FOR MAIN ========= //
-            //Introduction();
-            //Tutorial(); // missing tutorial for using inventory and using potions
-            //            //EnteringTownAnimation();
-            //Town();
-            //EldrinDialogue();
+            Introduction();
+            Tutorial();               // missing tutorial for using inventory and using potions
+            EnteringTownAnimation();
+            Town();
+            EldrinDialogue();
 
             TutorialUsingPotionAndInventory();
 
@@ -417,12 +417,11 @@ namespace MCNR
                 string[] tutorialInventoryDialogue2 = new string[]
                   {
                     "Narrator: With the enemy defeated...",
-                    "\nYou discover a trove of spoils: \n\t\t\tGleaming coins",
-                    "\n\t\t\tDelicate flower...",
-                    "\n\t\t\tSturdy piece of iron...",
-                    "\n\t\t\tHealth Potion",
-                    "\nNarrator: You have five spaces in your inventory...",
-                    "\n\tOne already claimed by your trusty sword..."
+                    "\nYou discover a trove of spoils:",
+                    "\n\t\tGleaming Coins...",
+                    "\n\t\tDelicate flower...",
+                    "\n\t\tSturdy piece of iron...",
+                    "\n\t\tHealth Potion..."                  
                   };
 
                 Console.Clear();
@@ -439,7 +438,7 @@ namespace MCNR
                 Console.WriteLine("Sturdy Iron");
                 Console.WriteLine("Health Potion");
                 Console.WriteLine();
-                Console.WriteLine("Press 'P' to collect your loot!\n");
+                Console.WriteLine("\nPress 'P' to collect your loot!\n");
                 char pick = Convert.ToChar(Console.ReadLine().ToUpper());
                 Console.Clear();
 
@@ -496,10 +495,11 @@ namespace MCNR
                 Console.WriteLine("\nNarrator: You can open your inventory at any time during battle by pressing 'I'. It's crucial to know what items you have available!");
                 Thread.Sleep(2000);
 
-                Console.WriteLine("Press 'I' to open up Inventory");
-                string open = Console.ReadLine();
+                Console.Write("\nPress 'I' to open up Inventory: ");
+                string temp = Console.ReadLine().ToLower();
+                char open = Convert.ToChar(temp);
 
-                if (open == "I")
+                if (open == 'i')
                 {
                     Console.Clear();
                     PrintInventory();
@@ -633,7 +633,7 @@ namespace MCNR
                 {
                     if (items[i] == item)
                     {
-                        counts[i]++;
+                        //counts[i]++;
                         Console.WriteLine($"\n{item} count increased. Total count: {counts[i]} <enter>");
                         Console.ReadLine();
                         return;
@@ -846,6 +846,86 @@ namespace MCNR
                 Console.Clear();
             }
             //**************************************************//
+            //*****TOWN METHOD*****//
+            static void ReEnterTown()
+            {
+                string title = "You have entered the Town of Eldoria";
+                string next = "Hit <enter to continue>";
+                int borderWidth1 = next.Length + 6;
+                int borderWidth = title.Length + 6;
+
+                //border + title
+
+                Console.WriteLine("╔" + new string('═', borderWidth) + "╗");
+                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
+                Console.WriteLine($"║   {title}   ║");
+                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
+                Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
+                Console.WriteLine($"\n{next}");
+
+
+
+                //hit enter to clear screen
+                Console.WriteLine();
+                string input = Console.ReadLine();
+                if (input != null)
+                {
+                    Console.Clear();
+                    Thread.Sleep(500);
+                }
+
+                //loop until the player chooses to leave
+                bool continueInTown = true;
+
+                while (continueInTown)
+                {
+                    //ask user if they want to visit blacksmith or potion maker
+                    Console.WriteLine("\nNarrator: Welcome back to Eldoria! What would you like to do?:");
+                    Console.WriteLine("\n\t1. The Blacksmith");
+                    Console.WriteLine("\n\t2. The Potion Maker");
+                    Console.WriteLine("\n\t3. Set forth on your quest");
+                    Console.WriteLine("\n\t4. View your inventory");
+                    Console.Write("\nEnter 1, 2, 3 or 4: ");
+
+                    //read player input
+                    string choice = Console.ReadLine();
+                    Console.Clear();
+
+                    //process the players choice
+                    switch (choice)
+                    {
+                        case "1":
+                            VisitBlackSmith();
+                            break;
+
+                        case "2":
+                            VisitPotionMaker();
+                            break;
+
+                        case "3":
+                            EldrinDialogue();
+                            break;
+
+                        case "4":
+                            PrintInventory();
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid input. Please try again.");
+                            break;
+                    }
+                }
+                Console.WriteLine("\nReturn to town? Y/N: ");
+                string continueChoice = Console.ReadLine().ToLower();
+
+                if (continueChoice == "y")
+                {
+                    continueInTown = false; //exit the loop if the player does not want to return to town (unlikely)
+                }
+
+                Console.Clear();
+            }
+            //**************************************************//
 
             //*****VISIT BLACKSMITH METHOD*****//
             static void VisitBlackSmith()
@@ -970,93 +1050,94 @@ namespace MCNR
                 }
             }
 
+            //This is where players choose to move forth on their quest or return to town to upgrade//
             static void CaveOrForest() //player will choose where he want to go cave or forest
             {
-                int choose;
                 Console.WriteLine("Which do you want to go Cave or Forest?: ");
                 Console.WriteLine("\n\t1. Cave");
                 Console.WriteLine("\n\t2. Forest");
                 Console.WriteLine("\n\t3. Back to Town");
                 Console.WriteLine("\n\t4. Back to Eldrin");
+                Console.WriteLine("\n\t5. Check inventory");
 
-                Console.WriteLine("\n\tEnter 1, 2, 3 or 4");
-
-
+                Console.Write("\nInput choice here --->  ");
                 int decision = Convert.ToInt32(Console.ReadLine());
 
-                if (decision == 1)
+                //switch containing player decision
+                switch (decision)
                 {
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine("Entering the cave.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Entering the cave..");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Entering the cave...");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Thread.Sleep(3000);
+                        Console.Clear();
+                        CavePath1OrPath2();
+                        break;
 
-                    Console.Clear();
-                    Console.WriteLine("Entering the cave.");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Console.WriteLine("Entering the cave..");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Console.WriteLine("Entering the cave...");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Thread.Sleep(3000);
-                    Console.Clear();
-                    CavePath1OrPath2();
-                }
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine("Entering the forest.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Entering the forest..");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Entering the forest...");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        ForestPath1OrPath2();
+                        break;
 
-                else if (decision == 2)
-                {
+                    case 3:
+                        Console.Clear();
+                        Console.WriteLine("Walking back.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Walking back..");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Walking back...");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        ReEnterTown();
+                        break;
 
-                    Console.Clear();
-                    Console.WriteLine("Entering the forest.");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Console.WriteLine("Entering the forest..");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Console.WriteLine("Entering the forest...");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    ForestPath1OrPath2();
-                }
+                    case 4:
+                        Console.Clear();
+                        Console.WriteLine("Walking back.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Walking back..");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Walking back...");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Town();
+                        break;
 
-                else if (decision == 3)
-                {
+                    case 5:
+                        Console.Clear();
+                        Console.WriteLine("Opening inventory.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Opening inventory..");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Opening inventory...");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        break;
 
-                    Console.Clear();
-                    Console.WriteLine("Walking back.");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Console.WriteLine("Walking back..");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Console.WriteLine("Walking back...");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    EldrinPath();
-
-                }
-
-                else if (decision == 4)
-                {
-
-                    Console.Clear();
-                    Console.WriteLine("Walking back.");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Console.WriteLine("Walking back..");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Console.WriteLine("Walking back...");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Town();
-                }
-
-                else
-                {
-                    Console.WriteLine("Invalid Input. <enter>");
-                    Console.ReadLine();
-                    CaveOrForest();
-                }
+                }; //end of switch
             }
 
             static void CavePath1OrPath2()
