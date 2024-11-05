@@ -219,6 +219,7 @@ namespace MCNR
             // not working properly //
             static int EnemyVsPlayer(int playerHP, ref int enemyHP)
             {
+           
                 Random rand = new Random();
 
                 do
@@ -382,7 +383,7 @@ namespace MCNR
                 foreach (string words in introDialogue)
                 {
                     Console.WriteLine(words);
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                 }
                 Console.ReadLine();
                 Console.Clear();
@@ -398,7 +399,7 @@ namespace MCNR
                 foreach (string words in tutorialControlDialogue)
                 {
                     Console.WriteLine(words);
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                 }
                 //Console.Write("\nPress 'A' to strike!: ");
                 Console.ReadLine();
@@ -520,10 +521,10 @@ namespace MCNR
                     PrintInventory();
 
                     Console.WriteLine("Narrator: Great! Now you know how to check your inventory.");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
 
                     Console.WriteLine("Narrator: Remember, during fights with enemies, it's crucial to use 'I' to access your items. You never know when a Health Potion might save you!");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
 
                     Console.WriteLine("\nNarrator: Now, let’s head to town and prepare for your next adventure! <enter>");
                     Console.ReadLine();
@@ -575,9 +576,9 @@ namespace MCNR
                     enemyHP -= 100;
 
                     Console.WriteLine("You grip the hilt of your Sowrd Sword, feeling its power coursing through you.");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                     Console.WriteLine("A brilliant flash of light erupts as the sword strikes your enemy.");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                     Console.WriteLine($"The enemy staggers back, losing 100 health points! <enter>");
                     Console.ReadLine();
                     Console.Clear();
@@ -755,7 +756,7 @@ namespace MCNR
                 foreach (string frame in animationFrames)
                 {
                     Console.WriteLine(frame);   // Display the current frame
-                    Thread.Sleep(2000);         // Pause for 1.5 seconds before showing the next frame
+                    Thread.Sleep(1500);         // Pause for 1.5 seconds before showing the next frame
                 }
 
                 Console.Clear();
@@ -787,7 +788,7 @@ namespace MCNR
                 if (input != null)
                 {
                     Console.Clear();
-                    Thread.Sleep(500);
+                    Thread.Sleep(1500);
                 }
 
                 //game dialogue
@@ -805,7 +806,7 @@ namespace MCNR
                 foreach (string words in gameDialogue)
                 {
                     Console.WriteLine(words);
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                 }
                 Console.Clear();
 
@@ -961,7 +962,7 @@ namespace MCNR
                 foreach (string intro in blackSmith)
                 {
                     Console.WriteLine(intro);
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                 }
                 Console.Clear();
 
@@ -1003,6 +1004,9 @@ namespace MCNR
                     Console.WriteLine(intro1);
                     Thread.Sleep(1000);
                 }
+
+                Console.Clear();  //clear screen after potion maker dialogue
+
                 Console.WriteLine("\nElysia: 'What potion are you thinking of brewing?'...");
                 Console.WriteLine("\nHit '1' to craft a healing potion");
                 Console.WriteLine("\nHit '2' to craft a strength potion");
@@ -1069,11 +1073,11 @@ namespace MCNR
                 {
                     Console.Clear();
                     Console.WriteLine("\n[Eldrin the Wise]: I thought so. The path ahead is fraught with danger.");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                     Console.WriteLine("\n\t\tI advise you to practice your skills and gather loot from the enemies in the forest and cave.");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                     Console.WriteLine("\n\t\tYou may also discover special items that will aid you in your upcoming battle.");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                     Console.WriteLine("\n\t\tReturn when you feel stronger, and I’ll be here to guide you. <enter>");
                     Console.ReadLine();
                     Console.Clear();
