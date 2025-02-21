@@ -20,8 +20,17 @@ namespace MCNR
         static int correct = 0;
         public static Player player;
 
-        
+        //*****PLAYER NAME METHOD*****//
  
+        public class Player
+        {
+            public string Name { get; set; }
+
+            public Player(string name)
+            {
+                Name = name;
+            }
+        }
         //**************************************************//
             //*****HEALTH POTION METHODS*****//
             public class StrengthPotion
@@ -356,8 +365,7 @@ namespace MCNR
                 //storyline intro
                 Console.Write("Please Enter Your Name: ");
                 string playersName = Console.ReadLine();
-                player = new Player(playersName);
-
+                Player player = new Player(playersName);
                 Console.Clear();
 
                 string[] introDialogue = new string[]
