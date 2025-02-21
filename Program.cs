@@ -285,8 +285,8 @@ namespace MCNR
 
                     // Enemy Attack
                     Console.Beep(800, 300);
-                    int misshit = rand.Next(1, 5);
-                    switch (misshit)
+                    int MissHit = rand.Next(1, 5);
+                    switch (MissHit)
                     {
                         case 1:
                             Console.WriteLine($"Enemy HP: {enemyHP}");
