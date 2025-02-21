@@ -4,6 +4,12 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace MCNR
 {
+    public class Menu
+    {
+        int tasks;
+
+        
+    }
     internal class Program
     {
         //ARRAY FOR INVENTORIES
