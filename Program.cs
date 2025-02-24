@@ -206,6 +206,7 @@ namespace MCNR
 
 
             // ========= ACTUAL FLOW OF THE GAME FOR MAIN ========= //
+            DeathScreen();
             Introduction();
             Tutorial();               // missing tutorial for using inventory and using potions
             EnteringTownAnimation();
@@ -2257,6 +2258,8 @@ namespace MCNR
                 {
                     Console.WriteLine(death);
                 }
+
+                Console.Write("\nEnter choice here: ");
                 string input = "";
                 input = Console.ReadLine();
 
