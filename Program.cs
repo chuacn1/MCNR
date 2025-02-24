@@ -139,7 +139,7 @@ namespace MCNR
         {
             if (weapon.UpgradeLevel < weapon.MaxUpgradeLevel)
             {
-                if (ore > 0 && money >= weapon.UpgradeCost)
+                if (ore > 0 && money >= weapon.UpgradeCost) //need feedback is this the blacksmith issue?
                 {
                     //deduct iron and currency for upgrade
                     ore--;
