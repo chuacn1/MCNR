@@ -447,7 +447,7 @@ namespace MCNR
                 Console.WriteLine("Health Potion");
                 Console.WriteLine();
                 Console.WriteLine("\nPress 'P' to collect your loot!\n");
-                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                char pick = Convert.ToChar(Console.ReadLine().ToUpper()); // Crashes here after tutorial dummy 
                 Console.Clear();
 
                 money += 10;
