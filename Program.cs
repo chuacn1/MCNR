@@ -17,6 +17,8 @@ namespace MCNR
         static int potion = 0;
         static int crystalflower = 0;
         static int specialsword = 0;
+        static int battleaxe = 0;
+        static int pointeddagger = 0;
         static int correct = 0;
         public static Player player;
 
@@ -365,12 +367,37 @@ namespace MCNR
                     "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
                     $"\n\tYou are {playersName}...",
                     "\n\tA budding hero!. Awakening to the call of adventure...",
-                    "\n\tEquipped only with your bravery and a timeworn sword...",
+                    "\n\tEquipped only with your bravery and a weapon of your choice...",
                     "\n\tYour quest commences at the edge of your village...",
                     "\n\tWhere murmurs of a formidable foe...",
-                    "\n\t'The Shadow Lord' cast a pall of fear across the land <enter>."
-                };
+                    "\n\t'Please choose a Weapon to start",
+                }
 
+            static void Weapon()
+            {
+                string weaponchoice = Console.ReadLine();
+                    Console.Clear();
+               Console.WriteLine("\n\tPlease choose carefully");
+                    Console.WriteLine("\n\t1) Special Sword");
+                    Console.WriteLine("\n\t2) Battle Axe");
+                    Console.WriteLine("\n\t3) Sharpened Dagger");
+
+                    switch (weaponchoice)
+                {
+                    case "1":
+                        Console.WriteLine("You have chosen the Special Sword! Prepare for battle.");
+                        break;
+                    case "2":
+                        Console.WriteLine("You have chosen the Battle Axe! It's time to fight fiercely.");
+                        break;
+                    case "3":
+                        Console.WriteLine("You have chosen the Sharpened Dagger! Stealth is your ally.");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please choose a valid weapon.");
+                        break;
+                }
+            }
 
                 foreach (string words in introDialogue)
                 {
