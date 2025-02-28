@@ -139,9 +139,9 @@ namespace MCNR
 
         static void UpgradeWeapon(Weapon weapon)
         {
-            if (weapon.UpgradeLevel < weapon.MaxUpgradeLevel)
+            if (weapon.UpgradeLevel < weapon.MaxUpgradeLevel) //is there a max lvl cap??
             {
-                if (ore > 0 && money >= weapon.UpgradeCost)
+                if (ore > 0 && money >= weapon.UpgradeCost) //need feedback is this the blacksmith issue?
                 {
                     //deduct iron and currency for upgrade
                     ore--;
@@ -158,7 +158,7 @@ namespace MCNR
                 }
                 else
                 {
-                    Console.WriteLine("Not enough iron or currency to upgrade weapon");
+                    Console.WriteLine($"\nNot enough iron or currency to upgrade weapon, come back when you have {weapon.UpgradeCost}!"); //added weapon uprgade cost value, does ores need to be included?
                 }
             }
             else
