@@ -20,22 +20,7 @@ namespace MCNR
         static int correct = 0;
         public static Player player;
 
-        
- 
-        //**************************************************//
-            //*****HEALTH POTION METHODS*****//
-            public class StrengthPotion
-        {
-            public string name { get; set; }
-            public int increaseAmount { get; set; }
-            public int cost { get; set; }
-            public int maxUses { get; set; }
-            public int currentUses { get; set; }
-
-            //required material to craft this potion
-            public static string requireMaterial = "Crystal Flower";
-            public static int requiredQuantity = 1 + HealthPotion.requiredQuantity;
-        }
+     
         static void CraftStrengthPotion()
         {
             if (crystalflower >= StrengthPotion.requiredQuantity)
