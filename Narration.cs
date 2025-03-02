@@ -369,7 +369,7 @@ namespace MCNR
             };
             ts500(veldrosP2);
         }
-        public void PickRoute() //Console.WriteLine, Input Required
+        public void PickRoute(string playerName) //Console.WriteLine, Input Required
         {
             Console.WriteLine("ELDROS THE SEER:\n\nWhere would you like to venture, {playerName}? You can explore the Cave, the Forest, or face Korthak the Ravager directly. What's your choice?");
 
