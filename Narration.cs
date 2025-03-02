@@ -285,11 +285,9 @@ namespace MCNR
 
             Console.WriteLine("3. Venture into the unknown");
 
-            Console.WriteLine("4. View inventory");
+            Console.WriteLine("0. View inventory");
 
-            Console.WriteLine("0. Return to town ");
-
-            Console.Write("\nEnter 1, 2, 3, 4 or 0: ");
+            Console.Write("\nEnter 1, 2, 3 or 0: ");
         }
         #endregion
 
