@@ -448,6 +448,7 @@ namespace MCNR
                 Console.WriteLine();
                 Console.WriteLine("\nPress 'P' to collect your loot!\n");
                 char pick = Convert.ToChar(Console.ReadLine().ToUpper()); // Crashes here after tutorial dummy 
+                // I don't understand why we are converting a char to a char here? This might be the cause of the crash. 
                 Console.Clear();
 
                 money += 10;
