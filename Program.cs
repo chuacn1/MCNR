@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Data.SqlTypes;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace MCNR
@@ -425,7 +426,7 @@ namespace MCNR
 
             static void Tutorial()
             {
-                enemyHP = 10;
+                enemyHP = 1;
                 playerHP = 50;
 
                 playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
@@ -458,12 +459,12 @@ namespace MCNR
 
                 Console.Clear();
 
-
                 foreach (string words in tutorialInventoryDialogue2)
                 {
                     Console.WriteLine(words);
                     Thread.Sleep(2000);
                 }
+
                 Console.WriteLine();
                 Console.WriteLine("Gleaming Coins");
                 Console.WriteLine("Delicate Flower");
@@ -471,7 +472,8 @@ namespace MCNR
                 Console.WriteLine("Health Potion");
                 Console.WriteLine();
                 Console.WriteLine("\nPress 'P' to collect your loot!\n");
-                char pick = Convert.ToChar(Console.ReadLine().ToUpper());
+                string userInput = Console.ReadLine();//  separated into two lines. 
+                char UserChar = userInput[0]; // Taking the first character from the userInput rather than try parse etc. 
                 Console.Clear();
 
                 money += 10;
@@ -479,37 +481,31 @@ namespace MCNR
                 flower += 1;
                 potion += 1;
 
-                if (pick == 'P')
+                switch (UserChar)
                 {
-                    AddCoins(10);
+                    case 'P' or 'p':
+                        AddCoins(10);
+                        AddIron(1);
+                        AddFlower(1);
+                        AddPotion(1);
+                        AddToInventory("Gleaming Coins");
+                        AddToInventory("Delicate Flower");
+                        AddToInventory("Sturdy Iron");
+                        AddToInventory("Health Potion");
 
-                    AddIron(1);
+                        Console.WriteLine("<enter>");
+                        Console.ReadLine();
+                        Console.Clear();
 
-                    AddFlower(1);
+                        TutorialUsingPotionAndInventory();
+                        break;
 
-                    AddPotion(1);
-
-                    AddToInventory($"Gleaming Coins");       // 
-
-                    AddToInventory($"Delicate Flower");      //
-
-                    AddToInventory($"Sturdy Iron");          //
-
-                    AddToInventory($"Health Potion");
-
-                    Console.WriteLine("<enter>");
-                    Console.ReadLine();
-
-                    Console.Clear();
-
-                    TutorialUsingPotionAndInventory();
+                    default:
+                        Console.WriteLine("Invalid input. Please press 'P' to collect your loot.");
+                        break;
                 }
 
-                else
-                {
-                    Console.WriteLine("Invalid. Press 'P' to collect your loot!");
 
-                }
                 Console.WriteLine("\nNarrator: Gather more flowers to purchase health potions at the Potion Maker");
                 Console.WriteLine("\n\tCollect iron to upgrade your sword at the Blacksmith. <enter>");
                 Console.ReadLine();
