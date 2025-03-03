@@ -666,7 +666,7 @@ namespace MCNR
             Console.Write("\nEnter 1, 2 or 0: ");
         }
 
-        public static void C1GloomBeast() //Console.WriteLine, Input Required
+        public static string C1GloomBeast() //Console.WriteLine, Input Required
         {
             string[] c1GloomBeastP1 = new string[]
             {
@@ -691,9 +691,12 @@ namespace MCNR
             Console.Write("\nEnter 1 or 2: ");
             ts500(c1GloomBeastP2);
 
+            string choice = Console.ReadLine();
+            return choice;
+
         }
 
-        public static void C3GemstoneTitan() //Console.Write, Input Required
+        public static string C3GemstoneTitan() //Console.Write, Input Required
         {
             string[] c3GemstoneTitanP1 = new string[]
             {
@@ -718,6 +721,9 @@ namespace MCNR
             Console.WriteLine("1. Fight the Gemstone Titan with all your strength.");
             Console.WriteLine("2. Retreat and attempt to escape the cave, avoiding the confrontation.");
             Console.Write("\nEnter 1 or 2: ");
+
+            string choice = Console.ReadLine();
+            return choice; 
         }
 
         public static void DeadEndCave() //Console.Write, Input Required
