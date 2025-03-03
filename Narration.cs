@@ -637,7 +637,7 @@ namespace MCNR
         }
 
 
-        public static void C1orC2() //Console.WriteLine, Input Required
+        public static string  C1orC2() //Console.WriteLine, Input Required
         {
             string[] caveMessages = new string[]
             {
@@ -652,6 +652,9 @@ namespace MCNR
             Console.WriteLine("0. Exit the cave, retreating from whatever lies ahead.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+
+            string choice = Console.ReadLine();
+            return choice;
         }
 
         public static void C3orRetraceorExit() //Console.WriteLine, Input Required
