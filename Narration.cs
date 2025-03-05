@@ -613,6 +613,17 @@ namespace MCNR
 
         #endregion
 
+        public static void RetracingSteps()
+        {
+            string[] retracing = new string[]
+     {
+                        "Retracing steps.",
+                        "Retracing steps..",
+                        "Retracing steps..."
+     };
+            ts1000(retracing);
+        }
+
         #region Cave
         public static void EnterCave()
         {
@@ -636,8 +647,9 @@ namespace MCNR
             ts1000(caveExitMessages);
         }
 
+        
 
-        public static string  C1orC2() //Console.WriteLine, Input Required
+        public static int  C1orC2() //Console.WriteLine, Input Required
         {
             string[] caveMessages = new string[]
             {
@@ -653,20 +665,24 @@ namespace MCNR
 
             Console.Write("\nEnter 1, 2 or 0: ");
 
-            string choice = Console.ReadLine();
+            int choice = Convert.ToInt32(Console.ReadLine());
             return choice;
         }
 
-        public static void C3orRetraceorExit() //Console.WriteLine, Input Required
+        public static int C3orRetraceorExit() //Console.WriteLine, Input Required
         {
             Console.WriteLine("1. Press on, venturing deeper into the cave’s unknown depths.");
             Console.WriteLine("2. Turn back, retracing your steps to the safety of the entrance.");
             Console.WriteLine("0. Exit the cave, abandoning the journey for now.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            return choice;
         }
 
-        public static string C1GloomBeast() //Console.WriteLine, Input Required
+        public static int C1GloomBeast() //Console.WriteLine, Input Required
         {
             string[] c1GloomBeastP1 = new string[]
             {
@@ -691,12 +707,12 @@ namespace MCNR
             Console.Write("\nEnter 1 or 2: ");
             ts500(c1GloomBeastP2);
 
-            string choice = Console.ReadLine();
+            int choice = Convert.ToInt32(Console.ReadLine());
             return choice;
 
         }
 
-        public static string C3GemstoneTitan() //Console.Write, Input Required
+        public static int C3GemstoneTitan() //Console.Write, Input Required
         {
             string[] c3GemstoneTitanP1 = new string[]
             {
@@ -722,7 +738,7 @@ namespace MCNR
             Console.WriteLine("2. Retreat and attempt to escape the cave, avoiding the confrontation.");
             Console.Write("\nEnter 1 or 2: ");
 
-            string choice = Console.ReadLine();
+            int choice = Convert.ToInt32(Console.ReadLine());
             return choice; 
         }
 
@@ -801,13 +817,16 @@ namespace MCNR
 
         }
 
-        public static void SpecialSwordGuess() //Console.Write, Input Required
+        public static string SpecialSwordGuess() //Console.Write, Input Required
         {
             Console.WriteLine("NARRATOR:\n\nIt reads: 'To reveal the power within, speak the word of light.'");
             Thread.Sleep(500);
             Console.WriteLine("You think for a moment. Perhaps the answer lies in the very essence of what you seek. It's a simple word related to illumination");
             Thread.Sleep(500);
             Console.Write("\n\nAnswer:");
+
+            string answer = Console.ReadLine().ToUpper();
+            return answer;
         }
 
         public static void SpecialSwordCorrect()
@@ -837,9 +856,11 @@ namespace MCNR
             Console.Clear();
         }
 
-        public static void SpecialSwordClaim() //Console.Write, Input Required
+        public static char SpecialSwordClaim() //Console.Write, Input Required
         {
             Console.Write("Press 'C' to claim the Blade of Lumina and add it to your inventory: ");
+            char claim = Convert.ToChar(Console.ReadLine().ToUpper());
+            return claim;
         }
 
         #endregion
