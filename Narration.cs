@@ -742,7 +742,7 @@ namespace MCNR
             return choice; 
         }
 
-        public static void DeadEndCave() //Console.Write, Input Required
+        public static void DeadEndCave() 
         {
 
             string[] deadEndDialogue = new string[]
@@ -752,10 +752,8 @@ namespace MCNR
             };
             ts500(deadEndDialogue);
 
-            Console.WriteLine("1. Turn back, retracing your steps to the safety of the entrance.");
-            Console.WriteLine("2. Exit the cave, abandoning the journey for now.");
-
-            Console.Write("\nEnter 1 or 2:");
+            Console.WriteLine("Press <enter> to exit");
+            Console.ReadLine();
         }
 
         public static void EscapeCaveRiddleDialogue()
@@ -779,9 +777,11 @@ namespace MCNR
             Console.Clear();
         }
 
-        public static void EscapeCaveRiddle() //Console.Write, Input Required
+        public static string EscapeCaveRiddle() //Console.Write, Input Required
         {
             Console.Write("ATHRON:\n\nSo, the riddle is this: Convert the binary 10000001 into a decimal!\n\nAnswer:");
+            string answer = Console.ReadLine();
+            return answer;
         }
 
         public static void EscapeCaveRiddleCorrect()
