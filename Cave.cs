@@ -118,7 +118,7 @@ namespace MCNR
                 case 0:
                     Narration.ExitingCave();
                     //Korthak/Forest/Cave
-                    
+
                     break;
 
 
@@ -149,12 +149,26 @@ namespace MCNR
             }
         }
 
-        public static void EscapeCave ()
+        public static void EscapeCave()
         {
             Narration.DeadEndCave();
+            Narration.EscapeCaveRiddleDialogue();
 
             string answer = Narration.EscapeCaveRiddle();
-            
+
+
+            if (answer != "129")
+            {
+                Narration.EscapeCaveRiddleIncorrec();
+                Environment.Exit(0); //not sure if we will do a checkpoint or not
+            }
+            if (answer == "129")
+            {
+                Narration.EscapeCaveRiddleCorrect();
+                Narration.ExitingCave();
+                Narration.PickRoute(); //playername
+            }
+
 
         }
     }

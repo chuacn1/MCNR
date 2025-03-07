@@ -646,9 +646,6 @@ namespace MCNR
             };
             ts1000(caveExitMessages);
         }
-
-        
-
         public static int  C1orC2() //Console.WriteLine, Input Required
         {
             string[] caveMessages = new string[]
