@@ -74,7 +74,7 @@ namespace HelloWorld
 
             return playerHP; // Return the player's HP after combat ends
         }
-
+        //removed the contanst need to press enter between attacks. 
 
         // Method to print player's inventory (just a placeholder here)
         static void PrintInventory()
