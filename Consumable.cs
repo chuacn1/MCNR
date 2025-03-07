@@ -32,6 +32,23 @@ namespace MCNR
                     //Increase Player base damage by 1
                     ///Player.BaseDmg +=1
                     break;
+                case "Minor Health":
+                    //Heal Player by 25
+                    ///Dynamically heal half of the player health capped by maxhp
+                    ///int HealAmount = Math.Clamp(Player.MaxHp/2, 0, Player.MaxHp)
+                    ///Console.log($"Healed by {HealAmount}")
+                    ///Player.Hp += HealAmount
+                    ///if (Player.HP > 50)
+                    ///{
+                    ///Player.HP = 50
+                    ///}
+                    break;
+                case "Max Health":
+                    //Heal Player to full
+                    ///int HealAmount = Math.Clamp(Player.MaxHp, 0, Player.MaxHp)
+                    ///Console.log ($"Healed by {HealAmount}")
+                    ///Player.Hp += HealAmount
+                    break;
                 default:
                     Console.WriteLine("I don't know how to use that");
                     break;
