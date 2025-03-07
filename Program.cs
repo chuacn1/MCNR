@@ -23,6 +23,7 @@ namespace MCNR
         static int correct = 0;
         public static Player player;
         public static Town town;
+        public static Narration narration;
 
         //*****PLAYER NAME METHOD*****//
  
@@ -153,7 +154,7 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
-            
+
             //InitializeInventory();
             //PrintInventory();
             //Introduction();
@@ -190,8 +191,11 @@ namespace MCNR
 
 
             // ========= ACTUAL FLOW OF THE GAME FOR MAIN ========= //
-            Introduction();
-            Tutorial();               // missing tutorial for using inventory and using potions
+            Narration.SplashScreen();
+            Narration.IntroductionDialogue();
+            Narration.TutorialControlDialogue();
+            //EnemyVsPlayer
+            Tutorial();    // missing tutorial for using inventory and using potions // Please refer to Narration and call accordingly for dialogues
             Town.EnteringTownAnimation();
             Town.TutorialTownEntrance();
             EldrinDialogue();
@@ -331,38 +335,7 @@ namespace MCNR
 
             }
 
-            static void Introduction()
-            {
-                string title = "Quest for the Lost Kingdom";
-                int borderWidth = title.Length + 6;
-
-                //border + title
-
-                Console.WriteLine("╔" + new string('═', borderWidth) + "╗");
-                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
-                Console.WriteLine($"║   {title}   ║");
-                Console.WriteLine("║" + new string(' ', borderWidth + 0) + "║");
-                Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
-                Console.WriteLine();
-
-
-                //storyline intro
-                Console.Write("Please Enter Your Name: ");
-                string playersName = Console.ReadLine();
-                Player player = new Player(playersName);
-                Console.Clear();
-
-                string[] introDialogue = new string[]
-                {
-                    "Narrator: In the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants...",
-                    $"\n\tYou are {playersName}...",
-                    "\n\tA budding hero!. Awakening to the call of adventure...",
-                    "\n\tEquipped only with your bravery and a weapon of your choice...",
-                    "\n\tYour quest commences at the edge of your village...",
-                    "\n\tWhere murmurs of a formidable foe...",
-                    "\n\t'Please choose a Weapon to start",
-                };
-
+            
             static void Weapon()
             {
                 string weaponchoice = Console.ReadLine();
@@ -389,33 +362,7 @@ namespace MCNR
                 }
             }
 
-                foreach (string words in introDialogue)
-                {
-                    Console.WriteLine(words);
-                    Thread.Sleep(1500);
-                }
-                Console.ReadLine();
-                Console.Clear();
-
-                string[] tutorialControlDialogue = new string[]
-                {
-                    "Narrator: You enter the realm...",
-                    "\n\tPrepared to showcase your skills...",
-                    "\n\tBefore you stands a training dummy, your initial challenge. To hone your combat skills <enter>"
-                };
-
-
-                foreach (string words in tutorialControlDialogue)
-                {
-                    Console.WriteLine(words);
-                    Thread.Sleep(1500);
-                }
-                //Console.Write("\nPress 'A' to strike!: ");
-                Console.ReadLine();
-                Console.Clear();
-
-            }
-
+              
             static void Tutorial()
             {
                 enemyHP = 1;
