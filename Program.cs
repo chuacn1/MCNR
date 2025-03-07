@@ -26,15 +26,7 @@ namespace MCNR
 
         //*****PLAYER NAME METHOD*****//
  
-        public class Player
-        {
-            public string Name { get; set; }
-
-            public Player(string name)
-            {
-                Name = name;
-            }
-        }
+        
         //**************************************************//
             //*****HEALTH POTION METHODS*****//
             public class StrengthPotion
@@ -369,7 +361,7 @@ namespace MCNR
                     "\n\tYour quest commences at the edge of your village...",
                     "\n\tWhere murmurs of a formidable foe...",
                     "\n\t'Please choose a Weapon to start",
-                }
+                };
 
             static void Weapon()
             {
@@ -542,7 +534,7 @@ namespace MCNR
                     Console.ReadLine();
                     Console.Clear();
 
-                    EnteringTownAnimation();
+                    Town.EnteringTownAnimation();
                 }
                 else
                 {
