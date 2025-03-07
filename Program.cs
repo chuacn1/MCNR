@@ -10,17 +10,7 @@ namespace MCNR
         //ARRAY FOR INVENTORIES
         static string[] items = new string[15];
         static int[] counts = new int[15];
-        static int money = 0;
         static int enemyHP;
-        static int playerHP;
-        static int ore = 0;
-        static int flower = 0;
-        static int potion = 0;
-        static int crystalflower = 0;
-        static int specialsword = 0;
-        static int battleaxe = 0;
-        static int pointeddagger = 0;
-        static int correct = 0;
         public static Player player;
         public static Town town;
 
@@ -43,7 +33,7 @@ namespace MCNR
         }
         static void CraftStrengthPotion()
         {
-            if (crystalflower >= StrengthPotion.requiredQuantity)
+            if (player.InventoryItemCount("crystalflower") >= StrengthPotion.requiredQuantity)
             {
                 //deduct the material from the inventory
                 crystalflower -= StrengthPotion.requiredQuantity;
