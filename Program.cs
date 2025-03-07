@@ -23,6 +23,7 @@ namespace MCNR
         static int correct = 0;
         public static Player player;
         public static Town town;
+        public static Narration narration;
 
         //*****PLAYER NAME METHOD*****//
  
@@ -153,7 +154,7 @@ namespace MCNR
         //*****MAIN METHOD*****//
         static void Main(string[] args)
         {
-            
+
             //InitializeInventory();
             //PrintInventory();
             //Introduction();
@@ -190,8 +191,11 @@ namespace MCNR
 
 
             // ========= ACTUAL FLOW OF THE GAME FOR MAIN ========= //
-            Introduction();
-            Tutorial();               // missing tutorial for using inventory and using potions
+            Narration.SplashScreen();
+            Narration.IntroductionDialogue();
+            Narration.TutorialControlDialogue();
+            //EnemyVsPlayer
+            Tutorial();    // missing tutorial for using inventory and using potions // Please refer to Narration and call accordingly for dialogues
             Town.EnteringTownAnimation();
             Town.TutorialTownEntrance();
             EldrinDialogue();
