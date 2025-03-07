@@ -61,6 +61,21 @@ namespace HelloWorld
                     Thread.Sleep(1000);
                     Console.ResetColor(); 
                 }
+                // Secret One-Shot Kill because I'm sick of waiting for this fight to end every time I want to test something. 
+                else if (choice == 'x') // Hidden under "h"
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("You use the HOLY HAND GRENADE!");
+                    Console.ResetColor();
+                    Console.WriteLine("The enemy is dead");
+                    Console.ReadLine();
+                    int playerDamage = enemyHP; 
+                    enemyHP = 0;
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"You deal {playerDamage} damage! The enemy is defeated instantly!");
+                    Console.ResetColor();
+                }
 
                 // Enemy Attack
                 if (enemyHP > 0)
@@ -92,6 +107,5 @@ namespace HelloWorld
         {
             Console.WriteLine("This method will print the player's inventory.");
         }
-     
     }
 }
