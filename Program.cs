@@ -22,6 +22,7 @@ namespace MCNR
         static int correct = 0;
         public static Player player;
         public static Town town;
+        public static Cave cave;
 
         //*****PLAYER NAME METHOD*****//
  
@@ -178,14 +179,6 @@ namespace MCNR
 
 
 
-            ////CavePath1OrPath2();
-            ////CaveEnemyPath1();
-            //CaveExitOrPath3();
-            //CaveEnemyPath3();
-            //////SpecialSword();
-            //SpecialSwordDialogue();
-            //EscapeCave();
-            //EscapeCaveDialogue();
 
             //ForestPath1OrPath2();
             //ForestEnemyPath1();
@@ -203,8 +196,6 @@ namespace MCNR
             Town.TutorialTownEntrance();
             EldrinDialogue();
             //TutorialUsingPotionAndInventory();
-
-
 
 
             // not working properly //
