@@ -9,7 +9,7 @@ namespace MCNR
 {
     public class Cave
     {
-        public static void Cave1Or2()
+        public static void Cave1Or2() // 1 = GloomBeast, 2 = SpecialSword, 0 = ExitCave + PickRoute
         {
 
             int C1C2choice = Narration.C1orC2();
@@ -34,13 +34,12 @@ namespace MCNR
                     break;
                 case 0:
                     Narration.ExitingCave();
-                    Narration.VeldrosDialogue();
                     Narration.PickRoute();
                     break;
 
             }
         }
-        public static void GloomBeast()
+        public static void GloomBeast() // 1 = Fight GloomBeast, 2 = Flee + back to Cave1Or2
         {
             int GloomBeastChoice = Narration.C1GloomBeast();
             do
@@ -67,11 +66,11 @@ namespace MCNR
                     break;
             }
         }
-        public static void SpecialSword()
+        public static void SpecialSword() // Correct = Special Sword Claimed, Incorrect = Try Again
+
         {
 
-            string guess = Narration.SpecialSwordGuess();
-
+            string guess = Narration.SpecialSwordGuess(); 
             while (guess != "LIGHT")
             {
                 Narration.SpecialSwordIncorrect();
@@ -87,9 +86,10 @@ namespace MCNR
                 claim = Narration.SpecialSwordClaim();
             }
 
-            C3RetraceExit();
+            Narration.DeadEndCave();
+            EscapeCave();
         }
-        public static void C3RetraceExit()
+        public static void C3RetraceExit() //1 = GemStoneGolem, 2 = Retrace + back to Cave1Or2, 0 = ExitCave + PickRoute
         {
 
             int choice = Narration.C3orRetraceorExit();
@@ -117,14 +117,14 @@ namespace MCNR
 
                 case 0:
                     Narration.ExitingCave();
-                    //Korthak/Forest/Cave
+                    Narration.PickRoute();//playername
 
                     break;
 
 
             }
         }
-        public static void GemStone()
+        public static void GemStone() // 1 = Fight GemStone, 2 = Flee + back to C3RetraceExit
         {
             int GemStoneChoice = Narration.C3GemstoneTitan();
             do
@@ -149,7 +149,7 @@ namespace MCNR
             }
         }
 
-        public static void EscapeCave()
+        public static void EscapeCave() // After claiming Special Sword, EscapeCave. Correct = Exit + PickRoute, Incorrect = EnvironmentExit (might change this maybe not)
         {
             Narration.DeadEndCave();
             Narration.EscapeCaveRiddleDialogue();
