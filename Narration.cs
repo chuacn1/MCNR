@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,9 +32,9 @@ namespace MCNR
             {
                 Console.WriteLine(words);
                 Thread.Sleep(1000);
+                Console.Clear();
             }
 
-            Console.ReadLine();
 
             Console.Clear();
 
@@ -87,17 +88,21 @@ namespace MCNR
             Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
 
             Console.WriteLine();
+            Console.Write("Please Enter Your Name: ");
+            PlayersName = Console.ReadLine();
+            Console.Clear();
+
         }
-        public static void IntroductionDialogue(string playersName)
+        public static void IntroductionDialogue()
         {
 
             string[] introDialogue = new string[]
 
             {
 
-                    "NARRATOR:\n\nIn the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants.\n",
+                    "NARRATOR:\n\nIn the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants.",
 
-                    $"You are {playersName}, a budding hero!\n",
+                    $"You are {PlayersName}, a budding hero!",
 
                     "Awakening to the call of adventure, equipped only with your bravery and a timeworn sword, your quest begins at the edge of your village.",
 
@@ -274,7 +279,7 @@ namespace MCNR
         #endregion
 
         #region BSorPM
-        public static void VisitBSorPM() //Console.WriteLine, Input Required
+        public static int VisitBSorPM() //Console.WriteLine, Input Required
         {
 
             Console.WriteLine("NARRATOR:\n\nNow that you are in Eldoria. What would you like to do?\n\n<enter>");
@@ -290,11 +295,15 @@ namespace MCNR
             Console.WriteLine("0. View inventory");
 
             Console.Write("\nEnter 1, 2, 3 or 0: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            Console.Clear();
+            return choice;
         }
         #endregion
 
         #region BlackSmith
-        public static void BlackSmithDialogue() //Dialogue for Upgrading Sword, Console.WriteLine, Input Required
+        public static int BlackSmithDialogue() //Dialogue for Upgrading Sword, Console.WriteLine, Input Required
         {
             string[] blackSmith = new string[]
             {
@@ -308,6 +317,9 @@ namespace MCNR
             Console.WriteLine("2. Return to Town");
 
             Console.Write("\nEnter 1 or 2: ");
+            int choice = Convert.ToInt32(Console.ReadLine);
+            Console.Clear();
+            return choice;
         }
 
         public static void ExitBlackSmithDialogue()
@@ -322,7 +334,7 @@ namespace MCNR
         #endregion
 
         #region PotionMaker
-        public static void PotionMakerDialogue() //Are going to do Healing and Strength? , Console.WriteLine, Input Required
+        public static int PotionMakerDialogue() //Are going to do Healing and Strength? , Console.WriteLine, Input Required
         {
             string[] potionMaker = new string[]
             {
@@ -339,6 +351,10 @@ namespace MCNR
             Console.WriteLine("3. Return to Town");
 
             Console.Write("\nEnter 1, 2 or 3: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
+
         }
 
         public static void ExitPotionMakerDialogue()
@@ -357,9 +373,9 @@ namespace MCNR
         {
             string[] veldrosP1 = new string[]
             {
-                 $"VELDROS THE SEER:\n\n Ahh, Hello {PlayersName}.",
+                 $"VELDROS THE SEER:\n\nAhh, Hello {PlayersName}.",
                 "You have explored the Town of Eldoria, and your next great challenge awaits.",
-                "You must choose between continuing your quest to explore the Cave or the Forest, where hidden loot awaits.",
+                "You must choose between continuing your quest to explore the Cave or the Forest, where hidden loot awaits.\n\n<enter>",
             };
             ts500(veldrosP1);
 
@@ -371,22 +387,25 @@ namespace MCNR
             };
             ts500(veldrosP2);
         }
-        public static void PickRoute() //Console.WriteLine, Input Required
+        public static int PickRoute() //Console.WriteLine, Input Required
         {
-            Console.WriteLine("ELDROS THE SEER:\n\nWhere would you like to venture, {PlayersName}? You can explore the Cave, the Forest, or face Korthak the Ravager directly. What's your choice?");
+            Console.WriteLine($"VELDROS THE SEER:\n\nWhere would you like to venture, {PlayersName}? You can explore the Cave, the Forest, or face Korthak the Ravager directly. What's your choice?");
 
             Console.WriteLine("1. Cave");
 
             Console.WriteLine("2. Forest");
 
-            Console.WriteLine("4. Korthak");
+            Console.WriteLine("3. Korthak");
 
-            Console.WriteLine("3. Return to Eldoria");
+            Console.WriteLine("4. Return to Eldoria");
 
             Console.WriteLine("5. Check inventory");
 
 
             Console.Write("\nEnter 1, 2, 3, 4 or 5: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
         }
         #endregion
 
@@ -430,7 +449,8 @@ namespace MCNR
             Console.WriteLine("0. Exit the forest, retreating to the safety of the known.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
-            int choice = Convert.ToInt32(Console.ReadLine);
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             return choice;
         }
 
@@ -442,6 +462,7 @@ namespace MCNR
 
             Console.Write("\nEnter 1, 2 or 0: ");
             int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             return choice;
         }
 
@@ -470,7 +491,8 @@ namespace MCNR
             Console.WriteLine("2. Flee into the shadowy thicket, hoping the dense forest will conceal your escape.");
             Console.Write("\nEnter 1 or 2: ");
 
-            int choice = Convert.ToInt32(Console.ReadLine);
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             return choice;
         }
 
@@ -500,6 +522,7 @@ namespace MCNR
             Console.Write("\nEnter 1 or 2: ");
 
             int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             return choice;
         }
 
@@ -533,8 +556,8 @@ namespace MCNR
             Console.Write("\nEnter 1 or 2: ");
 
             int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             return choice;
-
         }
 
         public static string sfRiddle1()  //Console.WriteLine, Input Required
@@ -545,6 +568,8 @@ namespace MCNR
             Console.Write("\nAnswer: ");
 
             string answer = Console.ReadLine().ToLower();
+            Console.Clear();
+            return answer;
         }
 
         public static void sfRiddle1Correct()
@@ -571,7 +596,6 @@ namespace MCNR
             Console.WriteLine("LIRA:\n\nTake a moment to reflect. You have one more chance.\n\n<enter>");
             Console.ReadLine();
             Console.Clear();
-            Console.ReadLine();
         }
 
         public static string sfRiddle2()  //Console.Write, Input Required
@@ -581,6 +605,7 @@ namespace MCNR
             Console.WriteLine("I bloom in the spring, bringing joy to the eye. I can symbolize love, yet I wither and die. What am I?");
             Console.Write("\nAnswer: ");
             string answer = Console.ReadLine().ToLower();
+            Console.Clear();
             return answer;
         }
 
@@ -604,8 +629,8 @@ namespace MCNR
             string[] onecorrect = new string[]
             {
                 "LIRA:\n\nAh, you have successfully answered one riddle!",
-                "LIRA:\n\nYou shall receive a Crystal Flower, a token of your wisdom.",
-                "LIRA:\n\nTake it to the Potion Maker, where you can craft a healing potion that will increase your strength.\n\n<enter>"
+                "You shall receive a Crystal Flower, a token of your wisdom.",
+                "Take it to the Potion Maker, where you can craft a healing potion that will increase your strength.\n\n<enter>"
             };
             ts500(onecorrect);
         }
@@ -615,8 +640,8 @@ namespace MCNR
             string[] twocorrect = new string[]
             {
                     "LIRA:\n\nIncredible! You have answered both riddles with grace!",
-                    "LIRA:\n\nYou are blessed with 2 Crystal flowers, symbols of your exceptional insight.",
-                    "LIRA:\n\nUse them wisely at the Potion Maker to create a powerful potion that will grant you double the strength.\n\n<enter>"
+                    "You are blessed with 2 Crystal flowers, symbols of your exceptional insight.",
+                    "Use them wisely at the Potion Maker to create a powerful potion that will grant you double the strength.\n\n<enter>"
             };
             ts500(twocorrect);
 
@@ -735,6 +760,7 @@ namespace MCNR
             Console.Write("\nEnter 1, 2 or 0: ");
 
             int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             return choice;
         }
 
@@ -748,6 +774,7 @@ namespace MCNR
 
             int choice = Convert.ToInt32(Console.ReadLine());
 
+            Console.Clear();
             return choice;
         }
 
@@ -761,7 +788,7 @@ namespace MCNR
             };
             ts500(c1GloomBeastP1);
 
-            Console.WriteLine("GLOOMBEAST:\n\nYou dare disturb my sanctuary?! Prepare to face your doom!/n/n<enter>"); Thread.Sleep(500);
+            Console.WriteLine("GLOOMBEAST:\n\nYou dare disturb my sanctuary?! Prepare to face your doom!\n\n<enter>"); Thread.Sleep(500);
             Console.ReadLine();
             Console.Clear();
 
@@ -770,13 +797,14 @@ namespace MCNR
                 "NARRATOR:\n\nYour heart races as you grip your weapon, knowing the battle is imminent.",
                 "Will you stand your ground and fight, or will you flee into the darkened depths?\n\n<enter>"
             };
+            ts500(c1GloomBeastP2);
 
             Console.WriteLine("1. Stand your ground and face the beast in battle.");
             Console.WriteLine("2. Flee into the darkened depths, hoping to escape its wrath.");
             Console.Write("\nEnter 1 or 2: ");
-            ts500(c1GloomBeastP2);
 
             int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             return choice;
 
         }
@@ -791,7 +819,7 @@ namespace MCNR
             };
             ts500(c3GemstoneTitanP1);
 
-            Console.WriteLine("GEMSTONE TITAN:\n\n'You awaken me from my slumber. Prepare to feel the wrath of the earth itself!'\n\n<enter>");
+            Console.WriteLine("GEMSTONE TITAN:\n\nYou awaken me from my slumber. Prepare to feel the wrath of the earth itself!\n\n<enter>");
             Thread.Sleep(500);
             Console.ReadLine();
             Console.Clear();
@@ -808,6 +836,7 @@ namespace MCNR
             Console.Write("\nEnter 1 or 2: ");
 
             int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             return choice;
         }
 
@@ -850,6 +879,7 @@ namespace MCNR
         {
             Console.Write("ATHRON:\n\nSo, the riddle is this: Convert the binary 10000001 into a decimal!\n\nAnswer:");
             string answer = Console.ReadLine();
+            Console.Clear();
             return answer;
         }
 
@@ -895,6 +925,7 @@ namespace MCNR
             Console.Write("\n\nAnswer:");
 
             string answer = Console.ReadLine().ToUpper();
+            Console.Clear();
             return answer;
         }
 
@@ -929,6 +960,7 @@ namespace MCNR
         {
             Console.Write("Press 'C' to claim the Blade of Lumina and add it to your inventory: ");
             char claim = Convert.ToChar(Console.ReadLine().ToUpper());
+            Console.Clear();
             return claim;
         }
 
