@@ -66,8 +66,6 @@ namespace MCNR
         #endregion
 
         #region Start 
-
-        public static string PlayersName { get; set; }
         public static void SplashScreen()
 
         {
@@ -87,17 +85,8 @@ namespace MCNR
             Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
 
             Console.WriteLine();
-
-            Console.Write("Enter Name: ");
-            PlayersName = Console.ReadLine();
-            
-
         }
-
-
-
-
-        public static void IntroductionDialogue()
+        public static void IntroductionDialogue(string playersName)
         {
 
             string[] introDialogue = new string[]
@@ -106,7 +95,7 @@ namespace MCNR
 
                     "NARRATOR:\n\nIn the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants.\n",
 
-                    $"You are {PlayersName}, a budding hero!\n",
+                    $"You are {playersName}, a budding hero!\n",
 
                     "Awakening to the call of adventure, equipped only with your bravery and a timeworn sword, your quest begins at the edge of your village.",
 
@@ -114,8 +103,6 @@ namespace MCNR
             };
 
             ts500(introDialogue);
-
-
         }
         #endregion
 
@@ -305,11 +292,11 @@ namespace MCNR
         #endregion
 
         #region BlackSmith
-        public static void BlackSmithDialogue() //Dialogue for Upgrading Sword, Console.WriteLine, Input Required
+        public static void BlackSmithDialogue(string playerName) //Dialogue for Upgrading Sword, Console.WriteLine, Input Required
         {
             string[] blackSmith = new string[]
             {
-                $"THRAIN IRONHAND:\n\n Welcome to my forge, {PlayersName} . The name's Thrain Ironhand, blacksmith around here.",
+                $"THRAIN IRONHAND:\n\n Welcome to my forge, {playerName}. The name's Thrain Ironhand, blacksmith around here.",
                 "What can I do for you today? \n\n<enter>"
             };
             ts500(blackSmith);
@@ -321,11 +308,11 @@ namespace MCNR
             Console.Write("\nEnter 1 or 2: ");
         }
 
-        public static void ExitBlackSmithDialogue()
+        public static void ExitBlackSmithDialogue(string playerName)
         {
             string[] exitBS = new string[]
             {
-                $"THRAIN IRONHAND:\n\nFair enough, {PlayersName}. Take your time. If you need anything, I'll be here.",
+                $"THRAIN IRONHAND:\n\nFair enough, {playerName}. Take your time. If you need anything, I'll be here.",
                 "Just don’t stand too long, or I might put you to work! \n\n<enter>"
             };
             ts500(exitBS);
@@ -333,11 +320,11 @@ namespace MCNR
         #endregion
 
         #region PotionMaker
-        public static void PotionMakerDialogue() //Are going to do Healing and Strength? , Console.WriteLine, Input Required
+        public static void PotionMakerDialogue(string playerName) //Are going to do Healing and Strength? , Console.WriteLine, Input Required
         {
             string[] potionMaker = new string[]
             {
-                $"ELYISA MOONSHADE:\n\n Welcome to my potion shop, {PlayersName}. The name's Elyisa Moonshade, the finest potion maker around here.",
+                $"ELYISA MOONSHADE:\n\n Welcome to my potion shop, {playerName}. The name's Elyisa Moonshade, the finest potion maker around here.",
                 "I can provide you with the most powerful concoctions for any need, be it healing or magic.",
                 "What may I get you for today? \n\n<enter>"
             };
@@ -352,11 +339,11 @@ namespace MCNR
             Console.Write("\nEnter 1, 2 or 3: ");
         }
 
-        public static void ExitPotionMakerDialogue()
+        public static void ExitPotionMakerDialogue(string playerName)
         {
             string[] exitPotionMaker = new string[]
             {
-                $"ELYISA MOONSHADE:\n\nFair enough, {PlayersName}. Take your time. If you need anything, just let me know.",
+                $"ELYISA MOONSHADE:\n\nFair enough, {playerName}. Take your time. If you need anything, just let me know.",
                 "Don’t be shy, the best potions are just a word away! \n\n<enter>"
             };
             ts500(exitPotionMaker);
@@ -364,11 +351,11 @@ namespace MCNR
         #endregion
 
         #region CaveForestKorthak
-        public static void VeldrosDialogue() //Console.WriteLine, Input Required
+        public static void VeldrosDialogue(string playerName) //Console.WriteLine, Input Required
         {
             string[] veldrosP1 = new string[]
             {
-                 $"VELDROS THE SEER:\n\n Ahh, Hello {PlayersName}.",
+                 $"VELDROS THE SEER:\n\n Ahh, Hello {playerName}.",
                 "You have explored the Town of Eldoria, and your next great challenge awaits.",
                 "You must choose between continuing your quest to explore the Cave or the Forest, where hidden loot awaits.",
             };
@@ -382,9 +369,9 @@ namespace MCNR
             };
             ts500(veldrosP2);
         }
-        public static void PickRoute() //Console.WriteLine, Input Required
+        public static void PickRoute(string playerName) //Console.WriteLine, Input Required
         {
-            Console.WriteLine($"ELDROS THE SEER:\n\nWhere would you like to venture, {PlayersName}? You can explore the Cave, the Forest, or face Korthak the Ravager directly. What's your choice?");
+            Console.WriteLine("ELDROS THE SEER:\n\nWhere would you like to venture, {playerName}? You can explore the Cave, the Forest, or face Korthak the Ravager directly. What's your choice?");
 
             Console.WriteLine("1. Cave");
 
@@ -425,7 +412,7 @@ namespace MCNR
             ts1000(forestExitMessages);
         }
 
-        public static void F1orF2()//Console.WriteLine, Input Required
+        public static int F1orF2()//Console.WriteLine, Input Required
         {
             string[] forestMessages = new string[]
             {
@@ -441,18 +428,22 @@ namespace MCNR
             Console.WriteLine("0. Exit the forest, retreating to the safety of the known.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+            int choice = Convert.ToInt32(Console.ReadLine);
+            return choice;
         }
 
-        public static void F3orRetraceorExit() // Console.WriteLine, Input Required
+        public static int F3orRetraceorExit() // Console.WriteLine, Input Required
         {
             Console.WriteLine("1. Press on, venturing deeper into the shadowy heart of the forest.");
             Console.WriteLine("2. Turn back, retracing your steps to the safety of the forest’s edge.");
             Console.WriteLine("0. Exit the forest, abandoning your journey for now.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            return choice;
         }
 
-        public static void F1BloomingBehemoth() //Console.WriteLine, Input Required
+        public static int F1BloomingBehemoth() //Console.WriteLine, Input Required
         {
             string[] f1BloomingBehemoth = new string[]
             {
@@ -477,10 +468,11 @@ namespace MCNR
             Console.WriteLine("2. Flee into the shadowy thicket, hoping the dense forest will conceal your escape.");
             Console.Write("\nEnter 1 or 2: ");
 
-
+            int choice = Convert.ToInt32(Console.ReadLine);
+            return choice;
         }
 
-        public static void F3CrestFallenWarden()  //Console.WriteLine, Input Required
+        public static int F3CrestFallenWarden()  //Console.WriteLine, Input Required
         {
             string[] f3CrestFallenWarden = new string[]
              {
@@ -505,9 +497,11 @@ namespace MCNR
             Console.WriteLine("2. Slip into the tangled underbrush, hoping the forest's secrets will hide your retreat.");
             Console.Write("\nEnter 1 or 2: ");
 
+            int choice = Convert.ToInt32(Console.ReadLine());
+            return choice;
         }
 
-        public static void SpecialFlowerDialogue() ////Console.Write, Input Required
+        public static int SpecialFlowerDialogue(string playerName) ////Console.Write, Input Required
         {
             string[] specialFlowerDialogueP1 = new string[]
             {
@@ -519,7 +513,7 @@ namespace MCNR
 
             string[] specialFlowerDialogueP2 = new string[]
             {
-                $"LIRA:\n\n'Welcome, {PlayersName}. You have entered a sacred space, a sanctuary of nature and light.",
+                $"LIRA:\n\n'Welcome, {playerName}. You have entered a sacred space, a sanctuary of nature and light.",
                 "Before you may approach the sacred flower, you must prove your worthiness. Answer my riddles, and you shall gain access.\n\n<enter>"
             };
             ts500(specialFlowerDialogueP2);
@@ -536,14 +530,19 @@ namespace MCNR
             Console.WriteLine("2. Turn away from the challenge, choosing to leave the grove and its mysteries behind.");
             Console.Write("\nEnter 1 or 2: ");
 
+            int choice = Convert.ToInt32(Console.ReadLine());
+            return choice;
+
         }
 
-        public static void sfRiddle1()  //Console.WriteLine, Input Required
+        public static string sfRiddle1(string playerName)  //Console.WriteLine, Input Required
         {
-            Console.WriteLine($"LIRA:\n\nVery well, {PlayersName}! Here is your first riddle.'");
+            Console.WriteLine($"LIRA:\n\nVery well, {playerName}! Here is your first riddle.'");
             Thread.Sleep(500);
             Console.WriteLine("I greet the dawn and fade with the night, I bring warmth and light, yet I’m not a flame’s might. What am I?");
             Console.Write("\nAnswer: ");
+
+            string answer = Console.ReadLine().ToLower();
         }
 
         public static void sfRiddle1Correct()
@@ -573,12 +572,14 @@ namespace MCNR
             Console.ReadLine();
         }
 
-        public static void sfRiddle2()  //Console.Write, Input Required
+        public static string sfRiddle2()  //Console.Write, Input Required
         {
             Console.WriteLine("LIRA:\n\nNow, for your next riddle.");
             Thread.Sleep(500);
             Console.WriteLine("I bloom in the spring, bringing joy to the eye. I can symbolize love, yet I wither and die. What am I?");
             Console.Write("\nAnswer: ");
+            string answer = Console.ReadLine().ToLower();
+            return answer;
         }
 
         public static void sfRiddle2Correct()
@@ -617,6 +618,67 @@ namespace MCNR
             };
             ts500(twocorrect);
 
+        }
+
+        public static void ZeroCorrect()
+        {
+            Console.WriteLine("LIRA:\n\nOh no, brave traveler, you have not answered the riddles correctly. Your journey through the Blooming Grove ends here.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("NARRATOR:\n\nThe Grove falls silent, and the air grows cold. The flowers seem to wilt as though mourning your failure.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("LIRA:\n\nDo not despair, however. Even in failure, there is always another opportunity. Return again when you are ready.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("NARRATOR:\n\nWith that, Lira gently turns away, leaving you to reflect on your journey. Perhaps another time...\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+
+        public static void sf1CompletelyIncorrect()
+        {
+            Console.WriteLine("LIRA:\n\nAlas, brave traveler, your attempts have been in vain. You have failed to answer the first riddle.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("NARRATOR:\n\nThe air grows heavy with disappointment. The Grove itself seems to sigh, as though it mourns your failure.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("LIRA:\n\nDo not be disheartened. You still have another chance! The second riddle awaits. Use your wisdom wisely.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+        }
+
+        public static void AfterSpecialFlower()
+        {
+            string[] afterFlowerDialogue = new string[]
+            {
+        "NARRATOR:\n\nWith the rare special flower in hand, you take a moment to admire its beauty. The petals glow softly in the dim light, radiating a calming aura.",
+        "As you continue along the path, the forest seems to grow darker. The trees close in around you, their twisted branches casting eerie shadows across the ground.",
+        "Suddenly, the path ahead becomes obstructed by a massive wall of vines and thorns. You push forward, but the vines tighten around you, preventing any further progress.\n\n<enter>"
+         };
+
+            ts500(afterFlowerDialogue);
+        }
+
+        public static void ForestDeadEnd()
+        {
+            string[] forestDeadEndDialogue = new string[]
+            {
+        "NARRATOR:\n\nYou carefully navigate through the forest, the sound of distant wildlife echoing around you. Just as hope rises that you’ve found a path forward, the ground beneath your feet begins to tremble.",
+        "Without warning, a deafening crack splits the air. A colossal tree, its trunk rotted and unstable, collapses in front of you, blocking the path. The impact shakes the earth, causing loose rocks and debris to tumble from the cliffs above.",
+        "Dust fills the air as vines and branches tangle together, forming an impassable barrier. You try to push through, but the thorns are relentless, tearing at your skin and clothes.",
+        "Realizing it’s impossible to continue, you reluctantly turn back, the forest's silence feeling heavier than before. Perhaps another way will reveal itself — or perhaps the forest has already made its decision.\n\n<enter>"
+            };
+
+            ts500(forestDeadEndDialogue);
         }
 
         #endregion
@@ -871,11 +933,11 @@ namespace MCNR
         #endregion
 
         #region Korthak
-        public static void ReadyForKorthakDialogue()
+        public static void ReadyForKorthakDialogue(string playerName)
         {
             string[] readyForKorthakP1 = new string[]
             {
-                 $"VELDROS THE SEER:\n\n {PlayersName}, it seems you're ready to face KORTHAK THE RAVAGER.",
+                 $"VELDROS THE SEER:\n\n {playerName}, it seems you're ready to face KORTHAK THE RAVAGER.",
                  "You’ve gathered the strength, skill, and courage needed for this battle.",
                  "Your weapons are sharp, your armor sturdy, and your resolve unwavering."
             };
@@ -889,11 +951,11 @@ namespace MCNR
             ts500(readyForKorthakP2);
         }
 
-        public static void NotReadyForKorthakDialogue()
+        public static void NotReadyForKorthakDialogue(string playerName)
         {
             string[] notReadyForKorthakP1 = new string[]
             {
-                $"VELDROS THE SEER:\n\n {PlayersName}, I sense you are not yet fully prepared to face KORTHAK THE RAVAGER.",
+                $"VELDROS THE SEER:\n\n {playerName}, I sense you are not yet fully prepared to face KORTHAK THE RAVAGER.",
                 "The path ahead is treacherous, and Korthak is a force to be reckoned with."
             };
             ts500(notReadyForKorthakP1);
