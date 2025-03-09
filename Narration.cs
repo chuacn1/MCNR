@@ -491,7 +491,7 @@ namespace MCNR
             Console.WriteLine("2. Flee into the shadowy thicket, hoping the dense forest will conceal your escape.");
             Console.Write("\nEnter 1 or 2: ");
 
-            int choice = Convert.ToInt32(Console.ReadLine);
+            int choice = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
             return choice;
         }
@@ -596,7 +596,6 @@ namespace MCNR
             Console.WriteLine("LIRA:\n\nTake a moment to reflect. You have one more chance.\n\n<enter>");
             Console.ReadLine();
             Console.Clear();
-            Console.ReadLine();
         }
 
         public static string sfRiddle2()  //Console.Write, Input Required
@@ -630,8 +629,8 @@ namespace MCNR
             string[] onecorrect = new string[]
             {
                 "LIRA:\n\nAh, you have successfully answered one riddle!",
-                "LIRA:\n\nYou shall receive a Crystal Flower, a token of your wisdom.",
-                "LIRA:\n\nTake it to the Potion Maker, where you can craft a healing potion that will increase your strength.\n\n<enter>"
+                "You shall receive a Crystal Flower, a token of your wisdom.",
+                "Take it to the Potion Maker, where you can craft a healing potion that will increase your strength.\n\n<enter>"
             };
             ts500(onecorrect);
         }
@@ -641,8 +640,8 @@ namespace MCNR
             string[] twocorrect = new string[]
             {
                     "LIRA:\n\nIncredible! You have answered both riddles with grace!",
-                    "LIRA:\n\nYou are blessed with 2 Crystal flowers, symbols of your exceptional insight.",
-                    "LIRA:\n\nUse them wisely at the Potion Maker to create a powerful potion that will grant you double the strength.\n\n<enter>"
+                    "You are blessed with 2 Crystal flowers, symbols of your exceptional insight.",
+                    "Use them wisely at the Potion Maker to create a powerful potion that will grant you double the strength.\n\n<enter>"
             };
             ts500(twocorrect);
 

@@ -35,7 +35,7 @@ namespace MCNR
                     break;
                 case 0:
                     Narration.ExitingCave();
-                    veldros.RouteDecision();
+                    Veldros.RouteDecision();
                     break;
 
             }
