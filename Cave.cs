@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
+using mine;
 
 namespace MCNR
 {
@@ -34,7 +35,7 @@ namespace MCNR
                     break;
                 case 0:
                     Narration.ExitingCave();
-                    Narration.PickRoute();
+                    veldros.RouteDecision();
                     break;
 
             }
@@ -56,7 +57,7 @@ namespace MCNR
             switch (GloomBeastChoice)
             {
                 case 1:
-                    // EnemyVsPlayer
+                    // Enemy.EnemyVsPlayer
                     C3RetraceExit();
                     break;
                 case 2:
@@ -70,7 +71,7 @@ namespace MCNR
 
         {
 
-            string guess = Narration.SpecialSwordGuess(); 
+            string guess = Narration.SpecialSwordGuess();
             while (guess != "LIGHT")
             {
                 Narration.SpecialSwordIncorrect();
@@ -140,8 +141,11 @@ namespace MCNR
             switch (GemStoneChoice)
             {
                 case 1:
-                    // EnemyVsPlayer
+                    // Enemy.EnemyVsPlayer
                     Narration.DeadEndCave();
+                    Console.ReadLine();
+                    Narration.RetracingSteps();
+                    C3RetraceExit();
                     break;
                 case 2:
                     C3RetraceExit();
