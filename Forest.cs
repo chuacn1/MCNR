@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
+using mine;
 
 namespace MCNR
 {
@@ -35,7 +36,7 @@ namespace MCNR
                     break;
                 case 0:
                     Narration.ExitingForest();
-                    Narration.PickRoute();
+                    Veldros.RouteDecision();
                     break;
 
             }
@@ -57,7 +58,7 @@ namespace MCNR
             switch (BloomingBehemothChoice)
             {
                 case 1:
-                    // EnemyVsPlayer
+                    // Enemy.EnemyVsPlayer
                     F3RetraceExit();
                     break;
                 case 2:
@@ -86,6 +87,8 @@ namespace MCNR
                     case 1:
                         Riddle();
                         Narration.AfterSpecialFlower();
+                        Narration.RetracingSteps();
+                        Forest1Or2();
                         break;
                     case 2:
                         Forest1Or2();
@@ -106,6 +109,7 @@ namespace MCNR
                 {
                     attempts1--;
                     Narration.sfRiddle1and2Incorrect();
+
                 }
                 if (answer == "sun")
                 {
@@ -139,7 +143,7 @@ namespace MCNR
             switch (correct)
             {
                 case 1:
-                    Narration.OneCorrect(); 
+                    Narration.OneCorrect();
                     break;
                 case 2:
                     Narration.TwoCorrect();
@@ -201,7 +205,7 @@ namespace MCNR
             switch (choice)
             {
                 case 1:
-                    // EnemyVsPlayer
+                    // Enemy.EnemyVsPlayer
                     Narration.ForestDeadEnd();
                     Narration.ExitingForest();
                     Narration.PickRoute(); //playername
