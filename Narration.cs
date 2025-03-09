@@ -425,7 +425,7 @@ namespace MCNR
             ts1000(forestExitMessages);
         }
 
-        public static void F1orF2()//Console.WriteLine, Input Required
+        public static int F1orF2()//Console.WriteLine, Input Required
         {
             string[] forestMessages = new string[]
             {
@@ -441,18 +441,22 @@ namespace MCNR
             Console.WriteLine("0. Exit the forest, retreating to the safety of the known.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+            int choice = Console.Read();
+            return choice;
         }
 
-        public static void F3orRetraceorExit() // Console.WriteLine, Input Required
+        public static int F3orRetraceorExit() // Console.WriteLine, Input Required
         {
             Console.WriteLine("1. Press on, venturing deeper into the shadowy heart of the forest.");
             Console.WriteLine("2. Turn back, retracing your steps to the safety of the forest’s edge.");
             Console.WriteLine("0. Exit the forest, abandoning your journey for now.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+            int choice = Console.Read();
+            return choice;
         }
 
-        public static void F1BloomingBehemoth() //Console.WriteLine, Input Required
+        public static int F1BloomingBehemoth() //Console.WriteLine, Input Required
         {
             string[] f1BloomingBehemoth = new string[]
             {
@@ -477,10 +481,13 @@ namespace MCNR
             Console.WriteLine("2. Flee into the shadowy thicket, hoping the dense forest will conceal your escape.");
             Console.Write("\nEnter 1 or 2: ");
 
+            int choice = Console.Read();
+            return choice;
+
 
         }
 
-        public static void F3CrestFallenWarden()  //Console.WriteLine, Input Required
+        public static int F3CrestFallenWarden()  //Console.WriteLine, Input Required
         {
             string[] f3CrestFallenWarden = new string[]
              {
@@ -504,10 +511,12 @@ namespace MCNR
             Console.WriteLine("1. Face the ancient Warden, standing tall against the might of the forest.");
             Console.WriteLine("2. Slip into the tangled underbrush, hoping the forest's secrets will hide your retreat.");
             Console.Write("\nEnter 1 or 2: ");
+            int choice = Console.Read();
+            return choice;
 
         }
 
-        public static void SpecialFlowerDialogue() ////Console.Write, Input Required
+        public static int SpecialFlowerDialogue() ////Console.Write, Input Required
         {
             string[] specialFlowerDialogueP1 = new string[]
             {
@@ -535,15 +544,18 @@ namespace MCNR
             Console.WriteLine("1. Accept the challenge and answer Lira's riddle to gain access to the sacred flower.");
             Console.WriteLine("2. Turn away from the challenge, choosing to leave the grove and its mysteries behind.");
             Console.Write("\nEnter 1 or 2: ");
-
+            int choice = Console.Read();
+            return choice;
         }
 
-        public static void sfRiddle1()  //Console.WriteLine, Input Required
+        public static string sfRiddle1()  //Console.WriteLine, Input Required
         {
             Console.WriteLine($"LIRA:\n\nVery well, {PlayersName}! Here is your first riddle.'");
             Thread.Sleep(500);
             Console.WriteLine("I greet the dawn and fade with the night, I bring warmth and light, yet I’m not a flame’s might. What am I?");
             Console.Write("\nAnswer: ");
+            string answer = Console.ReadLine();
+            return answer;
         }
 
         public static void sfRiddle1Correct()
@@ -579,6 +591,8 @@ namespace MCNR
             Thread.Sleep(500);
             Console.WriteLine("I bloom in the spring, bringing joy to the eye. I can symbolize love, yet I wither and die. What am I?");
             Console.Write("\nAnswer: ");
+            string answer = Console.ReadLine();
+            return answer;
         }
 
         public static void sfRiddle2Correct()
