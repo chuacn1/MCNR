@@ -66,6 +66,8 @@ namespace MCNR
         #endregion
 
         #region Start 
+
+        public static string PlayersName { get; set; }
         public static void SplashScreen()
 
         {
@@ -292,11 +294,11 @@ namespace MCNR
         #endregion
 
         #region BlackSmith
-        public static void BlackSmithDialogue(string playerName) //Dialogue for Upgrading Sword, Console.WriteLine, Input Required
+        public static void BlackSmithDialogue() //Dialogue for Upgrading Sword, Console.WriteLine, Input Required
         {
             string[] blackSmith = new string[]
             {
-                $"THRAIN IRONHAND:\n\n Welcome to my forge, {playerName}. The name's Thrain Ironhand, blacksmith around here.",
+                $"THRAIN IRONHAND:\n\n Welcome to my forge, {PlayersName}. The name's Thrain Ironhand, blacksmith around here.",
                 "What can I do for you today? \n\n<enter>"
             };
             ts500(blackSmith);
@@ -308,11 +310,11 @@ namespace MCNR
             Console.Write("\nEnter 1 or 2: ");
         }
 
-        public static void ExitBlackSmithDialogue(string playerName)
+        public static void ExitBlackSmithDialogue()
         {
             string[] exitBS = new string[]
             {
-                $"THRAIN IRONHAND:\n\nFair enough, {playerName}. Take your time. If you need anything, I'll be here.",
+                $"THRAIN IRONHAND:\n\nFair enough, {PlayersName}. Take your time. If you need anything, I'll be here.",
                 "Just don’t stand too long, or I might put you to work! \n\n<enter>"
             };
             ts500(exitBS);
@@ -320,11 +322,11 @@ namespace MCNR
         #endregion
 
         #region PotionMaker
-        public static void PotionMakerDialogue(string playerName) //Are going to do Healing and Strength? , Console.WriteLine, Input Required
+        public static void PotionMakerDialogue() //Are going to do Healing and Strength? , Console.WriteLine, Input Required
         {
             string[] potionMaker = new string[]
             {
-                $"ELYISA MOONSHADE:\n\n Welcome to my potion shop, {playerName}. The name's Elyisa Moonshade, the finest potion maker around here.",
+                $"ELYISA MOONSHADE:\n\n Welcome to my potion shop, {PlayersName}. The name's Elyisa Moonshade, the finest potion maker around here.",
                 "I can provide you with the most powerful concoctions for any need, be it healing or magic.",
                 "What may I get you for today? \n\n<enter>"
             };
@@ -339,11 +341,11 @@ namespace MCNR
             Console.Write("\nEnter 1, 2 or 3: ");
         }
 
-        public static void ExitPotionMakerDialogue(string playerName)
+        public static void ExitPotionMakerDialogue()
         {
             string[] exitPotionMaker = new string[]
             {
-                $"ELYISA MOONSHADE:\n\nFair enough, {playerName}. Take your time. If you need anything, just let me know.",
+                $"ELYISA MOONSHADE:\n\nFair enough, {PlayersName}. Take your time. If you need anything, just let me know.",
                 "Don’t be shy, the best potions are just a word away! \n\n<enter>"
             };
             ts500(exitPotionMaker);
@@ -351,11 +353,11 @@ namespace MCNR
         #endregion
 
         #region CaveForestKorthak
-        public static void VeldrosDialogue(string playerName) //Console.WriteLine, Input Required
+        public static void VeldrosDialogue() //Console.WriteLine, Input Required
         {
             string[] veldrosP1 = new string[]
             {
-                 $"VELDROS THE SEER:\n\n Ahh, Hello {playerName}.",
+                 $"VELDROS THE SEER:\n\n Ahh, Hello {PlayersName}.",
                 "You have explored the Town of Eldoria, and your next great challenge awaits.",
                 "You must choose between continuing your quest to explore the Cave or the Forest, where hidden loot awaits.",
             };
@@ -369,9 +371,9 @@ namespace MCNR
             };
             ts500(veldrosP2);
         }
-        public static void PickRoute(string playerName) //Console.WriteLine, Input Required
+        public static void PickRoute() //Console.WriteLine, Input Required
         {
-            Console.WriteLine("ELDROS THE SEER:\n\nWhere would you like to venture, {playerName}? You can explore the Cave, the Forest, or face Korthak the Ravager directly. What's your choice?");
+            Console.WriteLine("ELDROS THE SEER:\n\nWhere would you like to venture, {PlayersName}? You can explore the Cave, the Forest, or face Korthak the Ravager directly. What's your choice?");
 
             Console.WriteLine("1. Cave");
 
@@ -501,7 +503,7 @@ namespace MCNR
             return choice;
         }
 
-        public static int SpecialFlowerDialogue(string playerName) ////Console.Write, Input Required
+        public static int SpecialFlowerDialogue() ////Console.Write, Input Required
         {
             string[] specialFlowerDialogueP1 = new string[]
             {
@@ -513,7 +515,7 @@ namespace MCNR
 
             string[] specialFlowerDialogueP2 = new string[]
             {
-                $"LIRA:\n\n'Welcome, {playerName}. You have entered a sacred space, a sanctuary of nature and light.",
+                $"LIRA:\n\n'Welcome, {PlayersName}. You have entered a sacred space, a sanctuary of nature and light.",
                 "Before you may approach the sacred flower, you must prove your worthiness. Answer my riddles, and you shall gain access.\n\n<enter>"
             };
             ts500(specialFlowerDialogueP2);
@@ -535,9 +537,9 @@ namespace MCNR
 
         }
 
-        public static string sfRiddle1(string playerName)  //Console.WriteLine, Input Required
+        public static string sfRiddle1()  //Console.WriteLine, Input Required
         {
-            Console.WriteLine($"LIRA:\n\nVery well, {playerName}! Here is your first riddle.'");
+            Console.WriteLine($"LIRA:\n\nVery well, {PlayersName}! Here is your first riddle.'");
             Thread.Sleep(500);
             Console.WriteLine("I greet the dawn and fade with the night, I bring warmth and light, yet I’m not a flame’s might. What am I?");
             Console.Write("\nAnswer: ");
@@ -933,11 +935,11 @@ namespace MCNR
         #endregion
 
         #region Korthak
-        public static void ReadyForKorthakDialogue(string playerName)
+        public static void ReadyForKorthakDialogue()
         {
             string[] readyForKorthakP1 = new string[]
             {
-                 $"VELDROS THE SEER:\n\n {playerName}, it seems you're ready to face KORTHAK THE RAVAGER.",
+                 $"VELDROS THE SEER:\n\n {PlayersName}, it seems you're ready to face KORTHAK THE RAVAGER.",
                  "You’ve gathered the strength, skill, and courage needed for this battle.",
                  "Your weapons are sharp, your armor sturdy, and your resolve unwavering."
             };
@@ -951,11 +953,11 @@ namespace MCNR
             ts500(readyForKorthakP2);
         }
 
-        public static void NotReadyForKorthakDialogue(string playerName)
+        public static void NotReadyForKorthakDialogue()
         {
             string[] notReadyForKorthakP1 = new string[]
             {
-                $"VELDROS THE SEER:\n\n {playerName}, I sense you are not yet fully prepared to face KORTHAK THE RAVAGER.",
+                $"VELDROS THE SEER:\n\n {PlayersName}, I sense you are not yet fully prepared to face KORTHAK THE RAVAGER.",
                 "The path ahead is treacherous, and Korthak is a force to be reckoned with."
             };
             ts500(notReadyForKorthakP1);
