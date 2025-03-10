@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCNR;
 
-namespace MCNR
+namespace mine
 {
     internal class town
     {
@@ -37,7 +37,7 @@ namespace MCNR
                         //Inventory
                         break;
                     case 1:
-                        BlackSmith.BlackSmithEncounter();
+
                         break;
                     case 2:
                         //PotionMaker
