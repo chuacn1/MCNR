@@ -37,7 +37,7 @@ namespace MCNR
                         //Inventory
                         break;
                     case 1:
-                        //BlackSmith
+                        BlackSmith.BlackSmithEncounter();
                         break;
                     case 2:
                         //PotionMaker
