@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MCNR
 {
-    class Narration
+    public class Narration
     {
         #region Thread.Sleep Method
-        public void ts500(string[] narration)
+        public static void ts500(string[] narration)
         {
             foreach (string words in narration)
 
@@ -23,7 +24,7 @@ namespace MCNR
             Console.Clear();
 
         }
-        public void ts1000(string[] narration)
+        public static void ts1000(string[] narration)
 
         {
             foreach (string words in narration)
@@ -31,9 +32,9 @@ namespace MCNR
             {
                 Console.WriteLine(words);
                 Thread.Sleep(1000);
+                Console.Clear();
             }
 
-            Console.ReadLine();
 
             Console.Clear();
 
@@ -41,14 +42,14 @@ namespace MCNR
         #endregion
 
         #region Win or Lose
-        public void PlayerWin()
+        public static void PlayerWin()
         {
             Console.WriteLine("You have triumphed over the foe!\n\n<enter>");
             Console.ReadLine();
             Console.Clear();
         }
 
-        public void PlayerLose() //Console.WriteLine + Console.ReadLine
+        public static void PlayerLose() //Console.WriteLine + Console.ReadLine
         {
             Console.WriteLine("You have fallen in battle.\n\n<enter>");
             Console.ReadLine();
@@ -57,7 +58,7 @@ namespace MCNR
         #endregion
 
         #region Invalid Input
-        public void InvalidInput()
+        public static void InvalidInput()
         {
             Console.WriteLine("Invalid Input! Please try again \n\n <enter>"); //Console.WriteLine + Console.ReadLine
             Console.ReadLine();
@@ -66,7 +67,9 @@ namespace MCNR
         #endregion
 
         #region Start 
-        public void SplashScreen()
+
+        public static string PlayersName { get; set; }
+        public static void SplashScreen()
 
         {
 
@@ -85,17 +88,21 @@ namespace MCNR
             Console.WriteLine("╚" + new string('═', borderWidth) + "╝");
 
             Console.WriteLine();
+            Console.Write("Please Enter Your Name: ");
+            PlayersName = Console.ReadLine();
+            Console.Clear();
+
         }
-        public void IntroductionDialogue(string playersName)
+        public static void IntroductionDialogue()
         {
 
             string[] introDialogue = new string[]
 
             {
 
-                    "NARRATOR:\n\nIn the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants.\n",
+                    "NARRATOR:\n\nIn the serene land of Eldoria, darkness begins to encroach, threatening the peace of its inhabitants.",
 
-                    $"You are {playersName}, a budding hero!\n",
+                    $"You are {PlayersName}, a budding hero!",
 
                     "Awakening to the call of adventure, equipped only with your bravery and a timeworn sword, your quest begins at the edge of your village.",
 
@@ -108,7 +115,7 @@ namespace MCNR
 
         #region Attack Tutorial
 
-        public void TutorialControlDialogue()
+        public static void TutorialControlDialogue()
         {
             string[] tutorialControlDialogue = new string[]
 
@@ -124,7 +131,7 @@ namespace MCNR
         #endregion
 
         #region Inventory Tutorial
-        public void InventoryInstructionDialogue()
+        public static void InventoryInstructionDialogue()
         {
             string[] inventoryInstructionP1 = new string[]
             {
@@ -142,12 +149,12 @@ namespace MCNR
             ts500(inventoryInstructionP2);
         }
 
-        public void OpenInventory() //Console.WriteLine , Input Required
+        public static void OpenInventory() //Console.WriteLine , Input Required
         {
             Console.Write("Press 'I' to open up Inventory: ");
         }
 
-        public void EndOfTutorial()
+        public static void EndOfTutorial()
         {
             string[] endOfTutorial = new string[]
             {
@@ -159,21 +166,21 @@ namespace MCNR
         #endregion
 
         #region Dropped Loots
-        public void DroppedCoin() //Console.WriteLine
+        public static void DroppedCoin() //Console.WriteLine
         {
             Console.WriteLine("Gleaming Coin");
         }
-            public void DroppedIron() //Console.WriteLine
+        public static void DroppedIron() //Console.WriteLine
         {
             Console.WriteLine("Sturdy Iron");
         }
 
-        public void DroppedCrystalFlower() //Console.WriteLine
+        public static void DroppedCrystalFlower() //Console.WriteLine
         {
             Console.WriteLine("Crystal Flower");
-            }
+        }
 
-        public void SpecialSword()
+        public static void SpecialSword()
         {
 
         }
@@ -181,7 +188,7 @@ namespace MCNR
 
         #region Pick Up Loots
 
-        public void TutorialInventoryDialogue()
+        public static void TutorialInventoryDialogue()
         {
 
             string[] tutorialInventoryDialogue2 = new string[]
@@ -192,12 +199,12 @@ namespace MCNR
             ts500(tutorialInventoryDialogue2);
         }
 
-        public void LootPickedUp() //Console.WriteLine
+        public static void LootPickedUp() //Console.WriteLine
         {
             Console.WriteLine(" ");
         }
 
-        public void PickUpLootInstruction() //Console.WriteLine, Input required
+        public static void PickUpLootInstruction() //Console.WriteLine, Input required
         {
             Console.WriteLine("\nPress 'P' to collect your loot!\n");
         }
@@ -205,7 +212,7 @@ namespace MCNR
         #endregion
 
         #region Enter Town Screen
-        public void EnteredTownScreen()
+        public static void EnteredTownScreen()
         {
             string title = "You have entered the Town of Eldoria";
 
@@ -234,7 +241,7 @@ namespace MCNR
         #endregion
 
         #region Town Introduction
-        public void EnteringTownDialogue()
+        public static void EnteringTownDialogue()
         {
 
             string[] enteringTown = new string[]
@@ -249,7 +256,7 @@ namespace MCNR
             ts500(enteringTown);
         }
 
-        public void EnteredTownDialogue()
+        public static void EnteredTownDialogue()
         {
             string[] enteredTownP1 = new string[]
             {
@@ -272,7 +279,7 @@ namespace MCNR
         #endregion
 
         #region BSorPM
-        public void VisitBSorPM() //Console.WriteLine, Input Required
+        public static int VisitBSorPM() //Console.WriteLine, Input Required
         {
 
             Console.WriteLine("NARRATOR:\n\nNow that you are in Eldoria. What would you like to do?\n\n<enter>");
@@ -288,15 +295,19 @@ namespace MCNR
             Console.WriteLine("0. View inventory");
 
             Console.Write("\nEnter 1, 2, 3 or 0: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            Console.Clear();
+            return choice;
         }
         #endregion
 
         #region BlackSmith
-        public void BlackSmithDialogue(string playerName) //Dialogue for Upgrading Sword, Console.WriteLine, Input Required
+        public static int BlackSmithDialogue() //Dialogue for Upgrading Sword, Console.WriteLine, Input Required
         {
             string[] blackSmith = new string[]
             {
-                $"THRAIN IRONHAND:\n\n Welcome to my forge, {playerName}. The name's Thrain Ironhand, blacksmith around here.",
+                $"THRAIN IRONHAND:\n\n Welcome to my forge, {PlayersName}. The name's Thrain Ironhand, blacksmith around here.",
                 "What can I do for you today? \n\n<enter>"
             };
             ts500(blackSmith);
@@ -306,13 +317,16 @@ namespace MCNR
             Console.WriteLine("2. Return to Town");
 
             Console.Write("\nEnter 1 or 2: ");
+            int choice = Convert.ToInt32(Console.ReadLine);
+            Console.Clear();
+            return choice;
         }
 
-        public void ExitBlackSmithDialogue(string playerName)
+        public static void ExitBlackSmithDialogue()
         {
             string[] exitBS = new string[]
             {
-                $"THRAIN IRONHAND:\n\nFair enough, {playerName}. Take your time. If you need anything, I'll be here.",
+                $"THRAIN IRONHAND:\n\nFair enough, {PlayersName}. Take your time. If you need anything, I'll be here.",
                 "Just don’t stand too long, or I might put you to work! \n\n<enter>"
             };
             ts500(exitBS);
@@ -320,11 +334,11 @@ namespace MCNR
         #endregion
 
         #region PotionMaker
-        public void PotionMakerDialogue(string playerName) //Are going to do Healing and Strength? , Console.WriteLine, Input Required
+        public static int PotionMakerDialogue() //Are going to do Healing and Strength? , Console.WriteLine, Input Required
         {
             string[] potionMaker = new string[]
             {
-                $"ELYISA MOONSHADE:\n\n Welcome to my potion shop, {playerName}. The name's Elyisa Moonshade, the finest potion maker around here.",
+                $"ELYISA MOONSHADE:\n\n Welcome to my potion shop, {PlayersName}. The name's Elyisa Moonshade, the finest potion maker around here.",
                 "I can provide you with the most powerful concoctions for any need, be it healing or magic.",
                 "What may I get you for today? \n\n<enter>"
             };
@@ -337,13 +351,17 @@ namespace MCNR
             Console.WriteLine("3. Return to Town");
 
             Console.Write("\nEnter 1, 2 or 3: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
+
         }
 
-        public void ExitPotionMakerDialogue(string playerName)
+        public static void ExitPotionMakerDialogue()
         {
             string[] exitPotionMaker = new string[]
             {
-                $"ELYISA MOONSHADE:\n\nFair enough, {playerName}. Take your time. If you need anything, just let me know.",
+                $"ELYISA MOONSHADE:\n\nFair enough, {PlayersName}. Take your time. If you need anything, just let me know.",
                 "Don’t be shy, the best potions are just a word away! \n\n<enter>"
             };
             ts500(exitPotionMaker);
@@ -351,13 +369,13 @@ namespace MCNR
         #endregion
 
         #region CaveForestKorthak
-        public void VeldrosDialogue(string playerName) //Console.WriteLine, Input Required
+        public static void VeldrosDialogue() //Console.WriteLine, Input Required
         {
             string[] veldrosP1 = new string[]
             {
-                 $"VELDROS THE SEER:\n\n Ahh, Hello {playerName}.",
+                 $"VELDROS THE SEER:\n\nAhh, Hello {PlayersName}.",
                 "You have explored the Town of Eldoria, and your next great challenge awaits.",
-                "You must choose between continuing your quest to explore the Cave or the Forest, where hidden loot awaits.",
+                "You must choose between continuing your quest to explore the Cave or the Forest, where hidden loot awaits.\n\n<enter>",
             };
             ts500(veldrosP1);
 
@@ -369,28 +387,31 @@ namespace MCNR
             };
             ts500(veldrosP2);
         }
-        public void PickRoute(string playerName) //Console.WriteLine, Input Required
+        public static int PickRoute() //Console.WriteLine, Input Required
         {
-            Console.WriteLine("ELDROS THE SEER:\n\nWhere would you like to venture, {playerName}? You can explore the Cave, the Forest, or face Korthak the Ravager directly. What's your choice?");
+            Console.WriteLine($"VELDROS THE SEER:\n\nWhere would you like to venture, {PlayersName}? You can explore the Cave, the Forest, or face Korthak the Ravager directly. What's your choice?");
 
             Console.WriteLine("1. Cave");
 
             Console.WriteLine("2. Forest");
 
-            Console.WriteLine("4. Korthak");
+            Console.WriteLine("3. Korthak");
 
-            Console.WriteLine("3. Return to Eldoria");
+            Console.WriteLine("4. Return to Eldoria");
 
             Console.WriteLine("5. Check inventory");
 
 
             Console.Write("\nEnter 1, 2, 3, 4 or 5: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
         }
         #endregion
 
 
         #region Forest
-        public void EnterForest()
+        public static void EnterForest()
         {
             string[] forestMessages = new string[]
             {
@@ -401,7 +422,7 @@ namespace MCNR
             ts1000(forestMessages);
         }
 
-        public void ExitingForest()
+        public static void ExitingForest()
         {
             string[] forestExitMessages = new string[]
             {
@@ -412,7 +433,7 @@ namespace MCNR
             ts1000(forestExitMessages);
         }
 
-        public void F1orF2()//Console.WriteLine, Input Required
+        public static int F1orF2()//Console.WriteLine, Input Required
         {
             string[] forestMessages = new string[]
             {
@@ -428,18 +449,24 @@ namespace MCNR
             Console.WriteLine("0. Exit the forest, retreating to the safety of the known.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
         }
 
-        public void F3orRetraceorExit() // Console.WriteLine, Input Required
+        public static int F3orRetraceorExit() // Console.WriteLine, Input Required
         {
             Console.WriteLine("1. Press on, venturing deeper into the shadowy heart of the forest.");
             Console.WriteLine("2. Turn back, retracing your steps to the safety of the forest’s edge.");
             Console.WriteLine("0. Exit the forest, abandoning your journey for now.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
         }
 
-        public void F1BloomingBehemoth() //Console.WriteLine, Input Required
+        public static int F1BloomingBehemoth() //Console.WriteLine, Input Required
         {
             string[] f1BloomingBehemoth = new string[]
             {
@@ -453,7 +480,7 @@ namespace MCNR
             Console.Clear();
 
             Console.WriteLine("BLOOMING BEHEMOTH:\n\nYou dare to trespass in my garden? Foolish wanderer, prepare to face my wrath!\n\n<enter>");
-                Console.ReadLine();
+            Console.ReadLine();
             Console.Clear();
 
             Console.WriteLine("NARRATOR:\n\nYour heart pounds as you clutch your staff. The creature’s eyes glow with ancient fury. A choice lies before you — stand your ground or make a desperate escape.\n\n<enter>");
@@ -464,17 +491,19 @@ namespace MCNR
             Console.WriteLine("2. Flee into the shadowy thicket, hoping the dense forest will conceal your escape.");
             Console.Write("\nEnter 1 or 2: ");
 
-
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
         }
 
-        public void F3CrestFallenWarden()  //Console.WriteLine, Input Required
+        public static int F3CrestFallenWarden()  //Console.WriteLine, Input Required
         {
             string[] f3CrestFallenWarden = new string[]
              {
                "NARRATOR:\n\nThe air in the forest is thick with the scent of wildflowers and damp earth. As you tread carefully through the underbrush, a strange silence falls over the area, the usual sounds of the forest oddly absent.",
                "A rustle from the thicket breaks the quiet. Before you can react, the ground cracks open, and a monstrous figure rises, its form barely visible through a thick fog of petals and leaves.\n\n<enter>"
              };
-                ts500(f3CrestFallenWarden);
+            ts500(f3CrestFallenWarden);
 
             Console.WriteLine("NARRATOR:\n\nThis is no ordinary beast. Before you stands a CRESTFALLEN WARDEN, a creature of ancient wood and vine, its body shifting like a living mass of tangled branches and moss-covered bark.\n\n<enter>");
             Console.ReadLine();
@@ -492,9 +521,12 @@ namespace MCNR
             Console.WriteLine("2. Slip into the tangled underbrush, hoping the forest's secrets will hide your retreat.");
             Console.Write("\nEnter 1 or 2: ");
 
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
         }
 
-        public void SpecialFlowerDialogue(string playerName) ////Console.Write, Input Required
+        public static int SpecialFlowerDialogue() ////Console.Write, Input Required
         {
             string[] specialFlowerDialogueP1 = new string[]
             {
@@ -506,7 +538,7 @@ namespace MCNR
 
             string[] specialFlowerDialogueP2 = new string[]
             {
-                $"LIRA:\n\n'Welcome, {playerName}. You have entered a sacred space, a sanctuary of nature and light.",
+                $"LIRA:\n\n'Welcome, {PlayersName}. You have entered a sacred space, a sanctuary of nature and light.",
                 "Before you may approach the sacred flower, you must prove your worthiness. Answer my riddles, and you shall gain access.\n\n<enter>"
             };
             ts500(specialFlowerDialogueP2);
@@ -523,17 +555,24 @@ namespace MCNR
             Console.WriteLine("2. Turn away from the challenge, choosing to leave the grove and its mysteries behind.");
             Console.Write("\nEnter 1 or 2: ");
 
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
         }
 
-        public void sfRiddle1(string playerName)  //Console.WriteLine, Input Required
+        public static string sfRiddle1()  //Console.WriteLine, Input Required
         {
-            Console.WriteLine($"LIRA:\n\nVery well, {playerName}! Here is your first riddle.'");
+            Console.WriteLine($"LIRA:\n\nVery well, {PlayersName}! Here is your first riddle.'");
             Thread.Sleep(500);
             Console.WriteLine("I greet the dawn and fade with the night, I bring warmth and light, yet I’m not a flame’s might. What am I?");
             Console.Write("\nAnswer: ");
-            }
 
-        public void sfRiddle1Correct()
+            string answer = Console.ReadLine().ToLower();
+            Console.Clear();
+            return answer;
+        }
+
+        public static void sfRiddle1Correct()
         {
             Console.WriteLine("NARRATOR:\n\nThe air around you shimmers with approval as Lira, Guardian of the Blooming Grove, smiles warmly.\n\n<enter>");
             Console.ReadLine();
@@ -546,7 +585,7 @@ namespace MCNR
             Console.Clear();
         }
 
-        public void sfRiddle1and2Incorrect()
+        public static void sfRiddle1and2Incorrect()
         {
             Console.WriteLine("LIRA:\n\nAlas, brave traveler, your answer is not correct.\n\n<enter>");
             Console.ReadLine();
@@ -557,18 +596,20 @@ namespace MCNR
             Console.WriteLine("LIRA:\n\nTake a moment to reflect. You have one more chance.\n\n<enter>");
             Console.ReadLine();
             Console.Clear();
-            Console.ReadLine();
         }
 
-        public void sfRiddle2()  //Console.Write, Input Required
+        public static string sfRiddle2()  //Console.Write, Input Required
         {
             Console.WriteLine("LIRA:\n\nNow, for your next riddle.");
             Thread.Sleep(500);
             Console.WriteLine("I bloom in the spring, bringing joy to the eye. I can symbolize love, yet I wither and die. What am I?");
             Console.Write("\nAnswer: ");
+            string answer = Console.ReadLine().ToLower();
+            Console.Clear();
+            return answer;
         }
 
-        public void sfRiddle2Correct()
+        public static void sfRiddle2Correct()
         {
             Console.WriteLine("NARRATOR:\n\nThe air around you shimmers with approval as Lira, Guardian of the Blooming Grove, smiles warmly.\n\n<enter>");
             Console.ReadLine();
@@ -583,38 +624,105 @@ namespace MCNR
             Console.Clear();
         }
 
-        public void OneCorrect()
+        public static void OneCorrect()
         {
             string[] onecorrect = new string[]
             {
                 "LIRA:\n\nAh, you have successfully answered one riddle!",
-                "LIRA:\n\nYou shall receive a Crystal Flower, a token of your wisdom.",
-                "LIRA:\n\nTake it to the Potion Maker, where you can craft a healing potion that will increase your strength.\n\n<enter>"
+                "You shall receive a Crystal Flower, a token of your wisdom.",
+                "Take it to the Potion Maker, where you can craft a healing potion that will increase your strength.\n\n<enter>"
             };
             ts500(onecorrect);
         }
 
-        public void TwoCorrect()
+        public static void TwoCorrect()
         {
             string[] twocorrect = new string[]
             {
                     "LIRA:\n\nIncredible! You have answered both riddles with grace!",
-                    "LIRA:\n\nYou are blessed with 2 Crystal flowers, symbols of your exceptional insight.",
-                    "LIRA:\n\nUse them wisely at the Potion Maker to create a powerful potion that will grant you double the strength.\n\n<enter>"
+                    "You are blessed with 2 Crystal flowers, symbols of your exceptional insight.",
+                    "Use them wisely at the Potion Maker to create a powerful potion that will grant you double the strength.\n\n<enter>"
             };
             ts500(twocorrect);
 
         }
 
-        public void sfRiddle2Incorrect()
+        public static void ZeroCorrect()
         {
+            Console.WriteLine("LIRA:\n\nOh no, brave traveler, you have not answered the riddles correctly. Your journey through the Blooming Grove ends here.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
 
+            Console.WriteLine("NARRATOR:\n\nThe Grove falls silent, and the air grows cold. The flowers seem to wilt as though mourning your failure.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("LIRA:\n\nDo not despair, however. Even in failure, there is always another opportunity. Return again when you are ready.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("NARRATOR:\n\nWith that, Lira gently turns away, leaving you to reflect on your journey. Perhaps another time...\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+
+        public static void sf1CompletelyIncorrect()
+        {
+            Console.WriteLine("LIRA:\n\nAlas, brave traveler, your attempts have been in vain. You have failed to answer the first riddle.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("NARRATOR:\n\nThe air grows heavy with disappointment. The Grove itself seems to sigh, as though it mourns your failure.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("LIRA:\n\nDo not be disheartened. You still have another chance! The second riddle awaits. Use your wisdom wisely.\n\n<enter>");
+            Console.ReadLine();
+            Console.Clear();
+
+        }
+
+        public static void AfterSpecialFlower()
+        {
+            string[] afterFlowerDialogue = new string[]
+            {
+        "NARRATOR:\n\nWith the rare special flower in hand, you take a moment to admire its beauty. The petals glow softly in the dim light, radiating a calming aura.",
+        "As you continue along the path, the forest seems to grow darker. The trees close in around you, their twisted branches casting eerie shadows across the ground.",
+        "Suddenly, the path ahead becomes obstructed by a massive wall of vines and thorns. You push forward, but the vines tighten around you, preventing any further progress.\n\n<enter>"
+         };
+
+            ts500(afterFlowerDialogue);
+        }
+
+        public static void ForestDeadEnd()
+        {
+            string[] forestDeadEndDialogue = new string[]
+            {
+        "NARRATOR:\n\nYou carefully navigate through the forest, the sound of distant wildlife echoing around you. Just as hope rises that you’ve found a path forward, the ground beneath your feet begins to tremble.",
+        "Without warning, a deafening crack splits the air. A colossal tree, its trunk rotted and unstable, collapses in front of you, blocking the path. The impact shakes the earth, causing loose rocks and debris to tumble from the cliffs above.",
+        "Dust fills the air as vines and branches tangle together, forming an impassable barrier. You try to push through, but the thorns are relentless, tearing at your skin and clothes.",
+        "Realizing it’s impossible to continue, you reluctantly turn back, the forest's silence feeling heavier than before. Perhaps another way will reveal itself — or perhaps the forest has already made its decision.\n\n<enter>"
+            };
+
+            ts500(forestDeadEndDialogue);
         }
 
         #endregion
 
+        public static void RetracingSteps()
+        {
+            string[] retracing = new string[]
+     {
+                        "Retracing steps.",
+                        "Retracing steps..",
+                        "Retracing steps..."
+     };
+            ts1000(retracing);
+        }
+
         #region Cave
-        public void EnterCave()
+        public static void EnterCave()
         {
             string[] caveMessages = new string[]
             {
@@ -625,7 +733,7 @@ namespace MCNR
             ts1000(caveMessages);
         }
 
-        public void ExitingCave()
+        public static void ExitingCave()
         {
             string[] caveExitMessages = new string[]
             {
@@ -635,9 +743,7 @@ namespace MCNR
             };
             ts1000(caveExitMessages);
         }
-
-
-        public void C1orC2() //Console.WriteLine, Input Required
+        public static int C1orC2() //Console.WriteLine, Input Required
         {
             string[] caveMessages = new string[]
             {
@@ -652,18 +758,27 @@ namespace MCNR
             Console.WriteLine("0. Exit the cave, retreating from whatever lies ahead.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
         }
 
-        public void C3orRetraceorExit() //Console.WriteLine, Input Required
+        public static int C3orRetraceorExit() //Console.WriteLine, Input Required
         {
             Console.WriteLine("1. Press on, venturing deeper into the cave’s unknown depths.");
             Console.WriteLine("2. Turn back, retracing your steps to the safety of the entrance.");
             Console.WriteLine("0. Exit the cave, abandoning the journey for now.");
 
             Console.Write("\nEnter 1, 2 or 0: ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            Console.Clear();
+            return choice;
         }
 
-        public void C1GloomBeast() //Console.WriteLine, Input Required
+        public static int C1GloomBeast() //Console.WriteLine, Input Required
         {
             string[] c1GloomBeastP1 = new string[]
             {
@@ -673,7 +788,7 @@ namespace MCNR
             };
             ts500(c1GloomBeastP1);
 
-            Console.WriteLine("GLOOMBEAST:\n\nYou dare disturb my sanctuary?! Prepare to face your doom!/n/n<enter>"); Thread.Sleep(500);
+            Console.WriteLine("GLOOMBEAST:\n\nYou dare disturb my sanctuary?! Prepare to face your doom!\n\n<enter>"); Thread.Sleep(500);
             Console.ReadLine();
             Console.Clear();
 
@@ -682,15 +797,19 @@ namespace MCNR
                 "NARRATOR:\n\nYour heart races as you grip your weapon, knowing the battle is imminent.",
                 "Will you stand your ground and fight, or will you flee into the darkened depths?\n\n<enter>"
             };
+            ts500(c1GloomBeastP2);
 
             Console.WriteLine("1. Stand your ground and face the beast in battle.");
             Console.WriteLine("2. Flee into the darkened depths, hoping to escape its wrath.");
             Console.Write("\nEnter 1 or 2: ");
-            ts500(c1GloomBeastP2);
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
 
         }
 
-        public void C3GemstoneTitan() //Console.Write, Input Required
+        public static int C3GemstoneTitan() //Console.Write, Input Required
         {
             string[] c3GemstoneTitanP1 = new string[]
             {
@@ -700,7 +819,7 @@ namespace MCNR
             };
             ts500(c3GemstoneTitanP1);
 
-            Console.WriteLine("GEMSTONE TITAN:\n\n'You awaken me from my slumber. Prepare to feel the wrath of the earth itself!'\n\n<enter>");
+            Console.WriteLine("GEMSTONE TITAN:\n\nYou awaken me from my slumber. Prepare to feel the wrath of the earth itself!\n\n<enter>");
             Thread.Sleep(500);
             Console.ReadLine();
             Console.Clear();
@@ -715,9 +834,13 @@ namespace MCNR
             Console.WriteLine("1. Fight the Gemstone Titan with all your strength.");
             Console.WriteLine("2. Retreat and attempt to escape the cave, avoiding the confrontation.");
             Console.Write("\nEnter 1 or 2: ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            return choice;
         }
 
-        public void DeadEndCave() //Console.Write, Input Required
+        public static void DeadEndCave()
         {
 
             string[] deadEndDialogue = new string[]
@@ -727,13 +850,11 @@ namespace MCNR
             };
             ts500(deadEndDialogue);
 
-            Console.WriteLine("1. Turn back, retracing your steps to the safety of the entrance.");
-            Console.WriteLine("2. Exit the cave, abandoning the journey for now.");
-
-            Console.Write("\nEnter 1 or 2:");
+            Console.WriteLine("Press <enter> to exit");
+            Console.ReadLine();
         }
 
-        public void EscapeCaveRiddleDialogue()
+        public static void EscapeCaveRiddleDialogue()
         {
             string[] caveEscapeDialogueP1 = new string[]
             {
@@ -750,19 +871,22 @@ namespace MCNR
             ts500(caveEscapeDialogueP2);
 
             Console.WriteLine("NARRATOR:\n\nYou feel the weight of the moment—answer correctly, and you may proceed. Fail, and you may never escape this cave.\n\n<enter>");
-                Console.ReadLine();
+            Console.ReadLine();
             Console.Clear();
         }
 
-        public void EscapeCaveRiddle() //Console.Write, Input Required
+        public static string EscapeCaveRiddle() //Console.Write, Input Required
         {
             Console.Write("ATHRON:\n\nSo, the riddle is this: Convert the binary 10000001 into a decimal!\n\nAnswer:");
+            string answer = Console.ReadLine();
+            Console.Clear();
+            return answer;
         }
 
-        public void EscapeCaveRiddleCorrect()
+        public static void EscapeCaveRiddleCorrect()
         {
             Console.WriteLine("ATHRON:\n\nCorrect! You may proceed and DO NOT ever come back.\n\n<enter>");
-                Console.ReadLine();
+            Console.ReadLine();
             Console.Clear();
 
             Console.WriteLine("NARRATOR:\n\nWith a sense of relief, you step past the Guardian and exit the cave.\n\n<enter>");
@@ -770,7 +894,7 @@ namespace MCNR
             Console.Clear();
         }
 
-        public void EscapeCaveRiddleIncorrec()
+        public static void EscapeCaveRiddleIncorrec()
         {
             Console.WriteLine("ATHRON:\n\nIncorrect! You have sealed your fate.\n\n<enter>");
             Console.ReadLine();
@@ -781,7 +905,7 @@ namespace MCNR
             Console.Clear();
         }
 
-        public void SpecialSwordDIalogue()
+        public static void SpecialSwordDIalogue()
         {
             string[] caveChestDialogue = new string[]
             {
@@ -792,16 +916,20 @@ namespace MCNR
 
         }
 
-        public void SpecialSwordGuess() //Console.Write, Input Required
+        public static string SpecialSwordGuess() //Console.Write, Input Required
         {
             Console.WriteLine("NARRATOR:\n\nIt reads: 'To reveal the power within, speak the word of light.'");
             Thread.Sleep(500);
             Console.WriteLine("You think for a moment. Perhaps the answer lies in the very essence of what you seek. It's a simple word related to illumination");
             Thread.Sleep(500);
             Console.Write("\n\nAnswer:");
+
+            string answer = Console.ReadLine().ToUpper();
+            Console.Clear();
+            return answer;
         }
 
-        public void SpecialSwordCorrect()
+        public static void SpecialSwordCorrect()
         {
 
             string[] specialSwordCorrectP1 = new string[]
@@ -811,36 +939,39 @@ namespace MCNR
                 };
             ts500(specialSwordCorrectP1);
 
-                string[] specialSwordCorrectP2 = new string[]
-                   {
+            string[] specialSwordCorrectP2 = new string[]
+               {
                 "NARRATOR:\n\nThis is the Blade of Lumina, said to be forged by the celestial smiths of old.",
                  "Legends say that this sword possesses great power, but it can only be wielded once.",
                 "As you hold the blade, you feel a profound connection, as if it recognizes your bravery and desire to protect the innocent.",
                     "Will you claim it as your own? <enter>"
-                   };
+               };
             ts500(specialSwordCorrectP2);
-            }
+        }
 
-        public void SpecialSwordIncorrect()
+        public static void SpecialSwordIncorrect()
         {
             Console.WriteLine("NARRATOR:\n\nThe lock remains steadfast. Perhaps you should try again and think of something brighter.\n\n<enter>");
             Console.ReadLine();
             Console.Clear();
         }
 
-        public void SpecialSwordClaim() //Console.Write, Input Required
+        public static char SpecialSwordClaim() //Console.Write, Input Required
         {
             Console.Write("Press 'C' to claim the Blade of Lumina and add it to your inventory: ");
+            char claim = Convert.ToChar(Console.ReadLine().ToUpper());
+            Console.Clear();
+            return claim;
         }
 
         #endregion
 
         #region Korthak
-        public void ReadyForKorthakDialogue(string playerName)
+        public static void ReadyForKorthakDialogue()
         {
             string[] readyForKorthakP1 = new string[]
             {
-                 $"VELDROS THE SEER:\n\n {playerName}, it seems you're ready to face KORTHAK THE RAVAGER.",
+                 $"VELDROS THE SEER:\n\n {PlayersName}, it seems you're ready to face KORTHAK THE RAVAGER.",
                  "You’ve gathered the strength, skill, and courage needed for this battle.",
                  "Your weapons are sharp, your armor sturdy, and your resolve unwavering."
             };
@@ -854,11 +985,11 @@ namespace MCNR
             ts500(readyForKorthakP2);
         }
 
-        public void NotReadyForKorthakDialogue(string playerName)
+        public static void NotReadyForKorthakDialogue()
         {
             string[] notReadyForKorthakP1 = new string[]
             {
-                $"VELDROS THE SEER:\n\n {playerName}, I sense you are not yet fully prepared to face KORTHAK THE RAVAGER.",
+                $"VELDROS THE SEER:\n\n {PlayersName}, I sense you are not yet fully prepared to face KORTHAK THE RAVAGER.",
                 "The path ahead is treacherous, and Korthak is a force to be reckoned with."
             };
             ts500(notReadyForKorthakP1);
@@ -872,7 +1003,7 @@ namespace MCNR
             ts500(notReadyForKorthakP2);
         }
 
-        public void KorthakConfrontation()
+        public static void KorthakConfrontation()
         {
             Console.WriteLine("NARRATOR:\n\nThe ground shakes beneath your feet as you step into the darkened arena. A looming figure emerges from the shadows, its eyes glowing with malice. It is KORTHAK THE RAVAGER, the terror of Eldoria.\n\n<enter>");
             Console.ReadLine();
@@ -885,18 +1016,18 @@ namespace MCNR
             ts500(korthakConfrontationDialogue);
 
             Console.WriteLine("NARRATOR:\n\nYour heart pounds in your chest as you draw your weapon, facing the terrifying beast before you. There is no turning back. This will be the fight of your life.\n\n<enter>");
-                Console.ReadLine();
+            Console.ReadLine();
             Console.Clear();
 
             Console.WriteLine("KORTHAK:\n\nLet’s see if your courage can withstand the might of Korthak!");
-                Console.ReadLine();
+            Console.ReadLine();
             Console.Clear();
         }
         #endregion
 
         #region Victory
 
-        public void Victory() //Console.Write, Input Required
+        public static void Victory() //Console.Write, Input Required
         {
             string[] victoryDialogue = new string[]
             {
