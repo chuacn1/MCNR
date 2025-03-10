@@ -205,24 +205,18 @@ namespace MCNR
             EldrinDialogue();
             //TutorialUsingPotionAndInventory();
 
-
-
-
-            // not working properly //
             static int EnemyVsPlayer(int playerHP, ref int enemyHP)
             {
-           
                 Random rand = new Random();
 
                 do
                 {
-                    //prompt player to attack or check inventory
                     Console.Write("Press 'A' to strike or 'I' to check your inventory: ");
                     string input = Console.ReadLine();
 
-                    char choice = ' '; //declare choice outside of the input check
+                    char choice = ' '; // Declare choice outside of the input check. This is to avoid a crash. Not sure why it was crashing but this does fix it so ¯\_(ツ)_/¯ 
 
-                    if (input.Length > 0) //checks if the input has at least one character
+                    if (input.Length > 0)
                     {
                         choice = input.ToLower()[0];
                         Console.WriteLine();
@@ -230,113 +224,68 @@ namespace MCNR
                     else
                     {
                         Console.WriteLine("Invalid input. Please try again.");
+                        continue; // Go back to the start of the loop
                     }
 
-                    //player Attack
+                    // Player Attack
                     if (choice == 'a')
                     {
-                        Console.Beep(1000, 300);
-                        int hitmiss = rand.Next(1, 5);
-                        switch (hitmiss)
+                        // Animation
+                        string[] swordSwing = { "|", "/", "-", "\\" };
+                        for (int i = 0; i < 5; i++)
                         {
-                            case 1:
-                                Console.WriteLine($"Enemy HP: {enemyHP}");
-                                Console.WriteLine($"Your HP: {playerHP}");
-                                Console.WriteLine("Your swing goes wide, missing the enemy entirely!");
-                                Console.WriteLine("0 damage\n");
-                                Console.WriteLine("The enemy retaliates!\n");
-                                Thread.Sleep(1500);
-                                break;
-                            case 2:
-                                enemyHP -= 5;
-                                Console.WriteLine($"Enemy HP: {enemyHP}");
-                                Console.WriteLine($"Your HP: {playerHP}");
-                                Console.WriteLine("You strike true!");
-                                Console.WriteLine("5 damage dealt!\n");
-                                Console.WriteLine("The enemy retaliates!\n");
-                                Thread.Sleep(1500);
-                                break;
-                            case 3:
-                                enemyHP -= 10;
-                                Console.WriteLine($"Enemy HP: {enemyHP}");
-                                Console.WriteLine($"Your HP: {playerHP}");
-                                Console.WriteLine("A fierce blow!");
-                                Console.WriteLine("10 damage dealt!\n");
-                                Console.WriteLine("The enemy retaliates!\n");
-                                Thread.Sleep(1500);
-                                break;
-                            default:
-                                enemyHP -= 2;
-                                Console.WriteLine($"Enemy HP: {enemyHP}");
-                                Console.WriteLine($"Your HP: {playerHP}");
-                                Console.WriteLine("You landed a glancing blow.");
-                                Console.WriteLine("2 damage dealt!\n");
-                                Console.WriteLine("The enemy retaliates!\n");
-                                Thread.Sleep(1500);
-                                break;
+                            Console.Write("\r" + swordSwing[i % swordSwing.Length] + "  ");
+                            Thread.Sleep(100);
                         }
+                        Console.Write("\r   \r"); // Clear the animation
+
+                        int playerDamage = rand.Next(10, 20);
+                        enemyHP -= playerDamage;
+
+                        Console.ForegroundColor = ConsoleColor.Green; // Set text color for player
+                        Console.WriteLine($"You attack the enemy for {playerDamage} damage!");
+                        Thread.Sleep(1000);
+                        Console.ResetColor();
                     }
-                    else if (choice == 'i')
+                    // Secret One-Shot Kill because I'm sick of waiting for this fight to end every time I want to test something. 
+                    else if (choice == 'x') // Hidden under "h"
                     {
-                        PrintInventory();
-                        continue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("You use the HOLY HAND GRENADE!");
+                        Console.ResetColor();
+                        Console.WriteLine("The enemy is dead");
+                        Console.ReadLine();
+                        int playerDamage = enemyHP;
+                        enemyHP = 0;
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"You deal {playerDamage} damage! The enemy is defeated instantly!");
+                        Console.ResetColor();
                     }
-
-
 
                     // Enemy Attack
-                    Console.Beep(800, 300);
-                    int misshit = rand.Next(1, 5);
-                    switch (misshit)
+                    if (enemyHP > 0)
                     {
-                        case 1:
-                            Console.WriteLine($"Enemy HP: {enemyHP}");
-                            Console.WriteLine($"Your HP: {playerHP}");
-                            Console.WriteLine("The enemy missed their strike!");
-                            Console.WriteLine("0 damage");
-                            Console.WriteLine("\nPress Enter for your turn");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        case 2:
-                            playerHP -= 5;
-                            Console.WriteLine($"Enemy HP: {enemyHP}");
-                            Console.WriteLine($"Your HP: {playerHP}");
-                            Console.WriteLine("The enemy lands a blow!");
-                            Console.WriteLine("5 damage taken");
-                            Console.WriteLine("\nPress Enter for your turn");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        case 3:
-                            playerHP -= 10;
-                            Console.WriteLine($"Enemy HP: {enemyHP}");
-                            Console.WriteLine($"Your HP: {playerHP}");
-                            Console.WriteLine("The enemy strikes fiercely!");
-                            Console.WriteLine("10 damage taken");
-                            Console.WriteLine("\nPress Enter for your turn");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        default:
-                            playerHP -= 2;
-                            Console.WriteLine($"Enemy HP: {enemyHP}");
-                            Console.WriteLine($"Your HP: {playerHP}");
-                            Console.WriteLine("The enemy lands a glancing blow.");
-                            Console.WriteLine("2 damage taken");
-                            Console.WriteLine("\nPress Enter for your turn");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
+                        int enemyDamage = rand.Next(5, 15);
+                        playerHP -= enemyDamage;
+
+                        Console.ForegroundColor = ConsoleColor.Red; // Set text color for enemy
+                        Console.WriteLine($"The enemy attacks you for {enemyDamage} damage!");
+                        Thread.Sleep(1000);
+                        Console.ResetColor();
                     }
 
+                    // Display updated stats
+                    Console.WriteLine("***********************************");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Your HP: {playerHP}");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Enemy HP: {enemyHP}");
+                    Console.ResetColor(); // Reset to default color
 
+                } while (playerHP > 0 && enemyHP > 0);
 
-                    //once enemy or player dies, stops loop
-                } while (enemyHP > 0 && playerHP > 0);
-
-                return playerHP;
-
+                return playerHP; // Return the player's HP after combat ends
             }
 
             static void Introduction()
