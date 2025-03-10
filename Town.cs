@@ -37,7 +37,7 @@ namespace mine
                         //Inventory
                         break;
                     case 1:
-                        //BlackSmith
+
                         break;
                     case 2:
                         //PotionMaker
