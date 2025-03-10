@@ -678,9 +678,6 @@ namespace MCNR
                     CraftStrengthPotion();
                 }
 
-
-
-            }          
         }
     }
 }
