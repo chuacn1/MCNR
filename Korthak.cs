@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCNR;
 
-namespace mine
+namespace MCNR
 {
     internal class korthak
     {
