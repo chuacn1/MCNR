@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MCNR;
+using mine;
 
 namespace MCNR
 {

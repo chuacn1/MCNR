@@ -3,6 +3,7 @@ using System.Data.SqlTypes;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using mine;
+using MCNR;
 
 namespace MCNR
 {
@@ -34,6 +35,7 @@ namespace MCNR
             public static string requireMaterial = "Crystal Flower";
             public static int requiredQuantity = 1 + HealthPotion.requiredQuantity;
         }
+        static int crystalflower = 2;
         static void CraftStrengthPotion()
         {
             if (player.InventoryItemCount("crystalflower") >= StrengthPotion.requiredQuantity)
@@ -59,7 +61,10 @@ namespace MCNR
         }
 
 
-      
+        static int flower = 2;
+
+        public static object Town { get; private set; }
+
         static void CraftPotion()
         {
             //check if the player has enough flowers to craft the potion
@@ -156,7 +161,7 @@ namespace MCNR
                         Console.WriteLine("The enemy is dead");
                         Console.ReadLine();
                         int playerDamage = enemyHP;
-                        enemyHP = 0;
+                        enemyHP = 20;
 
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"You deal {playerDamage} damage! The enemy is defeated instantly!");
@@ -189,37 +194,12 @@ namespace MCNR
             }
 
             
-            static void Weapon()
-            {
-                string weaponchoice = Console.ReadLine();
-                    Console.Clear();
-               Console.WriteLine("\n\tPlease choose carefully");
-                    Console.WriteLine("\n\t1) Special Sword");
-                    Console.WriteLine("\n\t2) Battle Axe");
-                    Console.WriteLine("\n\t3) Sharpened Dagger");
-
-                    switch (weaponchoice)
-                {
-                    case "1":
-                        Console.WriteLine("You have chosen the Special Sword! Prepare for battle.");
-                        break;
-                    case "2":
-                        Console.WriteLine("You have chosen the Battle Axe! It's time to fight fiercely.");
-                        break;
-                    case "3":
-                        Console.WriteLine("You have chosen the Sharpened Dagger! Stealth is your ally.");
-                        break;
-                    default:
-                        Console.WriteLine("Invalid choice. Please choose a valid weapon.");
-                        break;
-                }
-            }
-
+           
               
             static void Tutorial()
             {
                 enemyHP = 1;
-                playerHP = 50;
+                int playerHP = 50;
 
                 playerHP = EnemyVsPlayer(playerHP, ref enemyHP);
 
@@ -268,10 +248,10 @@ namespace MCNR
                 char UserChar = userInput[0]; // Taking the first character from the userInput rather than try parse etc. 
                 Console.Clear();
 
-                money += 10;
-                ore += 1;
-                flower += 1;
-                potion += 1;
+               int money = 10;
+               int ore = 1;
+                flower = 1;
+                int potion = 1;
 
                 switch (UserChar)
                 {
@@ -334,7 +314,7 @@ namespace MCNR
                     Console.ReadLine();
                     Console.Clear();
 
-                    Town.EnteringTownAnimation();
+              //      town.EnteringTownAnimation();
                 }
                 else
                 {
@@ -350,10 +330,10 @@ namespace MCNR
             {
                 Console.WriteLine("Press 3 for Health Potion");
                 int input = Convert.ToInt32(Console.ReadLine());
-
+                int potion=3;
                 if (input == 3)
                 {
-                    playerHP = 50;
+                   int playerHP = 50;
                     potion -= 1;
 
                     Console.WriteLine($"Your health has been restored to {playerHP} points! <enter>");
@@ -373,7 +353,8 @@ namespace MCNR
             {
                 Console.WriteLine("Press 4 for Special Sword");
                 int input = Convert.ToInt32(Console.ReadLine());
-
+                int specialsword = 1;
+                int playerHP=50;
                 if (input == 4)
                 {
                     specialsword -= 1;
@@ -400,7 +381,7 @@ namespace MCNR
             {
                 // Ensure the coins are in the first index
                 items[0] = "Gleaming Coins"; // Set item name for coins
-                money = amount;
+               int money = amount;
                 counts[0] += amount; // Increment coin count
 
 
@@ -546,8 +527,36 @@ namespace MCNR
             }
 
             //**************************************************//
+            static void UpgradeWeapon(Weapon weapon)
+            {
+                if (weapon.UpgradeLevel < weapon.MaxUpgradeLevel)
+                {
+                    if (weapon.player.InventoryItemCount("ore") > 0 && weapon.player.Money >= weapon.UpgradeCost)
+                    {
+                        //deduct iron and currency for upgrade
+                        //player.InventoryRemoval("ore")--;
+                        //money = weapon.UpgradeCost;
 
-            
+                        //increase weapons damage and level
+                        weapon.UpgradeLevel++;
+                        weapon.Damage += 5;
+                        weapon.UpgradeCost += 10;
+
+                        Console.WriteLine($"Upgrade {weapon.Name} to level {weapon.UpgradeLevel}!");
+                        Console.WriteLine($"\nNew Damage: {weapon.Damage}, New Upgrade Cost: {weapon.UpgradeCost}");
+                        //Console.WriteLine($"\nIron left: {ore}, Currency left: {money}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not enough iron or currency to upgrade weapon");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Maximum upgrade level reached for this weapon");
+                }
+            }
+
             //**************************************************//
 
             //*****VISIT BLACKSMITH METHOD*****//
@@ -586,7 +595,7 @@ namespace MCNR
                 }
                 else if (choice == "2")
                 {
-                    Town.ReEnterTown();
+                    town.EnteringTown();
                 }
                 Console.Clear();
             }
@@ -674,7 +683,7 @@ namespace MCNR
                 {
                     Console.Clear();
                     Console.WriteLine("\n[Eldrin the Wise]: Very well! May your courage shine bright. Prepare yourself well; the battle ahead will be fierce!");
-                    BossEncounter();
+                    //BossEncounter();
                 }
                 else if (response == "no")
                 {
@@ -747,7 +756,7 @@ namespace MCNR
                         Console.Clear();
                         Thread.Sleep(3000);
                         Console.Clear();
-                        CavePath1OrPath2();
+                       // CavePath1OrPath2();
                         break;
 
                     case 2:
@@ -761,7 +770,7 @@ namespace MCNR
                         Console.WriteLine("Entering the forest...");
                         Thread.Sleep(1000);
                         Console.Clear();
-                        ForestPath1OrPath2();
+                        //ForestPath1OrPath2();
                         break;
 
                     case 3:
@@ -775,7 +784,8 @@ namespace MCNR
                         Console.WriteLine("Walking back...");
                         Thread.Sleep(1000);
                         Console.Clear();
-                        Town.ReEnterTown();
+                        town.EnteringTown();
+
                         break;
 
                     case 4:
