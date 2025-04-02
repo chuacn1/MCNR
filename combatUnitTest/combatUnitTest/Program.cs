@@ -5,7 +5,7 @@ namespace HelloWorld
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void demo ()
         {
             Console.WriteLine("Testing...");
             int playerHP = 100; // starting stats

@@ -7,7 +7,7 @@ using MCNR;
 
 namespace mine
 {
-    internal class town
+    public class town
     {
         public static void EnteringTown()
         {
@@ -43,7 +43,7 @@ namespace mine
                         //PotionMaker
                         break;
                     case 3:
-                        Veldros.VeldrosEncounter();
+                        veldros.VeldrosEncounter();
                         break;
                 }
 

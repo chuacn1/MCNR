@@ -30,34 +30,31 @@ namespace MCNR
 
 
 
-		static void UpgradeWeapon(Weapon weapon)
-		{
-			if (weapon.UpgradeLevel < weapon.MaxUpgradeLevel)
-			{
-				if (weapon.player.InventoryItemCount("ore") > 0 && weapon.player.Money >= weapon.UpgradeCost)
-				{
-					//deduct iron and currency for upgrade
-					//player.InventoryRemoval("ore")--;
-					//money = weapon.UpgradeCost;
+        public static void weapon()
+        {
+            string weaponchoice = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("\n\tPlease choose carefully");
+            Console.WriteLine("\n\t1) Special Sword");
+            Console.WriteLine("\n\t2) Battle Axe");
+            Console.WriteLine("\n\t3) Sharpened Dagger");
 
-					//increase weapons damage and level
-					weapon.UpgradeLevel++;
-					weapon.Damage += 5;
-					weapon.UpgradeCost += 10;
+            switch (weaponchoice)
+            {
+                case "1":
+                    Console.WriteLine("You have chosen the Special Sword! Prepare for battle.");
+                    break;
+                case "2":
+                    Console.WriteLine("You have chosen the Battle Axe! It's time to fight fiercely.");
+                    break;
+                case "3":
+                    Console.WriteLine("You have chosen the Sharpened Dagger! Stealth is your ally.");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please choose a valid weapon.");
+                    break;
+            }
+        }
 
-					Console.WriteLine($"Upgrade {weapon.Name} to level {weapon.UpgradeLevel}!");
-					Console.WriteLine($"\nNew Damage: {weapon.Damage}, New Upgrade Cost: {weapon.UpgradeCost}");
-					//Console.WriteLine($"\nIron left: {ore}, Currency left: {money}");
-				}
-				else
-				{
-					Console.WriteLine("Not enough iron or currency to upgrade weapon");
-				}
-			}
-			else
-			{
-				Console.WriteLine("Maximum upgrade level reached for this weapon");
-			}
-		}
-	}
-	}
+    }
+}

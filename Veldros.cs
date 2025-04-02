@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MCNR;
+using mine;
 
 namespace MCNR
 {
@@ -44,7 +45,7 @@ namespace MCNR
                     break;
                 case 4:
                     Narration.RetracingSteps();
-                    Town.EnteringTown();
+                    town.EnteringTown();
                     break;
                 case 5:
                     //Inventory
@@ -57,7 +58,7 @@ namespace MCNR
         {
             //if inventory has special sword and special flower 
             Narration.ReadyForKorthakDialogue();
-            Korthak.KorthakEncounter();
+            korthak.KorthakEncounter();
 
             //if not
             Narration.NotReadyForKorthakDialogue();
