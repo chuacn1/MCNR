@@ -28,7 +28,7 @@ namespace MCNR
             Inventory = inventory;
             Money = money;
         }
-        public int InventoryItemCount(string ItemName)
+        public int inventoryItemCount(string ItemName)
         {
             int ItemCount = 0;
             foreach (var item in Inventory)
@@ -41,7 +41,7 @@ namespace MCNR
             Console.WriteLine($"You have {ItemCount} {ItemName}s");
             return ItemCount;
         }
-        public List<string> InventoryRemoval(string ItemName, int AmountToRemove)
+        public List<string> inventoryRemoval(string ItemName, int AmountToRemove)
         {
             int ItemCount = 0;
             for (int i = 0; i > Inventory.Count; i++)
